@@ -6,8 +6,8 @@ namespace HoldYourHorses.Controllers
     {
         public IActionResult Index()
         {
+            return Content("hej");
             //Min rad 9 är bättre än Lovisas? :D 
-            return View();
         }
     }
 }
