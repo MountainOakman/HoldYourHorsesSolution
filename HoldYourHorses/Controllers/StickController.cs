@@ -6,7 +6,7 @@ namespace HoldYourHorses.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            return Content("hej");
         }
     }
 }
