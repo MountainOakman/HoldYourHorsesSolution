@@ -78,13 +78,14 @@ const fromSlider = document.querySelector("#fromSlider");
 const toSlider = document.querySelector("#toSlider");
 const fromInput = document.querySelector("#fromInput");
 const toInput = document.querySelector("#toInput");
-
+fillSlider(fromSlider, toSlider, "#C6C6C6", "#25daa5", toSlider);
+setToggleAccessible(toSlider);
 const fromSliderHK = document.querySelector("#fromSliderHK");
 const toSliderHK = document.querySelector("#toSliderHK");
 const fromInputHK = document.querySelector("#fromInputHK");
 const toInputHK = document.querySelector("#toInputHK");
-fillSlider(fromSlider, toSlider, "#C6C6C6", "#25daa5", toSlider);
-setToggleAccessible(toSlider);
+fillSlider(fromSliderHK, toSliderHK, "#C6C6C6", "#25daa5", toSliderHK);
+setToggleAccessible(toSliderHK);
 
 fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
 toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
