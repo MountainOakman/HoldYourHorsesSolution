@@ -4,9 +4,18 @@
 {
     <link rel="stylesheet" href="~/CSS/details.css">
 }
+@section JS
+{
+    <script>
+const price = ;
+{price}.toLocaleString('en');
+
+    </script>
+
+}
 <div>
     <h1>@Model.Artikelnamn</h1>
-    <h2>@Model.Pris kr</h2>
+    <h2> @Math.Round(@Model.Pris) kr</h2>
 </div>
 
     <input type="text" id="Antalvaror" />
