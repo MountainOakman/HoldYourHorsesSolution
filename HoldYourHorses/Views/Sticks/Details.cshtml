@@ -6,19 +6,19 @@
 }
 @section JS
 {
-    <script>
-const price = ;
-{price}.toLocaleString('en');
-
-    </script>
-
+ 
 }
+<div id="image">
+    <img src="@Model.Bild" alt="@Model.Artikelnamn" width="300" height="300"/>
+</div>
+
 <div>
     <h1>@Model.Artikelnamn</h1>
     <h2> @Math.Round(@Model.Pris) kr</h2>
 </div>
 
-    <input type="text" id="Antalvaror" />
+    <input type="text" value="1" id="Antalvaror" />
+    </br>
 <input type="button" value="Lägg i varukorgen" onclick="GetHtml(document.getElementById('AntalVaror').value)" />
 
 

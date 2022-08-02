@@ -12,7 +12,7 @@
         public string Beskrivning { get; set; } 
         public string Tillverkningsland { get; set; } 
         public bool AbsBroms { get; set; }
-        public string Bild { get; set; }
+        public string Bild { get; set; } = "https://sisselblom.se/wp-content/uploads/2021/03/Kapphasten-Bruno.png";
 
     }
 }
