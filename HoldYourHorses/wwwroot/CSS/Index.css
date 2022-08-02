@@ -85,9 +85,6 @@ img {
   ); /* This is a shorthand of translateX(-50%) and translateY(-50%) */
 }
 
-.price {
-}
-
 .name {
   font-size: 1.8rem;
   margin: 0.5rem;

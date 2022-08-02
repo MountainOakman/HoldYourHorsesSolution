@@ -7,22 +7,42 @@
 }
     <div class="super-container">
       <div class="filter">
+          <div class="filter-price">
           <div class="slider-super-container">
                <p class="p-filter">Pris</p>
           <div class="range_container">
-             
-    <div class="sliders_control">
-       <input id="fromSlider" type="range" value="10" min="0" max="100"/>
-       <input id="toSlider" type="range" value="30" min="0" max="100"/>
+             <div class="sliders_control">
+                 <input id="fromSlider" type="range" value="0" min="0" max="100"/>
+                <input id="toSlider" type="range" value="100" min="0" max="100"/>
+            </div>
+            <div id="min-int" class="form_control_container">
+                <div   class="form_control_container__time">Min</div>
+                <input class="form_control_container__time__input" type="number" id="fromInput" value="0" min="0" max="100"/>
+            </div>
+            <div  id="max-int" class="form_control_container">
+                <div class="form_control_container__time">Max</div>
+                <input class="form_control_container__time__input" type="number" id="toInput" value="100" min="0" max="100"/>
+            </div>
+            </div>
     </div>
-      <div id="min-int" class="form_control_container">
-          <div   class="form_control_container__time">Min</div>
-          <input class="form_control_container__time__input" type="number" id="fromInput" value="10" min="0" max="100"/>
-        </div>
-        <div  id="max-int" class="form_control_container">
-          <div class="form_control_container__time">Max</div>
-          <input class="form_control_container__time__input" type="number" id="toInput" value="30" min="0" max="100"/>
-        </div>
+    </div>
+              <div class="filter-hk">
+          <div class="slider-super-container">
+               <p class="p-filter">Hästkrafter</p>
+          <div class="range_container">
+             <div class="sliders_control">
+                 <input id="fromSliderHK" type="range" value="0" min="0" max="100"/>
+                <input id="toSliderHK" type="range" value="100" min="0" max="100"/>
+            </div>
+            <div id="min-int" class="form_control_container">
+                <div   class="form_control_container__time">Min</div>
+                <input class="form_control_container__time__input" type="number" id="fromInputHK" value="0" min="0" max="100"/>
+            </div>
+            <div  id="max-int" class="form_control_container">
+                <div class="form_control_container__time">Max</div>
+                <input class="form_control_container__time__input" type="number" id="toInputHK" value="100" min="0" max="100"/>
+            </div>
+            </div>
     </div>
     </div>
 </div>

@@ -78,6 +78,11 @@ const fromSlider = document.querySelector("#fromSlider");
 const toSlider = document.querySelector("#toSlider");
 const fromInput = document.querySelector("#fromInput");
 const toInput = document.querySelector("#toInput");
+
+const fromSliderHK = document.querySelector("#fromSliderHK");
+const toSliderHK = document.querySelector("#toSliderHK");
+const fromInputHK = document.querySelector("#fromInputHK");
+const toInputHK = document.querySelector("#toInputHK");
 fillSlider(fromSlider, toSlider, "#C6C6C6", "#25daa5", toSlider);
 setToggleAccessible(toSlider);
 
@@ -87,12 +92,33 @@ fromInput.oninput = () =>
   controlFromInput(fromSlider, fromInput, toInput, toSlider);
 toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
 
+fromSliderHK.oninput = () =>
+  controlFromSlider(fromSliderHK, toSliderHK, fromInputHK);
+toSliderHK.oninput = () => controlToSlider(fromSliderHK, toSliderHK, toInputHK);
+fromInputHK.oninput = () =>
+  controlFromInput(fromSliderHK, fromInputHK, toInputHK, toSliderHK);
+toInputHK.oninput = () =>
+  controlToInput(toSliderHK, fromInputHK, toInputHK, toSliderHK);
+
+//price//// onchange event listener
 fromSlider.addEventListener("change", (event) =>
   console.log(event.target.value)
-); // onchange event listener
-
-toSlider.addEventListener("change", (event) => console.log(event.target.value)); // onchange event listener
+);
+toSlider.addEventListener("change", (event) => console.log(event.target.value));
 fromInput.addEventListener("change", (event) =>
   console.log(event.target.value)
-); // onchange event listener
-toInput.addEventListener("change", (event) => console.log(event.target.value)); // onchange event listener
+);
+toInput.addEventListener("change", (event) => console.log(event.target.value));
+//Hästkrafter //// onchange event listener
+fromSliderHK.addEventListener("change", (event) =>
+  console.log(event.target.value)
+);
+toSliderHK.addEventListener("change", (event) =>
+  console.log(event.target.value)
+);
+fromInputHK.addEventListener("change", (event) =>
+  console.log(event.target.value)
+);
+toInputHK.addEventListener("change", (event) =>
+  console.log(event.target.value)
+);

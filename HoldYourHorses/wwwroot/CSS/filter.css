@@ -102,3 +102,7 @@ input[type="range"] {
   height: 0;
   z-index: 1;
 }
+#fromSliderHK {
+  height: 0;
+  z-index: 1;
+}
