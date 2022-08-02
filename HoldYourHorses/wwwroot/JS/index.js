@@ -86,3 +86,13 @@ toSlider.oninput = () => controlToSlider(fromSlider, toSlider, toInput);
 fromInput.oninput = () =>
   controlFromInput(fromSlider, fromInput, toInput, toSlider);
 toInput.oninput = () => controlToInput(toSlider, fromInput, toInput, toSlider);
+
+fromSlider.addEventListener("change", (event) =>
+  console.log(event.target.value)
+); // onchange event listener
+
+toSlider.addEventListener("change", (event) => console.log(event.target.value)); // onchange event listener
+fromInput.addEventListener("change", (event) =>
+  console.log(event.target.value)
+); // onchange event listener
+toInput.addEventListener("change", (event) => console.log(event.target.value)); // onchange event listener
