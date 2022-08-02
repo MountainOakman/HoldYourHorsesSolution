@@ -32,14 +32,14 @@ namespace HoldYourHorses.Controllers
         }
 
         [HttpPost("checkout")]
-        public IActionResult Checkout(CheckoutVM checkoutVM)
-        {
-            if (!ModelState.IsValid)
-                return View();
-            else
-                dataService.Checkout(checkoutVM);
-            return RedirectToAction(nameof(Kvitto));
-        }
+        //public IActionResult Checkout(CheckoutVM checkoutVM)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View();
+        //    else
+        //        dataService.Checkout(checkoutVM);
+        //    return RedirectToAction(nameof(Kvitto));
+        //}
 
         [HttpGet("kvitto")]
         public IActionResult Kvitto()
