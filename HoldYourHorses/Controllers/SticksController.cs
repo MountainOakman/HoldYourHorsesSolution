@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HoldYourHorses.Controllers
 {
-    public class StickController : Controller
+    public class SticksController : Controller
     {
         private readonly DataService dataService;
 
-        public StickController(DataService dataService)
+        public SticksController(DataService dataService)
         {
             this.dataService = dataService;
         }
