@@ -1,5 +1,6 @@
 ﻿using HoldYourHorses.Models.Entities;
 using HoldYourHorses.Views.Sticks;
+using Microsoft.EntityFrameworkCore;
 
 namespace HoldYourHorses.Models
 {
@@ -50,10 +51,18 @@ namespace HoldYourHorses.Models
             };
         }
 
-        internal IndexVM GetIndexVM()
+        internal async Task<IndexVM> GetIndexVMAsync()
         {
-            var db = context.Sticks;
-            var cards = db.Select(o => new Card()
+            var sticks = await context.Sticks.Select(o => new
+            {
+                Artikelnamn = o.Artikelnamn,
+                Pris = o.Pris,
+                Artikelnr = o.Artikelnr,
+                Hästkrafter = o.Hästkrafter,
+                Material = o.Material,
+                Typ = o.Typ
+            }).ToArrayAsync(); //fixa filtreringen innan toArrayAsync!
+            var cards = sticks.Select(o => new IndexVM.Card()
             {
                 Namn = o.Artikelnamn,
                 Pris = o.Pris,
@@ -61,14 +70,13 @@ namespace HoldYourHorses.Models
             });
             var indexVM = new IndexVM
             {
-                PrisMax = db.Max(o => o.Pris),
-                PrisMin = db.Min(o => o.Pris),
-                HästkrafterMax = db.Max(o => o.Hästkrafter),
-                HästkrafterMin = db.Min(o => o.Hästkrafter),
-                //Materialer = db.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
-                //Typer = db.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
+                PrisMax = sticks.Max(o => o.Pris),
+                PrisMin = sticks.Min(o => o.Pris),
+                HästkrafterMax = sticks.Max(o => o.Hästkrafter),
+                HästkrafterMin = sticks.Min(o => o.Hästkrafter),
+                Materialer = sticks.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
+                Typer = sticks.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
                 Cards = cards.ToArray()
-
             };
             return indexVM;
         }

@@ -13,11 +13,10 @@ namespace HoldYourHorses.Controllers
             this.dataService = dataService;
         }
         [HttpGet("")]
-        public IActionResult Index()
+        public async Task<IActionResult> IndexAsync()
         {
-            IndexVM model = dataService.GetIndexVM();
+            IndexVM model = await dataService.GetIndexVMAsync();
             return View(model);
-            //ser alla detta?
         }
 
         [HttpGet("Product/{artikelnr}")]
