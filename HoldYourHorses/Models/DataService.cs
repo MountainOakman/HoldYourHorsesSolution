@@ -20,6 +20,8 @@ namespace HoldYourHorses.Models
                 .Select(o => new DetailsVM (){ Artikelnr = artikelNr })
                 .Single()
                 ;
+
+            //TODO fixa resten av props
             return q;
         }
     }
