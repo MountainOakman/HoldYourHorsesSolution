@@ -106,3 +106,27 @@ input[type="range"] {
   height: 0;
   z-index: 1;
 }
+
+.checkboxes input[type="checkbox"] {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+.checkboxes label {
+  display: inline-block;
+  vertical-align: middle;
+  font-size: 1.7rem;
+  cursor: pointer;
+  margin-top: 2rem;
+}
+
+.filter-btn-div,
+.kategori-container,
+.material-container {
+  flex-direction: column;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 2rem;
+}
