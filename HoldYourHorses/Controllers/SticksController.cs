@@ -1,4 +1,5 @@
 ﻿using HoldYourHorses.Models;
+using HoldYourHorses.Views.Sticks;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HoldYourHorses.Controllers
@@ -14,7 +15,8 @@ namespace HoldYourHorses.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
+            IndexVM model = dataService.GetIndexVM();
+            return View(model);
             //ser alla detta?
         }
 
