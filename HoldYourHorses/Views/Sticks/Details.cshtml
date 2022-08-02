@@ -1,51 +1,51 @@
 ﻿@model DetailsVM
 
 @section CSS
-{
+    {
     <link rel="stylesheet" href="~/CSS/details.css">
 }
-@section JS
-{
- 
-}
-<div id="image">
-    <img src="@Model.Bild" alt="@Model.Artikelnamn" width="300" height="300"/>
-</div>
+    @section JS
+    {
 
-<div>
-    <h1>@Model.Artikelnamn</h1>
-    <h2> @Math.Round(@Model.Pris) kr</h2>
-</div>
+}
+    <div id="image">
+        <img src="@Model.Bild" alt="@Model.Artikelnamn" width="300" height="300" />
+    </div>
+
+    <div>
+        <h1>@Model.Artikelnamn</h1>
+        <h2> @Math.Round(@Model.Pris) kr</h2>
+    </div>
 
     <input type="text" value="1" id="Antalvaror" />
-    </br>
-<input type="button" value="Lägg i varukorgen" onclick="GetHtml(document.getElementById('AntalVaror').value)" />
+        </br>
+    <input type="button" value="Lägg i varukorgen" onclick="    UppdateraVarukorg(document.getElementById('AntalVaror').value, {@Model.Artikelnr})" />
 
 
-  <div class="grid-container">
+    <div class="grid-container">
 
-    <div class="grid-item">ArtikelNr</div> 
-    <div class="grid-item">@Model.Artikelnr</div> 
-    <div class="grid-item">Hästkrafter</div> 
-    <div class="grid-item">@Model.Hästkrafter hk</div> 
-    <div class="grid-item">Trädensitet</div> 
-    <div class="grid-item">@Model.Trädensitet cm3</div> 
-    <div class="grid-item">Material</div> 
-    <div class="grid-item">@Model.Material</div> 
-    <div class="grid-item">Typ</div> 
-    <div class="grid-item">@Model.Typ</div> 
-    <div class="grid-item">TIllverkningsland</div> 
-    <div class="grid-item">@Model.Tillverkningsland</div> 
-    <div class="grid-item">ABS-broms</div> 
-    <div class="grid-item">@Model.AbsBroms</div> 
-  </div>
-
-
+        <div class="grid-item">ArtikelNr</div>
+        <div class="grid-item">@Model.Artikelnr</div>
+        <div class="grid-item">Hästkrafter</div>
+        <div class="grid-item">@Model.Hästkrafter hk</div>
+        <div class="grid-item">Trädensitet</div>
+        <div class="grid-item">@Model.Trädensitet cm3</div>
+        <div class="grid-item">Material</div>
+        <div class="grid-item">@Model.Material</div>
+        <div class="grid-item">Typ</div>
+        <div class="grid-item">@Model.Typ</div>
+        <div class="grid-item">TIllverkningsland</div>
+        <div class="grid-item">@Model.Tillverkningsland</div>
+        <div class="grid-item">ABS-broms</div>
+        <div class="grid-item">@Model.AbsBroms</div>
+    </div>
 
 
-<div class="right">
-    <h1>Beskrivning</h1>
-    <span>@Model.Beskrivning</span>
 
-</div>
+
+    <div class="right">
+        <h1>Beskrivning</h1>
+        <span>@Model.Beskrivning</span>
+
+    </div>
 
