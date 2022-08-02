@@ -17,5 +17,12 @@ namespace HoldYourHorses.Controllers
             return Content("hej");
             //ser alla detta?
         }
+        [HttpGet("Product/{artikelnr}")]
+        public IActionResult Details(int artikelNr)
+        {
+            return View(dataService.GetDetailsVM(artikelNr));
+        }
+
+      
     }
 }
