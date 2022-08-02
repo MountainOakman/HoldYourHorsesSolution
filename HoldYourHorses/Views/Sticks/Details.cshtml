@@ -1,3 +1,51 @@
 ﻿@model DetailsVM
 
-@Model.Artikelnr
+<div>
+    <h1>@Model.Artikelnamn</h1>
+    <h2>@Model.Pris kr</h2>
+</div>
+
+    
+
+<table>
+  <tr>
+    <td>Artikelnr</td>
+    <td>@Model.Artikelnr</td>
+  </tr>
+  <tr>
+    <td>Hästkrafter</td>
+    <td>@Model.Hästkrafter</td>
+  </tr>
+  <tr>
+    <td>Trädensitet</td>
+    <td>@Model.Trädensitet cm3</td>
+  </tr>
+  <tr>
+    <td>Material</td>
+    <td>@Model.Material</td>
+  </tr>
+</table>
+
+
+<div id="description">
+    <h1>Beskrivning</h1>
+    <span>@Model.Beskrivning</span>
+
+</div>
+
+@*@Model.Artikelnr*@
+
+@*Artnr
+51432
+Hästkrafter
+250 hk
+Trädensitet
+200g/cm3
+Material
+Ek
+Typ
+Fritid
+Tillverkningsland
+USA
+ABS broms
+Ja*@
