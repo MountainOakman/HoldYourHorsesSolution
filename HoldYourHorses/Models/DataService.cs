@@ -14,7 +14,6 @@ namespace HoldYourHorses.Models
 
         internal DetailsVM GetDetailsVM(int artikelNr)
         {
-
             var q = context.Sticks
                 .Where(o => o.Artikelnr == artikelNr)
                 .Select(o => new DetailsVM()
@@ -33,7 +32,7 @@ namespace HoldYourHorses.Models
                 .Single()
                 ;
 
-            //TODO:Tilldela prop :public string Bild { get; set; }
+        //TODO:Tilldela prop :public string Bild { get; set; }
             return q;
         }
 
@@ -50,5 +49,29 @@ namespace HoldYourHorses.Models
                 Country = checkoutVM.Country,
             };
         }
+
+        internal IndexVM GetIndexVM()
+        {
+            var db = context.Sticks;
+            var cards = db.Select(o => new Card()
+            {
+                Namn = o.Artikelnamn,
+                Pris = o.Pris,
+                ArtikelNr = o.Artikelnr,
+            });
+            var indexVM = new IndexVM
+            {
+                PrisMax = db.Max(o => o.Pris),
+                PrisMin = db.Min(o => o.Pris),
+                HästkrafterMax = db.Max(o => o.Hästkrafter),
+                HästkrafterMin = db.Min(o => o.Hästkrafter),
+                //Materialer = db.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
+                //Typer = db.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
+                Cards = cards.ToArray()
+
+            };
+            return indexVM;
+        }
+
     }
 }
