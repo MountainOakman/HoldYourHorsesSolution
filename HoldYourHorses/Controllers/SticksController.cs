@@ -12,13 +12,12 @@ namespace HoldYourHorses.Controllers
         {
             this.dataService = dataService;
         }
-		[HttpGet("")]
-		public IActionResult Index()
-		{
-			IndexVM model = dataService.GetIndexVM();
-			return View(model);
-			//ser alla detta?
-		}
+        [HttpGet("")]
+        public async Task<IActionResult> IndexAsync()
+        {
+            IndexVM model = await dataService.GetIndexVMAsync();
+            return View(model);
+        }
 
 		[HttpGet("Product/{artikelnr}")]
         public IActionResult Details(int artikelNr)
@@ -47,5 +46,12 @@ namespace HoldYourHorses.Controllers
         {
             return View();
         }
+    
+        public IActionResult UppdateraVarukorg(int antal, int artikelNr)
+        {
+            throw new NotImplementedException();
+            //Uppdatera varukorg ajax från Details 
+        }
+    
     }
 }

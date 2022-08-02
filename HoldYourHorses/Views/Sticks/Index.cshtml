@@ -54,8 +54,11 @@
     <div class="kategori-container">
         <p class="p-filter">Kategori</p>
         <div class="checkboxes">
-            <input type="checkbox" class="kategori" id="sport" name="sport" checked> <label for="sport">Sport</label></div>
-           
+            @foreach (var item in @Model.Typer)
+            {
+                 <input type="checkbox" class="kategori" id="@item" name="@item" checked> <label for="@item">@item</label>
+            }
+          </div> 
     </div>
       <div class="material-container">
         <p class="p-filter">Material</p>
