@@ -14,7 +14,7 @@ namespace HoldYourHorses.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return Content("hej");
+            return View();
             //ser alla detta?
         }
         [HttpGet("Product/{artikelnr}")]
@@ -22,7 +22,5 @@ namespace HoldYourHorses.Controllers
         {
             return View(dataService.GetDetailsVM(artikelNr));
         }
-
-
     }
 }
