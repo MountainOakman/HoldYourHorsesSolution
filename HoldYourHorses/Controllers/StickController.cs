@@ -11,6 +11,7 @@ namespace HoldYourHorses.Controllers
         {
             this.dataService = dataService;
         }
+        [HttpGet("")]
         public IActionResult Index()
         {
             return Content("hej");
