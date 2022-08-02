@@ -1,4 +1,5 @@
 ﻿using HoldYourHorses.Models.Entities;
+using HoldYourHorses.Views.Sticks;
 
 namespace HoldYourHorses.Models
 {
@@ -9,6 +10,17 @@ namespace HoldYourHorses.Models
         public DataService(SticksDBContext context)
         {
             this.context = context;
+        }
+
+        internal DetailsVM GetDetailsVM(int artikelNr)
+        {
+
+            var q = context.Sticks
+                .Where(o => o.Artikelnr == artikelNr)
+                .Select(o => new DetailsVM (){ Artikelnr = artikelNr })
+                .Single()
+                ;
+            return q;
         }
     }
 }
