@@ -12,6 +12,7 @@ builder.Services.AddDbContext<SticksDBContext>(o => o.UseSqlServer(connString));
 
 var app = builder.Build();
 
+app.UseStaticFiles();
 app.UseRouting();
 app.UseEndpoints(o => o.MapControllers());
 app.Run();
