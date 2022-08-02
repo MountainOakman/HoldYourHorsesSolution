@@ -50,28 +50,28 @@ namespace HoldYourHorses.Models
             };
         }
 
-        internal IndexVM GetIndexVM()
-        {
-            var db = context.Sticks;
-            var cards = db.Select(o => new Card()
-            {
-                Namn = o.Artikelnamn,
-                Pris = o.Pris,
-                ArtikelNr = o.Artikelnr,
-            });
-            var indexVM = new IndexVM
-            {
-                PrisMax = db.Max(o => o.Pris),
-                PrisMin = db.Min(o => o.Pris),
-                HästkrafterMax = db.Max(o => o.Hästkrafter),
-                HästkrafterMin = db.Min(o => o.Hästkrafter),
-                //Materialer = db.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
-                //Typer = db.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
-                Cards = cards.ToArray()
+		internal IndexVM GetIndexVM()
+		{
+			var db = context.Sticks;
+			var cards = db.Select(o => new Card()
+			{
+				Namn = o.Artikelnamn,
+				Pris = o.Pris,
+				ArtikelNr = o.Artikelnr,
+			});
+			var indexVM = new IndexVM
+			{
+				PrisMax = db.Max(o => o.Pris),
+				PrisMin = db.Min(o => o.Pris),
+				HästkrafterMax = db.Max(o => o.Hästkrafter),
+				HästkrafterMin = db.Min(o => o.Hästkrafter),
+				//Materialer = db.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
+				//Typer = db.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
+				Cards = cards.ToArray()
 
-            };
-            return indexVM;
-        }
+			};
+			return indexVM;
+		}
 
-    }
+	}
 }
