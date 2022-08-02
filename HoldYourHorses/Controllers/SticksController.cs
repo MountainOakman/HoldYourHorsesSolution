@@ -25,5 +25,27 @@ namespace HoldYourHorses.Controllers
         {
             return View(dataService.GetDetailsVM(artikelNr));
         }
+
+        [HttpGet("checkout")]
+        public IActionResult Checkout()
+        {
+            return View();
+        }
+
+        [HttpPost("checkout")]
+        //public IActionResult Checkout(CheckoutVM checkoutVM)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View();
+        //    else
+        //        dataService.Checkout(checkoutVM);
+        //    return RedirectToAction(nameof(Kvitto));
+        //}
+
+        [HttpGet("kvitto")]
+        public IActionResult Kvitto()
+        {
+            return View();
+        }
     }
 }

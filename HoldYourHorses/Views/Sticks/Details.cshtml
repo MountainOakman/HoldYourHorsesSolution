@@ -1,30 +1,50 @@
 ﻿@model DetailsVM
 
+@section CSS
+{
+    <style>
+.grid-container {
+    width: 300px;
+  display: grid;
+  column-gap: 0px;
+  grid-template-columns: auto auto;
+  background-color:rgb(255,255,255);
+  padding: 1px;
+}
+
+.grid-item {
+    width: 300px;
+  background-color: rgb(255,255,255);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 1px;
+  font-size: 15px;
+  text-align: center;
+}
+</style>
+}
 <div>
     <h1>@Model.Artikelnamn</h1>
     <h2>@Model.Pris kr</h2>
 </div>
 
+    <input type="text" id="Antalvaror" />
+<input type="button" value="Lägg i varukorgen" onclick="GetHtml(document.getElementById('AntalVaror').value)" />
+
+
+  <div class="grid-container">
+
+    <div class="grid-item">ArtikelNr</div> 
+    <div class="grid-item">@Model.Artikelnr</div> 
+    <div class="grid-item">Hästkrafter</div> 
+    <div class="grid-item">@Model.Hästkrafter</div> 
+    <div class="grid-item">Trädensitet</div> 
+    <div class="grid-item">@Model.Trädensitet cm3</div> 
+    <div class="grid-item">Material</div> 
+    <div class="grid-item">@Model.Material</div> 
     
 
-<table>
-  <tr>
-    <td>Artikelnr</td>
-    <td>@Model.Artikelnr</td>
-  </tr>
-  <tr>
-    <td>Hästkrafter</td>
-    <td>@Model.Hästkrafter</td>
-  </tr>
-  <tr>
-    <td>Trädensitet</td>
-    <td>@Model.Trädensitet cm3</td>
-  </tr>
-  <tr>
-    <td>Material</td>
-    <td>@Model.Material</td>
-  </tr>
-</table>
+  </div>
+
 
 
 <div id="description">
