@@ -23,6 +23,6 @@ namespace HoldYourHorses.Controllers
             return View(dataService.GetDetailsVM(artikelNr));
         }
 
-      
+
     }
 }
