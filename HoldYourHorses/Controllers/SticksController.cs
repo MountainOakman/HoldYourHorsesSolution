@@ -15,7 +15,8 @@ namespace HoldYourHorses.Controllers
         [HttpGet("")]
         public IActionResult Index()
         {
-            return View();
+            IndexVM model = dataService.GetIndexVM();
+            return View(model);
             //ser alla detta?
         }
 
@@ -32,14 +33,14 @@ namespace HoldYourHorses.Controllers
         }
 
         [HttpPost("checkout")]
-        public IActionResult Checkout(CheckoutVM checkoutVM)
-        {
-            if (!ModelState.IsValid)
-                return View();
-            else
-                dataService.Checkout(checkoutVM);
-            return RedirectToAction(nameof(Kvitto));
-        }
+        //public IActionResult Checkout(CheckoutVM checkoutVM)
+        //{
+        //    if (!ModelState.IsValid)
+        //        return View();
+        //    else
+        //        dataService.Checkout(checkoutVM);
+        //    return RedirectToAction(nameof(Kvitto));
+        //}
 
         [HttpGet("kvitto")]
         public IActionResult Kvitto()
