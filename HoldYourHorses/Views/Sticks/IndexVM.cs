@@ -10,9 +10,6 @@
         public string[] Materialer { get; set; } 
         public string[] Typer { get; set; }
 
-
-    }
-
     public class Card
     {
         public string Namn { get; set; }
@@ -21,4 +18,7 @@
         
         public int ArtikelNr { get; set; }
     }
+
+    }
+
 }
