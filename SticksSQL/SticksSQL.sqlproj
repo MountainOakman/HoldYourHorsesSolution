@@ -60,4 +60,7 @@
   <ItemGroup>
     <Build Include="Sticks.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Qstringtxt.txt" />
+  </ItemGroup>
 </Project>
