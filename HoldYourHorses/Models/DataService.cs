@@ -80,5 +80,5 @@ namespace HoldYourHorses.Models
             return indexVM;
         }
 
-    }
+	}
 }
