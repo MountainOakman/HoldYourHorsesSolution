@@ -7,6 +7,7 @@ namespace HoldYourHorses.Models
     public class DataService
     {
         private readonly SticksDBContext context;
+        List<Stick> sticks = new List<Stick>();
 
         public DataService(SticksDBContext context)
         {
@@ -31,9 +32,9 @@ namespace HoldYourHorses.Models
                      AbsBroms = o.AbsBroms,
                  })
                  .Single();
-                
-        //TODO:Tilldela prop :public string Bild { get; set; }
-            
+
+            //TODO:Tilldela prop :public string Bild { get; set; }
+
         }
 
         internal CheckoutVM Checkout(CheckoutVM checkoutVM)
@@ -52,6 +53,7 @@ namespace HoldYourHorses.Models
 
         internal async Task<IndexVM> GetIndexVMAsync()
         {
+            //Response.Cookies.Append("ShoppingCart");
             var sticks = await context.Sticks.Select(o => new
             {
                 Artikelnamn = o.Artikelnamn,
@@ -80,5 +82,10 @@ namespace HoldYourHorses.Models
             return indexVM;
         }
 
-	}
+        public void AddToCartCookie(List<ShoppingCartProduct> shoppingCartProducts)
+        {
+            //var cookie = Response.Cookies.Append("ShoppingCart", shoppingCartProducts, new CookieOptions { Expires = DateTime.Now.AddYears(1)});
+        }
+
+    }
 }
