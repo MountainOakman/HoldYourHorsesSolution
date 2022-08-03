@@ -63,13 +63,18 @@
       <div class="material-container">
         <p class="p-filter">Material</p>
         <div class="checkboxes">
-            <input type="checkbox" class="material" id="ek" name="ek" checked> <label for="ek">ek</label></div>
+                        @foreach (var item in @Model.Materialer)
+            {
+                 <input type="checkbox" class="material" id="@item" name="@item" checked> <label for="@item">@item</label>
+            }
     </div>
 
+
+</div>
     <div class="filter-btn-div">
         <button class="btn">Återställ filtrering</button>
     </div>
-</div>
+    </div>
       <div class="main-div">
         <h1 id="Norden">Nordens största butik för käpphästar</h1>
         <div class="card-container">

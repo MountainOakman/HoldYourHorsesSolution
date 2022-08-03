@@ -6,7 +6,7 @@
 }
     @section JS
     {
-
+    <script src="~/JS/details.js"></script>
 }
     <div id="image">
         <img src="@Model.Bild" alt="@Model.Artikelnamn" width="300" height="300" />
@@ -16,10 +16,11 @@
         <h1>@Model.Artikelnamn</h1>
         <h2> @Math.Round(@Model.Pris) kr</h2>
     </div>
-
-    <input type="text" value="1" id="Antalvaror" />
-        </br>
-    <input type="button" value="Lägg i varukorgen" onclick="    UppdateraVarukorg(document.getElementById('AntalVaror').value, {@Model.Artikelnr})" />
+    <div>
+    <input type="text" value="1" id="AntalVaror" />
+            </br>
+    <input type="button" value="Lägg i varukorgen" onclick="UppdateraVarukorg(document.getElementById('AntalVaror').value, @Model.Artikelnr)" />
+    </div>
 
 
     <div class="grid-container">
