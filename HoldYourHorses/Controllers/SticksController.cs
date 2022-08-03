@@ -48,11 +48,10 @@ namespace HoldYourHorses.Controllers
             return View();
         }
 
-        [Route("uppdateravarukorg/{artikelNr}/{antalVaror}")]
-        public IActionResult Details(int artikelNr, int antalVaror)
+        [HttpGet("/uppdateravarukorg")]
+        public IActionResult UppdateraVarukorg(int artikelNr, int antalVaror, string artikelnamn, decimal pris)
         {
             throw new NotImplementedException();
-            //Uppdatera varukorg ajax från Details 
         }
 
         [HttpGet("IndexPartial")]

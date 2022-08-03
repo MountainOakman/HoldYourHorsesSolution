@@ -1,4 +1,8 @@
-﻿function UppdateraVarukorg(antalVaror, artikelNr) {
-    console.log({ artikelNr })
-    console.log({ antalVaror });
+﻿function UppdateraVarukorg(varor, artikel, namn, pris) {
+    fetch(`/uppdateravarukorg/?artikelnr=${artikel}&antalvaror=${varor}&pris=${pris}&artikelnamn=${namn}`,
+        {
+            method: "GET",
+        });
 }
+
+
