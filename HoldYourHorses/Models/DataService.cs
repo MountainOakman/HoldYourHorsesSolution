@@ -66,8 +66,8 @@ namespace HoldYourHorses.Models
 
             var indexVM = new IndexVM
             {
-                PrisMax = sticks.Max(o => o.Pris),
-                PrisMin = sticks.Min(o => o.Pris),
+                PrisMax = Decimal.ToInt32(sticks.Max(o => o.Pris)),
+                PrisMin = Decimal.ToInt32(sticks.Min(o => o.Pris)),
                 HästkrafterMax = sticks.Max(o => o.Hästkrafter),
                 HästkrafterMin = sticks.Min(o => o.Hästkrafter),
                 Materialer = sticks.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
@@ -75,20 +75,33 @@ namespace HoldYourHorses.Models
             };
             return indexVM;
         }
-        internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer, string materials)
+        internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer,
+            string materials, bool isAscending, string sortOn)
         {
             var cards = context.Sticks.Where(o=> 
-            o.Pris>= minPrice && o.Pris <= maxPrice &&
-            o.Hästkrafter>= minHK && o.Hästkrafter <= maxHK
-            && typer.Contains(o.Typ) && materials.Contains(o.Material))
-                .Select(o => new IndexPartialVM
+            o.Pris>= minPrice &&
+            o.Pris <= maxPrice &&
+            o.Hästkrafter>= minHK &&
+            o.Hästkrafter <= maxHK &&
+            typer.Contains(o.Typ) && 
+            materials.Contains(o.Material)).
+            Select(o => new IndexPartialVM
             {
                 Namn = o.Artikelnamn,
                 Pris = o.Pris,
                 ArtikelNr = o.Artikelnr,
             });
+            IndexPartialVM[] model;
+            if (isAscending)
+            {
+                model = cards.ToList().OrderBy(o => o.GetType().GetProperty(sortOn).GetValue(o, null)).ToArray();
+            }
+            else
+            {
+                model = cards.ToList().OrderByDescending(o => o.GetType().GetProperty(sortOn).GetValue(o, null)).ToArray();
+            }
 
-            return cards.ToArray();
+            return model;
 
         }
 

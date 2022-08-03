@@ -32,16 +32,16 @@
                <p class="p-filter">Hästkrafter</p>
           <div class="range_container">
              <div class="sliders_control">
-                 <input id="fromSliderHK" type="range" value="0" min="0" max="100"/>
-                <input id="toSliderHK" type="range" value="100" min="0" max="100"/>
+                 <input id="fromSliderHK" type="range" value="@Model.HästkrafterMin" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
+                <input id="toSliderHK" type="range" value="@Model.HästkrafterMax" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
             </div>
             <div id="min-int" class="form_control_container">
                 <div   class="form_control_container__time">Min</div>
-                <input class="form_control_container__time__input" type="number" id="fromInputHK" value="0" min="0" max="100"/>
+                <input class="form_control_container__time__input" type="number" id="fromInputHK"value="@Model.HästkrafterMin" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
             </div>
             <div  id="max-int" class="form_control_container">
                 <div class="form_control_container__time">Max</div>
-                <input class="form_control_container__time__input" type="number" id="toInputHK" value="100" min="0" max="100"/>
+                <input class="form_control_container__time__input" type="number" id="toInputHK"  value="@Model.HästkrafterMax" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
             </div>
             </div>
     </div>
@@ -73,6 +73,14 @@
     </div>
       <div class="main-div">
         <h1 id="Norden">Nordens största butik för käpphästar</h1>
+        <div id="MySelect">
+            <select name="sort" id="sort">
+                <option value="1Pris">Pris Stigande</option>
+                <option value="0Pris">Pris Fallande</option>
+                <option value="1Namn">Namn (A-Ö)</option>
+                 <option value="0Namn">Namn (Ö-A)</option>
+            </select>
+            </div>
         <div class="card-container">
 
             </div> 

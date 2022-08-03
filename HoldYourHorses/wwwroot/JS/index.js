@@ -7,18 +7,20 @@ const fromSliderHK = document.querySelector("#fromSliderHK");
 const toSliderHK = document.querySelector("#toSliderHK");
 const fromInputHK = document.querySelector("#fromInputHK");
 const toInputHK = document.querySelector("#toInputHK");
-var allTypes = document.querySelectorAll(".kategori");
-var allMaterials = document.querySelectorAll(".material");
-
-console.log(allTypes);
-
+const allTypes = document.querySelectorAll(".kategori");
+const allMaterials = document.querySelectorAll(".material");
+const selectElement = document.querySelector('#sort');
 
 var maxPrice = toInput.value;
 var minPrice = fromInput.value;
 var maxHK = toInputHK.value;
 var minHK = fromInputHK.value;
+var sortOn = "Pris";
+var isAscending = true;
 var typer = "-";
 materials = "-"
+
+//event listeners
 allTypes.forEach(o => {
     typer += " " + o.value;
     o.addEventListener("change", function () {
@@ -45,8 +47,12 @@ allMaterials.forEach(o => {
         }
     })
 });
-console.log(typer)
-//price//// onchange event listener
+selectElement.addEventListener('change', (event) => {
+    sortOn = event.target.value.slice(1);
+    isAscending = Boolean(parseInt(event.target.value.substr(0, 1)));
+    getPartialView();
+});
+//price  event listener
 fromSlider.addEventListener("change", (event) => { 
     minPrice = event.target.value;
     getPartialView();}
@@ -64,7 +70,7 @@ toInput.addEventListener("change", (event) => {
     maxPrice = event.target.value;
     getPartialView();
 });
-//Hästkrafter //// onchange event listener
+//Hästkrafter event listener
 fromSliderHK.addEventListener("change", (event) => {
     minHK = event.target.value;
     getPartialView();
@@ -85,14 +91,17 @@ toInputHK.addEventListener("change", (event) => {
 });
 
 
+///script starts here
 
 
 getPartialView();
 
+
+//functions
 async function getPartialView() {
     console.log(materials);
     const superContainer = document.querySelector(".card-container");
-    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}`, { method: "GET" }).
+    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}&sortOn=${sortOn}&isAscending=${isAscending}`, { method: "GET" }).
         then(result => result.text()).
         then(html => {
             superContainer.innerHTML = html;
