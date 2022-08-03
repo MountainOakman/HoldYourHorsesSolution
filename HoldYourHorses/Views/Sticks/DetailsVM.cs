@@ -8,7 +8,7 @@
         public int Trädensitet { get; set; }
         public string Artikelnamn { get; set; } 
         public string Material { get; set; } 
-        public string Typ { get; set; } 
+        public string Kategori { get; set; } 
         public string Beskrivning { get; set; } 
         public string Tillverkningsland { get; set; } 
         public bool AbsBroms { get; set; }

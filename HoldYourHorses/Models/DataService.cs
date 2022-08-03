@@ -24,10 +24,10 @@ namespace HoldYourHorses.Models
                      Hästkrafter = o.Hästkrafter,
                      Trädensitet = o.Trädensitet,
                      Artikelnamn = o.Artikelnamn,
-                     Material = o.Material,
-                     Typ = o.Typ,
+                     Material = o.Material.Namn,
+                     Kategori = o.Kategori.Namn,
                      Beskrivning = o.Beskrivning,
-                     Tillverkningsland = o.Tillverkningsland,
+                     Tillverkningsland = o.Tillverkningsland.Namn,
                      AbsBroms = o.AbsBroms,
                  })
                  .Single();
@@ -59,7 +59,7 @@ namespace HoldYourHorses.Models
                 Artikelnr = o.Artikelnr,
                 Hästkrafter = o.Hästkrafter,
                 Material = o.Material,
-                Typ = o.Typ
+                Kategori = o.Kategori.Namn
             }).ToArrayAsync(); //fixa filtreringen innan toArrayAsync!
             var cards = sticks.Select(o => new IndexVM.Card()
             {
@@ -73,12 +73,11 @@ namespace HoldYourHorses.Models
                 PrisMin = sticks.Min(o => o.Pris),
                 HästkrafterMax = sticks.Max(o => o.Hästkrafter),
                 HästkrafterMin = sticks.Min(o => o.Hästkrafter),
-                Materialer = sticks.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
-                Typer = sticks.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
+                Materialer = sticks.DistinctBy(o => o.Material.Namn).Select(o => o.Material.Namn).ToArray(),
+                Kategorier = sticks.DistinctBy(o => o.Kategori).Select(o => o.Kategori).ToArray(),
                 Cards = cards.ToArray()
             };
             return indexVM;
         }
-
 	}
 }

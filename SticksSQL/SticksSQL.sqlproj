@@ -59,8 +59,11 @@
   </ItemGroup>
   <ItemGroup>
     <Build Include="Sticks.sql" />
+    <Build Include="Material.sql" />
+    <Build Include="Kategorier.sql" />
+    <Build Include="Tillverkningsländer.sql" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Qstringtxt.txt" />
+    <None Include="Qstringtxt.sql" />
   </ItemGroup>
 </Project>

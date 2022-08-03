@@ -8,7 +8,7 @@
         public int HästkrafterMin { get; set; }
         public int HästkrafterMax { get; set; }
         public string[] Materialer { get; set; } 
-        public string[] Typer { get; set; }
+        public string[] Kategorier { get; set; }
 
     public class Card
     {
