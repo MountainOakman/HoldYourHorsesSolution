@@ -1,8 +1,22 @@
-﻿@*TO DO: lägg index-länk på hästen*@
+﻿<a asp-controller="Sticks" asp-action="Index">@Html.Partial("_Logo") <h1>HållDinKäpp.se</h1></a>
 
-<a asp-controller="Sticks" asp-action="Index">@Html.Partial("_Logo") <h1>HållDinKäpp.se</h1></a>
+<div class="searchBar"><input type="text" placeholder="Sök" name="search"></div>
+<div class="searchIcon"><button type="submit"><ion-icon name="search-outline"></ion-icon></button></div>
 
+@*Style inte ligga här egentligen. Bara för att kunna visa numret i shoping cart.
+*@<style>
+	  .badge:after {
+		  content: attr(value);
+		  font-size: 12px;
+		  color: #fff;
+		  background: red;
+		  border-radius: 50%;
+		  padding: 0 5px;
+		  position: relative;
+		  left: -8px;
+		  top: -20px;
+		  opacity: 0.9;
+	  }
+</style>
 
-
-<input type="text" placeholder="Sök" name="search">
-<button type="submit"><ion-icon name="search-outline"></ion-icon></button>   
+<a asp-controller="Sticks" asp-action="Checkout"><i class="fa badge fa-lg" value=0><ion-icon name="cart" size="large"></ion-icon></i></h1></a>

@@ -48,17 +48,16 @@ namespace HoldYourHorses.Controllers
             return View();
         }
 
-        [Route("uppdateravarukorg/{artikelNr}/{antalVaror}")]
-        public IActionResult Details(int artikelNr, int antalVaror)
+        [HttpGet("/uppdateravarukorg")]
+        public IActionResult UppdateraVarukorg(int artikelNr, int antalVaror, string artikelnamn, decimal pris)
         {
             throw new NotImplementedException();
-            //Uppdatera varukorg ajax från Details 
         }
 
         [HttpGet("IndexPartial")]
-        public IActionResult IndexPartial(int minPrice, int maxPrice, int maxHK, int minHK, string typer, string materials, bool isAscending, string sortOn)
+        public IActionResult IndexPartial(int minPrice, int maxPrice, int maxHK, int minHK, string typer, string materials, bool isAscending, string sortOn, string search)
         {
-            IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn);
+            IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn, search);
             return PartialView("_IndexPartial", model);
         }
     }
