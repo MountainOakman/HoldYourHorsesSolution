@@ -46,8 +46,9 @@ namespace HoldYourHorses.Controllers
         {
             return View();
         }
-    
-        public IActionResult UppdateraVarukorg(int antal, int artikelNr)
+
+        [Route("uppdateravarukorg/{artikelNr}/{antalVaror}")]
+        public IActionResult Details(int artikelNr, int antalVaror)
         {
             throw new NotImplementedException();
             //Uppdatera varukorg ajax från Details 
