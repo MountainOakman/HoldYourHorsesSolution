@@ -20,7 +20,7 @@ namespace HoldYourHorses.Controllers
             return View(model);
         }
 
-		[HttpGet("Product/{artikelnr}")]
+        [HttpGet("Product/{artikelnr}")]
         public IActionResult Details(int artikelNr)
         {
             return View(dataService.GetDetailsVM(artikelNr));
@@ -33,25 +33,26 @@ namespace HoldYourHorses.Controllers
         }
 
         [HttpPost("checkout")]
-		public IActionResult Checkout(CheckoutVM checkoutVM)
-		{
-			if (!ModelState.IsValid)
-				return View();
-			else
-				dataService.Checkout(checkoutVM);
-			return RedirectToAction(nameof(Kvitto));
-		}
+        public IActionResult Checkout(CheckoutVM checkoutVM)
+        {
+            if (!ModelState.IsValid)
+                return View();
+            else
+                dataService.Checkout(checkoutVM);
+            return RedirectToAction(nameof(Kvitto));
+        }
 
-		[HttpGet("kvitto")]
+        [HttpGet("kvitto")]
         public IActionResult Kvitto()
         {
             return View();
         }
 
-        [Route("uppdateravarukorg/{artikelNr}/{antalVaror}")]
-        public IActionResult Details(int artikelNr, int antalVaror)
+        [HttpGet("uppdateravarukorg/")]
+        public IActionResult Details(int artikelNr, int antalVaror, string artikelNamn, decimal pris)
         {
-            throw new NotImplementedException();
+            dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
+            return Content(dataService.GetCart());
             //Uppdatera varukorg ajax från Details 
         }
 
@@ -60,6 +61,12 @@ namespace HoldYourHorses.Controllers
         {
             IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn);
             return PartialView("_IndexPartial", model);
+        }
+        [HttpGet("Cookie")]
+        public IActionResult GetCookie()
+        {
+            string x = dataService.GetCookie();
+            return Content(x);
         }
     }
 }

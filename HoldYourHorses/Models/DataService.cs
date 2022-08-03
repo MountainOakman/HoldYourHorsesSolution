@@ -2,17 +2,20 @@
 using HoldYourHorses.Views.Shared;
 using HoldYourHorses.Views.Sticks;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json;
 
 namespace HoldYourHorses.Models
 {
     public class DataService
     {
         private readonly SticksDBContext context;
-        List<Stick> sticks = new List<Stick>();
 
-        public DataService(SticksDBContext context)
+        public IHttpContextAccessor Accessor { get; }
+
+        public DataService(SticksDBContext context, IHttpContextAccessor accessor)
         {
             this.context = context;
+            Accessor = accessor;
         }
 
         internal DetailsVM GetDetailsVM(int artikelNr)
@@ -52,10 +55,30 @@ namespace HoldYourHorses.Models
             };
         }
 
+        internal void AddToCart(int artikelNr, int antalVaror, string arikelNamn, decimal pris)
+        {
+            List<ShoppingCartProduct> products;
+
+            var newItem = new ShoppingCartProduct()
+            {
+                Artikelnamn = arikelNamn,
+                Pris = pris,
+                ArtikelNr = artikelNr,
+                Antal = antalVaror
+            };
+            if (string.IsNullOrEmpty(Accessor.HttpContext.Request.Cookies["ShoppingCart"]))
+            {
+                products = new List<ShoppingCartProduct>();
+                products.Add(newItem);
+
+                string json = JsonSerializer.Serialize(products);
+
+                Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", json);
+            }
+        }
 
         internal async Task<IndexVM> GetIndexVMAsync()
         {
-            //Response.Cookies.Append("ShoppingCart");
             var sticks = await context.Sticks.Select(o => new
             {
                 Artikelnamn = o.Artikelnamn,
@@ -77,15 +100,22 @@ namespace HoldYourHorses.Models
             };
             return indexVM;
         }
+
+        internal string GetCookie()
+        {
+            var test = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
+            return test;
+        }
+
         internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer,
             string materials, bool isAscending, string sortOn)
         {
-            var cards = context.Sticks.Where(o=> 
-            o.Pris>= minPrice &&
+            var cards = context.Sticks.Where(o =>
+            o.Pris >= minPrice &&
             o.Pris <= maxPrice &&
-            o.Hästkrafter>= minHK &&
+            o.Hästkrafter >= minHK &&
             o.Hästkrafter <= maxHK &&
-            typer.Contains(o.Kategori.Namn) && 
+            typer.Contains(o.Kategori.Namn) &&
             materials.Contains(o.Material.Namn)).
             Select(o => new IndexPartialVM
             {
@@ -104,7 +134,15 @@ namespace HoldYourHorses.Models
             }
 
             return model;
+        }
 
+        public string GetCart()
+        {
+            var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
+
+            var shoppingCart = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
+
+            return shoppingCart.First().ArtikelNr.ToString();
         }
 
     }
