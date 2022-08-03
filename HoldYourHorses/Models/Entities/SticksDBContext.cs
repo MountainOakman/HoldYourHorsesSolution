@@ -20,6 +20,7 @@ namespace HoldYourHorses.Models.Entities
         public virtual DbSet<Material> Materials { get; set; } = null!;
         public virtual DbSet<Stick> Sticks { get; set; } = null!;
         public virtual DbSet<Tillverkningsländer> Tillverkningsländers { get; set; } = null!;
+        public virtual DbSet<ShoppingCartProduct> CartProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
