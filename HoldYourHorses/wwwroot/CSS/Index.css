@@ -1,11 +1,9 @@
 :root {
-  font-size: 62.5%;
-  --house-color: rgb(220, 20, 20);
-  --price-tag: rgb(171, 3, 51);
+    font-size: 62.5%;
+    --price-tag: rgb(171, 3, 51);
+    --background: #c6e6f5;
 }
 
-body {
-}
 
 .super-container {
   display: flex;
@@ -14,20 +12,22 @@ body {
 
 .filter {
   height: 100vh;
-  width: 25vw;
-  background-color: #c6e6f5;
+  min-width: 35rem;
+  background-color: var(--background);
+  
 }
 
 .main-div {
-  width: 80vw;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-left: 5vw;
+    min-width: 35rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-left: 5vw;
 }
 
 #Norden {
   font-size: 4rem;
+  margin-top:1rem;
 }
 
 .card-container {

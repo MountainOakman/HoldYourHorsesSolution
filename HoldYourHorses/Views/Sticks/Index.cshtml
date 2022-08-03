@@ -1,8 +1,4 @@
 ﻿@model HoldYourHorses.Views.Sticks.IndexVM
-@{
-    var nfi = (System.Globalization.NumberFormatInfo)System.Globalization.CultureInfo.InvariantCulture.NumberFormat.Clone();
-    nfi.NumberGroupSeparator = " ";
-}
 @section CSS{
      <link rel="stylesheet" href="~/CSS/Index.css">
      <link rel="stylesheet" href="~/CSS/filter.css">
@@ -15,39 +11,46 @@
           <div class="filter-price">
           <div class="slider-super-container">
                <p class="p-filter">Pris</p>
+               <div class="min-max-slider">
+                   <div id="min-int" class="form_control_container">
+                <div   class="form_control_container__time">Min</div>
+                <input class="form_control_container__time__input" type="number" id="fromInput" value="@Model.PrisMin" min="@Model.PrisMin" max="@Model.PrisMax"/>
+            </div>
           <div class="range_container">
              <div class="sliders_control">
-                 <input id="fromSlider" type="range" value="0" min="0" max="100"/>
-                <input id="toSlider" type="range" value="100" min="0" max="100"/>
+                 <input id="fromSlider" type="range" value="@Model.PrisMin" min="@Model.PrisMin" max="@Model.PrisMax"/>
+                <input id="toSlider" type="range" value="@Model.PrisMax" min="@Model.PrisMin" max="@Model.PrisMax"/>
             </div>
-            <div id="min-int" class="form_control_container">
-                <div   class="form_control_container__time">Min</div>
-                <input class="form_control_container__time__input" type="number" id="fromInput" value="0" min="0" max="100"/>
+
             </div>
+            
             <div  id="max-int" class="form_control_container">
                 <div class="form_control_container__time">Max</div>
-                <input class="form_control_container__time__input" type="number" id="toInput" value="100" min="0" max="100"/>
+                <input class="form_control_container__time__input" type="number" id="toInput" value="@Model.PrisMax" min="@Model.PrisMin" max="@Model.PrisMax"/>
             </div>
+
             </div>
     </div>
     </div>
               <div class="filter-hk">
           <div class="slider-super-container">
                <p class="p-filter">Hästkrafter</p>
+               <div class="min-max-slider">
+                   <div id="min-int" class="form_control_container">
+                <div   class="form_control_container__time">Min</div>
+                <input class="form_control_container__time__input" type="number" id="fromInputHK"value="@Model.HästkrafterMin" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
+            </div>
           <div class="range_container">
              <div class="sliders_control">
-                 <input id="fromSliderHK" type="range" value="0" min="0" max="100"/>
-                <input id="toSliderHK" type="range" value="100" min="0" max="100"/>
+                 <input id="fromSliderHK" type="range" value="@Model.HästkrafterMin" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
+                <input id="toSliderHK" type="range" value="@Model.HästkrafterMax" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
             </div>
-            <div id="min-int" class="form_control_container">
-                <div   class="form_control_container__time">Min</div>
-                <input class="form_control_container__time__input" type="number" id="fromInputHK" value="0" min="0" max="100"/>
             </div>
             <div  id="max-int" class="form_control_container">
                 <div class="form_control_container__time">Max</div>
-                <input class="form_control_container__time__input" type="number" id="toInputHK" value="100" min="0" max="100"/>
+                <input class="form_control_container__time__input" type="number" id="toInputHK"  value="@Model.HästkrafterMax" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
             </div>
-            </div>
+             </div>
     </div>
     </div>
 
@@ -56,7 +59,7 @@
         <div class="checkboxes">
             @foreach (var item in @Model.Kategorier)
             {
-                 <input type="checkbox" class="kategori" id="@item" name="@item" checked> <label for="@item">@item</label>
+                 <input type="checkbox" class="kategori" id="@item" name="@item" value="@item" checked> <label for="@item">@item</label>
             }
           </div> 
     </div>
@@ -65,7 +68,7 @@
         <div class="checkboxes">
                         @foreach (var item in @Model.Materialer)
             {
-                 <input type="checkbox" class="material" id="@item" name="@item" checked> <label for="@item">@item</label>
+                 <input type="checkbox" class="material" value="@item" id="@item" name="@item" checked> <label for="@item">@item</label>
             }
     </div>
 
@@ -77,23 +80,16 @@
     </div>
       <div class="main-div">
         <h1 id="Norden">Nordens största butik för käpphästar</h1>
-        <div class="card-container">
-        @foreach (var card in @Model.Cards)
-        {
-            <a href="Product/@card.ArtikelNr">
-          <div class="article-card">
-            <img
-              src="https://www.hooks.se/pub_images/original/940005-11_1.jpg?extend=copy&width=1024&method=fit&height=1024&type=webp&timestamp=1634910071"
-              alt="@card.Namn"
-            />
-            <p class="name">@card.Namn</p>
-            <div class="arrow-div">
-              <div class="price"><span class="price-span"> @card.Pris.ToString("#,0", nfi) kr</span></div>
-              <div class="arrow-right"></div>
+        <div id="MySelect">
+            <select name="sort" id="sort">
+                <option value="1Pris">Pris Stigande</option>
+                <option value="0Pris">Pris Fallande</option>
+                <option value="1Namn">Namn (A-Ö)</option>
+                 <option value="0Namn">Namn (Ö-A)</option>
+            </select>
             </div>
-          </div>
-          </a>
-        }
+        <div class="card-container">
+
             </div> 
       </div>
     </div>
