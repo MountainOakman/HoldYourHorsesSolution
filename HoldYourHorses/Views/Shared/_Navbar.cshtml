@@ -1,7 +1,9 @@
 ﻿<a asp-controller="Sticks" asp-action="Index">@Html.Partial("_Logo") <h1>HållDinKäpp.se</h1></a>
 
-<div class="searchBar"><input type="text" placeholder="Sök" name="search"></div>
-<div class="searchIcon"><button type="submit"><ion-icon name="search-outline"></ion-icon></button></div>
+<div class="search">
+	<input type="text" placeholder="Sök" name="search">
+	<button type="submit"><ion-icon name="search-outline"></ion-icon></button>
+</div>
 
 @*Style inte ligga här egentligen. Bara för att kunna visa numret i shoping cart.
 *@<style>
