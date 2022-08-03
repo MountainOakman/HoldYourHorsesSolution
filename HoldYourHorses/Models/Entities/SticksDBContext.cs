@@ -20,7 +20,6 @@ namespace HoldYourHorses.Models.Entities
         public virtual DbSet<Material> Materials { get; set; } = null!;
         public virtual DbSet<Stick> Sticks { get; set; } = null!;
         public virtual DbSet<Tillverkningsländer> Tillverkningsländers { get; set; } = null!;
-        //public virtual DbSet<ShoppingCartProduct> CartProducts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -28,12 +27,18 @@ namespace HoldYourHorses.Models.Entities
             {
                 entity.ToTable("Kategorier");
 
+                entity.HasIndex(e => e.Namn, "UQ__Kategori__737584FDC002A6F4")
+                    .IsUnique();
+
                 entity.Property(e => e.Namn).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Material>(entity =>
             {
                 entity.ToTable("Material");
+
+                entity.HasIndex(e => e.Id, "UQ__Material__3214EC06BA815724")
+                    .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
             });
@@ -74,6 +79,9 @@ namespace HoldYourHorses.Models.Entities
             modelBuilder.Entity<Tillverkningsländer>(entity =>
             {
                 entity.ToTable("Tillverkningsländer");
+
+                entity.HasIndex(e => e.Namn, "UQ__Tillverk__737584FDDC9601BF")
+                    .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
             });
