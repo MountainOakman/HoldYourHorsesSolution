@@ -6,7 +6,7 @@
 }
     @section JS
     {
-
+    <script src="~/JS/details.js"></script>
 }
     <div id="image">
         <img src="@Model.Bild" alt="@Model.Artikelnamn" width="300" height="300" />
@@ -14,12 +14,13 @@
 
     <div>
         <h1>@Model.Artikelnamn</h1>
-        <h2> @Math.Round(@Model.Pris) kr</h2>
+        <h2> @Model.getPriceFormatted() kr</h2>
     </div>
-
-    <input type="text" value="1" id="Antalvaror" />
-        </br>
-    <input type="button" value="Lägg i varukorgen" onclick="    UppdateraVarukorg(document.getElementById('AntalVaror').value, {@Model.Artikelnr})" />
+    <div>
+    <input type="text" value="1" id="AntalVaror" />
+            </br>
+    <input type="button" value="Lägg i varukorgen" onclick="UppdateraVarukorg(document.getElementById('AntalVaror').value, @Model.Artikelnr)" />
+    </div>
 
 
     <div class="grid-container">
@@ -32,12 +33,12 @@
         <div class="grid-item">@Model.Trädensitet cm3</div>
         <div class="grid-item">Material</div>
         <div class="grid-item">@Model.Material</div>
-        <div class="grid-item">Typ</div>
-        <div class="grid-item">@Model.Typ</div>
+        <div class="grid-item">Kategori</div>
+        <div class="grid-item">@Model.Kategori</div>
         <div class="grid-item">TIllverkningsland</div>
         <div class="grid-item">@Model.Tillverkningsland</div>
         <div class="grid-item">ABS-broms</div>
-        <div class="grid-item">@Model.AbsBroms</div>
+        <div class="grid-item">@Model.BoolCheck()</div>
     </div>
 
 

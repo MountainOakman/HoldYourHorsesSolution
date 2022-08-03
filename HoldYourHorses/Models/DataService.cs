@@ -1,4 +1,5 @@
 ﻿using HoldYourHorses.Models.Entities;
+using HoldYourHorses.Views.Shared;
 using HoldYourHorses.Views.Sticks;
 using Microsoft.EntityFrameworkCore;
 
@@ -25,10 +26,10 @@ namespace HoldYourHorses.Models
                      Hästkrafter = o.Hästkrafter,
                      Trädensitet = o.Trädensitet,
                      Artikelnamn = o.Artikelnamn,
-                     Material = o.Material,
-                     Typ = o.Typ,
+                     Material = o.Material.Namn,
+                     Kategori = o.Kategori.Namn,
                      Beskrivning = o.Beskrivning,
-                     Tillverkningsland = o.Tillverkningsland,
+                     Tillverkningsland = o.Tillverkningsland.Namn,
                      AbsBroms = o.AbsBroms,
                  })
                  .Single();
@@ -51,6 +52,7 @@ namespace HoldYourHorses.Models
             };
         }
 
+
         internal async Task<IndexVM> GetIndexVMAsync()
         {
             //Response.Cookies.Append("ShoppingCart");
@@ -61,30 +63,48 @@ namespace HoldYourHorses.Models
                 Artikelnr = o.Artikelnr,
                 Hästkrafter = o.Hästkrafter,
                 Material = o.Material,
-                Typ = o.Typ
-            }).ToArrayAsync(); //fixa filtreringen innan toArrayAsync!
-            var cards = sticks.Select(o => new IndexVM.Card()
+                Typ = o.Kategori.Namn
+            }).ToArrayAsync();
+
+            var indexVM = new IndexVM
+            {
+                PrisMax = Decimal.ToInt32(sticks.Max(o => o.Pris)),
+                PrisMin = Decimal.ToInt32(sticks.Min(o => o.Pris)),
+                HästkrafterMax = sticks.Max(o => o.Hästkrafter),
+                HästkrafterMin = sticks.Min(o => o.Hästkrafter),
+                Materialer = sticks.DistinctBy(o => o.Material.Namn).Select(o => o.Material.Namn).ToArray(),
+                Kategorier = sticks.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
+            };
+            return indexVM;
+        }
+        internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer,
+            string materials, bool isAscending, string sortOn)
+        {
+            var cards = context.Sticks.Where(o=> 
+            o.Pris>= minPrice &&
+            o.Pris <= maxPrice &&
+            o.Hästkrafter>= minHK &&
+            o.Hästkrafter <= maxHK &&
+            typer.Contains(o.Kategori.Namn) && 
+            materials.Contains(o.Material.Namn)).
+            Select(o => new IndexPartialVM
             {
                 Namn = o.Artikelnamn,
                 Pris = o.Pris,
                 ArtikelNr = o.Artikelnr,
             });
-            var indexVM = new IndexVM
+            IndexPartialVM[] model;
+            if (isAscending)
             {
-                PrisMax = sticks.Max(o => o.Pris),
-                PrisMin = sticks.Min(o => o.Pris),
-                HästkrafterMax = sticks.Max(o => o.Hästkrafter),
-                HästkrafterMin = sticks.Min(o => o.Hästkrafter),
-                Materialer = sticks.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
-                Typer = sticks.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
-                Cards = cards.ToArray()
-            };
-            return indexVM;
-        }
+                model = cards.ToList().OrderBy(o => o.GetType().GetProperty(sortOn).GetValue(o, null)).ToArray();
+            }
+            else
+            {
+                model = cards.ToList().OrderByDescending(o => o.GetType().GetProperty(sortOn).GetValue(o, null)).ToArray();
+            }
 
-        public void AddToCartCookie(List<ShoppingCartProduct> shoppingCartProducts)
-        {
-            //var cookie = Response.Cookies.Append("ShoppingCart", shoppingCartProducts, new CookieOptions { Expires = DateTime.Now.AddYears(1)});
+            return model;
+
         }
 
     }
