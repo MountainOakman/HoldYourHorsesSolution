@@ -1,8 +1,4 @@
 ﻿@model HoldYourHorses.Views.Sticks.IndexVM
-@{
-    var nfi = (System.Globalization.NumberFormatInfo)System.Globalization.CultureInfo.InvariantCulture.NumberFormat.Clone();
-    nfi.NumberGroupSeparator = " ";
-}
 @section CSS{
      <link rel="stylesheet" href="~/CSS/Index.css">
      <link rel="stylesheet" href="~/CSS/filter.css">
@@ -17,16 +13,16 @@
                <p class="p-filter">Pris</p>
           <div class="range_container">
              <div class="sliders_control">
-                 <input id="fromSlider" type="range" value="0" min="0" max="100"/>
-                <input id="toSlider" type="range" value="100" min="0" max="100"/>
+                 <input id="fromSlider" type="range" value="@Model.PrisMin" min="@Model.PrisMin" max="@Model.PrisMax"/>
+                <input id="toSlider" type="range" value="@Model.PrisMax" min="@Model.PrisMin" max="@Model.PrisMax"/>
             </div>
             <div id="min-int" class="form_control_container">
                 <div   class="form_control_container__time">Min</div>
-                <input class="form_control_container__time__input" type="number" id="fromInput" value="0" min="0" max="100"/>
+                <input class="form_control_container__time__input" type="number" id="fromInput" value="@Model.PrisMin" min="@Model.PrisMin" max="@Model.PrisMax"/>
             </div>
             <div  id="max-int" class="form_control_container">
                 <div class="form_control_container__time">Max</div>
-                <input class="form_control_container__time__input" type="number" id="toInput" value="100" min="0" max="100"/>
+                <input class="form_control_container__time__input" type="number" id="toInput" value="@Model.PrisMax" min="@Model.PrisMin" max="@Model.PrisMax"/>
             </div>
             </div>
     </div>
@@ -56,7 +52,7 @@
         <div class="checkboxes">
             @foreach (var item in @Model.Typer)
             {
-                 <input type="checkbox" class="kategori" id="@item" name="@item" checked> <label for="@item">@item</label>
+                 <input type="checkbox" class="kategori" id="@item" name="@item" value="@item" checked> <label for="@item">@item</label>
             }
           </div> 
     </div>
@@ -78,22 +74,7 @@
       <div class="main-div">
         <h1 id="Norden">Nordens största butik för käpphästar</h1>
         <div class="card-container">
-        @foreach (var card in @Model.Cards)
-        {
-            <a href="Product/@card.ArtikelNr">
-          <div class="article-card">
-            <img
-              src="https://www.hooks.se/pub_images/original/940005-11_1.jpg?extend=copy&width=1024&method=fit&height=1024&type=webp&timestamp=1634910071"
-              alt="@card.Namn"
-            />
-            <p class="name">@card.Namn</p>
-            <div class="arrow-div">
-              <div class="price"><span class="price-span"> @card.Pris.ToString("#,0", nfi) kr</span></div>
-              <div class="arrow-right"></div>
-            </div>
-          </div>
-          </a>
-        }
+
             </div> 
       </div>
     </div>

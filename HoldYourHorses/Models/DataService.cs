@@ -1,4 +1,5 @@
 ﻿using HoldYourHorses.Models.Entities;
+using HoldYourHorses.Views.Shared;
 using HoldYourHorses.Views.Sticks;
 using Microsoft.EntityFrameworkCore;
 
@@ -50,6 +51,7 @@ namespace HoldYourHorses.Models
             };
         }
 
+
         internal async Task<IndexVM> GetIndexVMAsync()
         {
             var sticks = await context.Sticks.Select(o => new
@@ -60,13 +62,8 @@ namespace HoldYourHorses.Models
                 Hästkrafter = o.Hästkrafter,
                 Material = o.Material,
                 Typ = o.Typ
-            }).ToArrayAsync(); //fixa filtreringen innan toArrayAsync!
-            var cards = sticks.Select(o => new IndexVM.Card()
-            {
-                Namn = o.Artikelnamn,
-                Pris = o.Pris,
-                ArtikelNr = o.Artikelnr,
-            });
+            }).ToArrayAsync();
+
             var indexVM = new IndexVM
             {
                 PrisMax = sticks.Max(o => o.Pris),
@@ -75,10 +72,25 @@ namespace HoldYourHorses.Models
                 HästkrafterMin = sticks.Min(o => o.Hästkrafter),
                 Materialer = sticks.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
                 Typer = sticks.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
-                Cards = cards.ToArray()
             };
             return indexVM;
         }
+        internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer)
+        {
+            var cards = context.Sticks.Where(o=> 
+            o.Pris>= minPrice && o.Pris <= maxPrice &&
+            o.Hästkrafter>= minHK && o.Hästkrafter <= maxHK
+            && typer.Contains(o.Typ))
+                .Select(o => new IndexPartialVM
+            {
+                Namn = o.Artikelnamn,
+                Pris = o.Pris,
+                ArtikelNr = o.Artikelnr,
+            });
 
-	}
+            return cards.ToArray();
+
+        }
+
+    }
 }

@@ -1,6 +1,7 @@
 ﻿using HoldYourHorses.Models;
 using HoldYourHorses.Views.Sticks;
 using Microsoft.AspNetCore.Mvc;
+using HoldYourHorses.Views.Shared;
 
 namespace HoldYourHorses.Controllers
 {
@@ -52,6 +53,12 @@ namespace HoldYourHorses.Controllers
             throw new NotImplementedException();
             //Uppdatera varukorg ajax från Details 
         }
-    
+
+        [HttpGet("IndexPartial")]
+        public IActionResult IndexPartial(int minPrice, int maxPrice, int maxHK, int minHK, string typer)
+        {
+            IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer);
+            return PartialView("_IndexPartial", model);
+        }
     }
 }
