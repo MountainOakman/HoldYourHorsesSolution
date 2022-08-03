@@ -61,7 +61,7 @@ namespace HoldYourHorses.Models
                 Artikelnr = o.Artikelnr,
                 Hästkrafter = o.Hästkrafter,
                 Material = o.Material,
-                Typ = o.Typ
+                Typ = o.Kategori.Namn
             }).ToArrayAsync();
 
             var indexVM = new IndexVM
@@ -70,8 +70,8 @@ namespace HoldYourHorses.Models
                 PrisMin = Decimal.ToInt32(sticks.Min(o => o.Pris)),
                 HästkrafterMax = sticks.Max(o => o.Hästkrafter),
                 HästkrafterMin = sticks.Min(o => o.Hästkrafter),
-                Materialer = sticks.DistinctBy(o => o.Material).Select(o => o.Material).ToArray(),
-                Typer = sticks.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
+                Materialer = sticks.DistinctBy(o => o.Material.Namn).Select(o => o.Material.Namn).ToArray(),
+                Kategorier = sticks.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
             };
             return indexVM;
         }
@@ -83,8 +83,8 @@ namespace HoldYourHorses.Models
             o.Pris <= maxPrice &&
             o.Hästkrafter>= minHK &&
             o.Hästkrafter <= maxHK &&
-            typer.Contains(o.Typ) && 
-            materials.Contains(o.Material)).
+            typer.Contains(o.Kategori.Namn) && 
+            materials.Contains(o.Material.Namn)).
             Select(o => new IndexPartialVM
             {
                 Namn = o.Artikelnamn,
