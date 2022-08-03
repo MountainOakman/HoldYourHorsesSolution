@@ -1,46 +1,45 @@
-﻿.navbar{
-    display:flex;
+﻿.navbar {
+    display: flex;
     flex-direction: row;
-    align-content:center;
-    min-height:140px;
-    flex-wrap:wrap;
+    align-content: center;
+    min-height: 140px;
+    flex-wrap: wrap;
     border-bottom: 3px solid black;
-
 }
-
-.navbar h1 {
-    margin:0;
+navbar h1 {
+     margin: 0;
 }
 
 .h1-navbar {
     font-size: 40px;
 }
 
-.logo{
-    height:140px;
+.logo {
+    height: 140px;
 }
 
 .search-div {
-    display:flex;
-    margin-left:150px;
-
+    display: flex;
+    margin-left: 150px;
 }
+
 .search-div > * {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-content: center;
 }
+
 #search-input {
     height: 60px;
     width: 300px;
     font-size: 20px;
-    border:none;
+    border: none;
     outline: 2px solid black;
     box-sizing: border-box;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 #search-btn {
@@ -51,15 +50,23 @@
     box-sizing: border-box;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
-    cursor:pointer;
+    cursor: pointer;
 }
-#icon{
-font-size: 26px;
+
+#search-btn:active {
+    box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+    transform: translateY(2px);
 }
+
+#icon {
+    font-size: 26px;
+}
+
 a {
     text-decoration: none;
     color: black;
 }
+
 #logo-a, #a-cart {
     display: flex;
     flex-direction: column;
@@ -67,14 +74,17 @@ a {
     align-content: center;
     margin: 0;
 }
-#cart{
-    height:60px;
-    width:auto;
+
+#cart {
+    height: 60px;
+    width: auto;
 }
-#a-cart{
+
+#a-cart {
     margin-left: 60px;
-    position:relative
+    position: relative
 }
+
 .badge::after {
     content: attr(value);
     font-size: 20px;
