@@ -19,12 +19,11 @@
     <div>
     <input type="text" value="1" id="AntalVaror" />
             </br>
-    <input type="button" value="Lägg i varukorgen" onclick="UppdateraVarukorg(document.getElementById('AntalVaror').value, @Model.Artikelnr)" />
+    <input type="button" value="Lägg i varukorgen" onclick="UppdateraVarukorg(document.getElementById('AntalVaror').value,@Model.Artikelnr,@Model.Artikelnamn,@Model.Pris)" />
     </div>
 
 
     <div class="grid-container">
-
         <div class="grid-item">ArtikelNr</div>
         <div class="grid-item">@Model.Artikelnr</div>
         <div class="grid-item">Hästkrafter</div>
@@ -40,9 +39,6 @@
         <div class="grid-item">ABS-broms</div>
         <div class="grid-item">@Model.BoolCheck()</div>
     </div>
-
-
-
 
     <div class="right">
         <h1>Beskrivning</h1>
