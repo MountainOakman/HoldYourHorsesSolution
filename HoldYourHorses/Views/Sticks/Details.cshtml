@@ -14,7 +14,7 @@
 
     <div>
         <h1>@Model.Artikelnamn</h1>
-        <h2> @Math.Round(@Model.Pris) kr</h2>
+        <h2> @Model.getPriceFormatted() kr</h2>
     </div>
     <div>
     <input type="text" value="1" id="AntalVaror" />
@@ -38,7 +38,7 @@
         <div class="grid-item">TIllverkningsland</div>
         <div class="grid-item">@Model.Tillverkningsland</div>
         <div class="grid-item">ABS-broms</div>
-        <div class="grid-item">@Model.AbsBroms</div>
+        <div class="grid-item">@Model.BoolCheck()</div>
     </div>
 
 

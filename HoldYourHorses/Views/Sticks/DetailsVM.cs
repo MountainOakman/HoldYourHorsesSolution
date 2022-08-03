@@ -14,5 +14,17 @@
         public bool AbsBroms { get; set; }
         public string Bild { get; set; } = "https://sisselblom.se/wp-content/uploads/2021/03/Kapphasten-Bruno.png";
 
+        public string getPriceFormatted()
+        {
+            var nfi = (System.Globalization.NumberFormatInfo)System.Globalization.CultureInfo.InvariantCulture.NumberFormat.Clone();
+            nfi.NumberGroupSeparator = " ";
+            return Pris.ToString("#,0", nfi);
+        }
+
+        public string BoolCheck()
+        {
+            return AbsBroms ? "Ja" : "Nej";
+        }
+
     }
 }
