@@ -11,39 +11,46 @@
           <div class="filter-price">
           <div class="slider-super-container">
                <p class="p-filter">Pris</p>
+               <div class="min-max-slider">
+                   <div id="min-int" class="form_control_container">
+                <div   class="form_control_container__time">Min</div>
+                <input class="form_control_container__time__input" type="number" id="fromInput" value="@Model.PrisMin" min="@Model.PrisMin" max="@Model.PrisMax"/>
+            </div>
           <div class="range_container">
              <div class="sliders_control">
                  <input id="fromSlider" type="range" value="@Model.PrisMin" min="@Model.PrisMin" max="@Model.PrisMax"/>
                 <input id="toSlider" type="range" value="@Model.PrisMax" min="@Model.PrisMin" max="@Model.PrisMax"/>
             </div>
-            <div id="min-int" class="form_control_container">
-                <div   class="form_control_container__time">Min</div>
-                <input class="form_control_container__time__input" type="number" id="fromInput" value="@Model.PrisMin" min="@Model.PrisMin" max="@Model.PrisMax"/>
+
             </div>
+            
             <div  id="max-int" class="form_control_container">
                 <div class="form_control_container__time">Max</div>
                 <input class="form_control_container__time__input" type="number" id="toInput" value="@Model.PrisMax" min="@Model.PrisMin" max="@Model.PrisMax"/>
             </div>
+
             </div>
     </div>
     </div>
               <div class="filter-hk">
           <div class="slider-super-container">
                <p class="p-filter">Hästkrafter</p>
+               <div class="min-max-slider">
+                   <div id="min-int" class="form_control_container">
+                <div   class="form_control_container__time">Min</div>
+                <input class="form_control_container__time__input" type="number" id="fromInputHK"value="@Model.HästkrafterMin" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
+            </div>
           <div class="range_container">
              <div class="sliders_control">
                  <input id="fromSliderHK" type="range" value="@Model.HästkrafterMin" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
                 <input id="toSliderHK" type="range" value="@Model.HästkrafterMax" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
             </div>
-            <div id="min-int" class="form_control_container">
-                <div   class="form_control_container__time">Min</div>
-                <input class="form_control_container__time__input" type="number" id="fromInputHK"value="@Model.HästkrafterMin" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
             </div>
             <div  id="max-int" class="form_control_container">
                 <div class="form_control_container__time">Max</div>
                 <input class="form_control_container__time__input" type="number" id="toInputHK"  value="@Model.HästkrafterMax" min="@Model.HästkrafterMin" max="@Model.HästkrafterMax"/>
             </div>
-            </div>
+             </div>
     </div>
     </div>
 
