@@ -8,6 +8,7 @@ const toSliderHK = document.querySelector("#toSliderHK");
 const fromInputHK = document.querySelector("#fromInputHK");
 const toInputHK = document.querySelector("#toInputHK");
 var allTypes = document.querySelectorAll(".kategori");
+var allMaterials = document.querySelectorAll(".material");
 
 console.log(allTypes);
 
@@ -17,6 +18,7 @@ var minPrice = fromInput.value;
 var maxHK = toInputHK.value;
 var minHK = fromInputHK.value;
 var typer = "-";
+materials = "-"
 allTypes.forEach(o => {
     typer += " " + o.value;
     o.addEventListener("change", function () {
@@ -30,7 +32,19 @@ allTypes.forEach(o => {
         }
     })
 });
-
+allMaterials.forEach(o => {
+    materials += " " + o.value;
+    o.addEventListener("change", function () {
+        if (this.checked) {
+            materials += " " + this.value;
+            getPartialView()
+        }
+        else {
+            materials = materials.replace(" " + this.value, "");
+            getPartialView()
+        }
+    })
+});
 console.log(typer)
 //price//// onchange event listener
 fromSlider.addEventListener("change", (event) => { 
@@ -76,9 +90,9 @@ toInputHK.addEventListener("change", (event) => {
 getPartialView();
 
 async function getPartialView() {
-    console.log("partial")
+    console.log(materials);
     const superContainer = document.querySelector(".card-container");
-    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}`, { method: "GET" }).
+    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}`, { method: "GET" }).
         then(result => result.text()).
         then(html => {
             superContainer.innerHTML = html;

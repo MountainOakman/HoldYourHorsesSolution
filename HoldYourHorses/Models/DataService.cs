@@ -75,12 +75,12 @@ namespace HoldYourHorses.Models
             };
             return indexVM;
         }
-        internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer)
+        internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer, string materials)
         {
             var cards = context.Sticks.Where(o=> 
             o.Pris>= minPrice && o.Pris <= maxPrice &&
             o.Hästkrafter>= minHK && o.Hästkrafter <= maxHK
-            && typer.Contains(o.Typ))
+            && typer.Contains(o.Typ) && materials.Contains(o.Material))
                 .Select(o => new IndexPartialVM
             {
                 Namn = o.Artikelnamn,
