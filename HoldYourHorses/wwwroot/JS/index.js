@@ -12,13 +12,14 @@ const allMaterials = document.querySelectorAll(".material");
 const selectElement = document.querySelector('#sort');
 
 var maxPrice = toInput.value;
+
 var minPrice = fromInput.value;
 var maxHK = toInputHK.value;
 var minHK = fromInputHK.value;
 var sortOn = "Pris";
 var isAscending = true;
 var typer = "-";
-materials = "-"
+var materials = "-"
 
 //event listeners
 allTypes.forEach(o => {
@@ -47,6 +48,14 @@ allMaterials.forEach(o => {
         }
     })
 });
+const constMaxPrice = maxPrice;
+const constMinPrice = minPrice;
+const constSortOn = sortOn;
+const constMaxHK = maxHK
+const constMinHK = minHK
+const constIsAscending = isAscending
+const constMaterials = materials
+const constTyper = typer
 selectElement.addEventListener('change', (event) => {
     sortOn = event.target.value.slice(1);
     isAscending = Boolean(parseInt(event.target.value.substr(0, 1)));
@@ -99,7 +108,7 @@ getPartialView();
 
 //functions
 async function getPartialView() {
-    console.log(materials);
+    console.log("getpartialView()")
     const superContainer = document.querySelector(".card-container");
     await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}&sortOn=${sortOn}&isAscending=${isAscending}`, { method: "GET" }).
         then(result => result.text()).
@@ -108,6 +117,43 @@ async function getPartialView() {
         });
 }
 
+async function resetFilter() {
+    {
+        toSlider.value = constMaxPrice;
+        fromSlider.value = constMinPrice;
+        toSliderHK.value = constMaxHK;
+        fromSliderHK.value = constMinHK;
+        toInput.value = constMaxPrice;
+        fromInput.value = constMinPrice;
+        toInputHK.value = constMaxHK;
+        fromInputHK.value = constMinHK;
+
+
+        controlFromSlider(fromSlider, toSlider, fromInput)
+        controlToSlider(fromSlider, toSlider, toInput);
+        controlFromInput(fromSlider, fromInput, toInput, toSlider);
+        controlToInput(toSlider, fromInput, toInput, toSlider);
+        controlFromSlider(fromSliderHK, toSliderHK, fromInputHK);
+        controlToSlider(fromSliderHK, toSliderHK, toInputHK);
+        controlFromInput(fromSliderHK, fromInputHK, toInputHK, toSliderHK);
+        controlToInput(toSliderHK, fromInputHK, toInputHK, toSliderHK);
+}
+
+    allTypes.forEach(o => {
+        o.checked = true;
+    });
+    allMaterials.forEach(o => o.checked = true);
+
+    maxPrice = constMaxPrice;
+    minPrice = constMinPrice;
+    sortOn = constSortOn;
+    maxHK = constMaxHK;
+    minHK = constMinHK;
+    isAscending = constIsAscending;
+    materials = constMaterials;
+    typer = constTyper;
+    getPartialView();
+}
 
 
 

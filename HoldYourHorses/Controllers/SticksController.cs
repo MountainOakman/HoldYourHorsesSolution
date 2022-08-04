@@ -58,9 +58,9 @@ namespace HoldYourHorses.Controllers
         }
 
         [HttpGet("IndexPartial")]
-        public IActionResult IndexPartial(int minPrice, int maxPrice, int maxHK, int minHK, string typer, string materials, bool isAscending, string sortOn, string search)
+        public IActionResult IndexPartial(int minPrice, int maxPrice, int maxHK, int minHK, string typer, string materials, bool isAscending, string sortOn, string searchString)
         {
-            IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn, search);
+            IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn, searchString);
             return PartialView("_IndexPartial", model);
         }
     }
