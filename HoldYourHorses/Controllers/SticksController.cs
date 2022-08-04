@@ -58,8 +58,9 @@ namespace HoldYourHorses.Controllers
 
             var pris = int.Parse(p);
             dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
+            int numberOfProducts = dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
             //return Content(dataService.GetCart());
-            return RedirectToAction("Index");
+            return Content(numberOfProducts.ToString());
             //Uppdatera varukorg ajax från Details 
         }
 
