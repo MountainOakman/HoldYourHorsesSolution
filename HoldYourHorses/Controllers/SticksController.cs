@@ -70,5 +70,12 @@ namespace HoldYourHorses.Controllers
             IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn, searchString);
             return PartialView("_IndexPartial", model);
         }
+
+		[HttpGet("Kassa")]
+        public IActionResult Kassa()
+		{
+            KassaVM[] model = dataService.GetKassaVM();
+            return View(model);
+		}
     }
 }
