@@ -8,7 +8,7 @@
 	@RenderSection("CSS", false)
 	@RenderSection("JS", false)
 	<link rel="stylesheet" href="~/CSS/Navbar.css">
-	<link rel="stylesheet" href="~/CSS/details.css">
+	<link rel="stylesheet" href="~/CSS/cookies.css">
 </head>
 <body>
 	@Html.Partial("_Navbar")
@@ -22,14 +22,6 @@
 	@Html.Partial("_Footer")
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-	<script> window.onload = function() {
-   document.getElementById("cookiebutton").onclick = function(){
-    
-      var overlay = document.getElementById("overlay");
-      var popup = document.getElementById("popup");
-      overlay.style.display = "none";
-      popup.style.display = "none";
-   };
-};</script>
+	<script src="~/JS/cookies.js"></script>
 </body>
 </html>
