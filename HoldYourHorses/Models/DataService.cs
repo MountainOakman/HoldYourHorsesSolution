@@ -101,12 +101,6 @@ namespace HoldYourHorses.Models
             return indexVM;
         }
 
-        internal string GetCookie()
-        {
-            var test = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
-            return test;
-        }
-
         internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer,
             string materials, bool isAscending, string sortOn, string searchString)
         {
@@ -115,7 +109,7 @@ namespace HoldYourHorses.Models
             o.Pris <= maxPrice &&
             o.Hästkrafter >= minHK &&
             o.Hästkrafter <= maxHK &&
-            typer.Contains(o.Kategori.Namn) && 
+            typer.Contains(o.Kategori.Namn) &&
             materials.Contains(o.Material.Namn)
             && (string.IsNullOrEmpty(searchString) || o.Artikelnamn.Contains(searchString))).
             Select(o => new IndexPartialVM
@@ -141,7 +135,8 @@ namespace HoldYourHorses.Models
         {
             var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
 
-            var shoppingCart = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
+            var shoppingCart = new List<ShoppingCartProduct>();
+            shoppingCart = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
 
             return shoppingCart.First().ArtikelNr.ToString();
         }

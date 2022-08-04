@@ -52,7 +52,8 @@ namespace HoldYourHorses.Controllers
         public IActionResult Details(int artikelNr, int antalVaror, string artikelNamn, decimal pris)
         {
             dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
-            return Content(dataService.GetCart());
+            //return Content(dataService.GetCart());
+            return RedirectToAction("Index");
             //Uppdatera varukorg ajax från Details 
         }
 
@@ -61,12 +62,6 @@ namespace HoldYourHorses.Controllers
         {
             IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn, searchString);
             return PartialView("_IndexPartial", model);
-        }
-        [HttpGet("Cookie")]
-        public IActionResult GetCookie()
-        {
-            string x = dataService.GetCookie();
-            return Content(x);
         }
     }
 }
