@@ -55,7 +55,7 @@ namespace HoldYourHorses.Models
             };
         }
 
-        internal int AddToCart(int artikelNr, int antalVaror, string arikelNamn, decimal pris)
+        internal int AddToCart(int artikelNr, int antalVaror, string arikelNamn, int pris)
         {
             List<ShoppingCartProduct> products;
 

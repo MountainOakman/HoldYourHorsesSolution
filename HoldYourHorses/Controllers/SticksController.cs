@@ -58,7 +58,6 @@ namespace HoldYourHorses.Controllers
 
             var pris = int.Parse(p);
             dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
-            var pris = decimal.Parse(price);
             int numberOfProducts = dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
             //return Content(dataService.GetCart());
             return Content(numberOfProducts.ToString());
