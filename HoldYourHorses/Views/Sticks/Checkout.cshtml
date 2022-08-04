@@ -20,40 +20,50 @@
     <div class="div-first-form"> 
     <form  asp-controller="Sticks" asp-action="Create">
         <div class="inside-form">
-        <div class="input">
-         <div>
+        <div  class="input">
+         <div class="two-part">
         <label asp-for="FirstName"></label>
         <input asp-for="FirstName" />
         <span asp-validation-for="FirstName"></span>
         </div>
-        <div>
+        <div  class="two-part">
         <label asp-for="LastName"></label>
         <input asp-for="LastName" />
         <span asp-validation-for="LastName"></span>
         </div>
         </div>
         <div class="input">
+         <div class="one-part">
         <label asp-for="Email"></label>
         <input asp-for="Email" />
         <span asp-validation-for="Email"></span>
+         </div>
         </div> 
         <div class="input">
+             <div class="one-part">
         <label asp-for="Address"></label>
         <input asp-for="Address" />
         <span asp-validation-for="Address"></span>
         </div> 
+        </div> 
          <div class="input">
+             <div  class="two-part">
         <label asp-for="City"></label>
         <input asp-for="City" />
         <span asp-validation-for="City"></span>
+        </div> 
+        <div  class="two-part">
         <label asp-for="ZipCode"></label>
         <input asp-for="ZipCode" />
         <span asp-validation-for="ZipCode"></span>
          </div> 
+         </div> 
           <div id="last" class="input">
+                <div class="one-part">
         <label asp-for="Country"></label>
         <input asp-for="Country" />
         <span asp-validation-for="Country"></span>
+        </div> 
         </div> 
         </div>
         </form>

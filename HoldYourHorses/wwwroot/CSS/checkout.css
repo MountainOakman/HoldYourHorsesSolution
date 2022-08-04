@@ -31,7 +31,12 @@
     padding-left:0;
     padding-right:0;
 }
-
+.one-part{
+    width:100%
+}
+.two-part {
+    width: 45%;
+}
 body {
     /*    margin: 0;
     padding: 0;
