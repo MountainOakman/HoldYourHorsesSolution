@@ -51,7 +51,12 @@ namespace HoldYourHorses.Controllers
         [HttpGet("/uppdateravarukorg/")]
         public IActionResult Details(int artikelNr, int antalVaror, string artikelNamn, string price)
         {
-            var pris = int.Parse(price);
+            var p = price.ToCharArray()
+            .Where(c => !Char.IsWhiteSpace(c))
+            .Select(c => c.ToString())
+            .Aggregate((a, b) => a + b);
+
+            var pris = int.Parse(p);
             dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
             //return Content(dataService.GetCart());
             return RedirectToAction("Index");
