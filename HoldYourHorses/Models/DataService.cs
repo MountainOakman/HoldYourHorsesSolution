@@ -55,7 +55,7 @@ namespace HoldYourHorses.Models
             };
         }
 
-        internal void AddToCart(int artikelNr, int antalVaror, string arikelNamn, decimal pris)
+        internal int AddToCart(int artikelNr, int antalVaror, string arikelNamn, decimal pris)
         {
             List<ShoppingCartProduct> products;
 
@@ -74,6 +74,27 @@ namespace HoldYourHorses.Models
                 string json = JsonSerializer.Serialize(products);
 
                 Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", json);
+
+                return antalVaror;
+            }
+            else
+            {
+                var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
+                products = new List<ShoppingCartProduct>();
+                products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
+                var temp = products.SingleOrDefault(p => p.ArtikelNr == artikelNr);
+                if (temp == null)
+                {
+                    products.Add(newItem);
+                }
+                else
+                {
+                    temp.Antal += antalVaror;
+                }
+                string json = JsonSerializer.Serialize(products);
+
+                Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", json);
+                return products.Sum(o => o.Antal);
             }
         }
 
@@ -138,7 +159,7 @@ namespace HoldYourHorses.Models
             var shoppingCart = new List<ShoppingCartProduct>();
             shoppingCart = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
 
-            return shoppingCart.First().ArtikelNr.ToString();
+            return shoppingCart.FirstOrDefault().Artikelnamn;
         }
 
     }

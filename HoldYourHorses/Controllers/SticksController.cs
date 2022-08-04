@@ -52,9 +52,9 @@ namespace HoldYourHorses.Controllers
         public IActionResult Details(int artikelNr, int antalVaror, string artikelNamn, string price)
         {
             var pris = decimal.Parse(price);
-            dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
+            int numberOfProducts = dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
             //return Content(dataService.GetCart());
-            return RedirectToAction("Index");
+            return Content(numberOfProducts.ToString());
             //Uppdatera varukorg ajax från Details 
         }
 
