@@ -98,7 +98,27 @@ namespace HoldYourHorses.Models
             }
         }
 
-        internal async Task<IndexVM> GetIndexVMAsync()
+		internal KassaVM[] GetKassaVM()
+		{
+            List<ShoppingCartProduct> products;
+
+            var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
+            products = new List<ShoppingCartProduct>();
+            products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
+
+            KassaVM[] kassaVM = products
+                .Select(o => new KassaVM
+                {
+                    Antal = o.Antal,
+                    ArtikelNamn = o.Artikelnamn,
+                    Pris = Decimal.ToInt32(o.Pris),
+                    ArtikelNr = o.ArtikelNr,
+                }).ToArray();
+
+            return kassaVM;
+        }
+
+		internal async Task<IndexVM> GetIndexVMAsync()
         {
             var sticks = await context.Sticks.Select(o => new
             {
@@ -168,6 +188,8 @@ namespace HoldYourHorses.Models
 
             return shoppingCart.Sum(o => o.Antal);
         }
+
+        
 
     }
 }
