@@ -110,7 +110,7 @@ getPartialView();
 async function getPartialView() {
     console.log("getpartialView()")
     const superContainer = document.querySelector(".card-container");
-    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}&sortOn=${sortOn}&isAscending=${isAscending}`, { method: "GET" }).
+    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}&sortOn=${sortOn}&isAscending=${isAscending}&searchString=${searchString}`, { method: "GET" }).
         then(result => result.text()).
         then(html => {
             superContainer.innerHTML = html;
@@ -155,6 +155,15 @@ async function resetFilter() {
     getPartialView();
 }
 
+function myFunction() {
+    var searchString = document.getElementById("search-input").value;
+    //1. lägg till search i fetch querin (rad 113) -- klar
+    //2.kalla på metod getpartial i metoden myfunction
+    //fixa servicen
+    
+
+    console.log(search);
+}
 
 
 ///// Slider JAvascript code /////
