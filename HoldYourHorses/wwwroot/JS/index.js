@@ -20,6 +20,7 @@ var sortOn = "Pris";
 var isAscending = true;
 var typer = "-";
 var materials = "-"
+var searchString = "";
 
 //event listeners
 allTypes.forEach(o => {
@@ -110,7 +111,7 @@ getPartialView();
 async function getPartialView() {
     console.log("getpartialView()")
     const superContainer = document.querySelector(".card-container");
-    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}&sortOn=${sortOn}&isAscending=${isAscending}`, { method: "GET" }).
+    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}&sortOn=${sortOn}&isAscending=${isAscending}&searchString=${searchString}`, { method: "GET" }).
         then(result => result.text()).
         then(html => {
             superContainer.innerHTML = html;
@@ -127,6 +128,7 @@ async function resetFilter() {
         fromInput.value = constMinPrice;
         toInputHK.value = constMaxHK;
         fromInputHK.value = constMinHK;
+        
 
 
         controlFromSlider(fromSlider, toSlider, fromInput)
@@ -155,6 +157,12 @@ async function resetFilter() {
     getPartialView();
 }
 
+
+
+function searchFunction() {
+    searchString = document.getElementById("search-input").value;
+    getPartialView();
+}
 
 
 ///// Slider JAvascript code /////
