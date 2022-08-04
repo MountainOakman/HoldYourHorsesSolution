@@ -45,10 +45,13 @@
   box-shadow: rgba(0, 0, 0, 0.3) 0px 2.5px 10px;
   border-radius: 1rem;
 }
-
-img {
-  width: inherit;
+.card-container a {
+    color: black;
+    text-decoration:none;
 }
+    img {
+        width: inherit;
+    }
 
 .price {
   position: absolute;

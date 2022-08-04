@@ -15,9 +15,9 @@ builder.Services.Configure<CookiePolicyOptions>(options => {
 
 var connString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<SticksDBContext>(o => o.UseSqlServer(connString));
-
+builder.Services.AddSession();
 var app = builder.Build();
-
+app.UseSession();
 app.UseCookiePolicy();
 app.UseStaticFiles();
 app.UseRouting();

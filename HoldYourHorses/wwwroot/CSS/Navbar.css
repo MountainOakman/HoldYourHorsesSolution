@@ -6,8 +6,13 @@
     flex-wrap: wrap;
     border-bottom: 3px solid black;
 }
+.navbar a{
+    color:black;
+    text-decoration:none;
+        
+}
 h1 {
-     margin: 0;
+    margin: 0;
 }
 
 .h1-navbar {
@@ -62,7 +67,7 @@ h1 {
     font-size: 26px;
 }
 
-a {
+#logo-a {
     text-decoration: none;
     color: black;
 }

@@ -14,9 +14,10 @@ namespace HoldYourHorses.Controllers
             this.dataService = dataService;
         }
         [HttpGet("")]
-        public async Task<IActionResult> IndexAsync()
+
+        public async Task<IActionResult> IndexAsync(string search)
         {
-            IndexVM model = await dataService.GetIndexVMAsync();
+            IndexVM model = await dataService.GetIndexVMAsync(search);
             return View(model);
         }
 
@@ -59,15 +60,13 @@ namespace HoldYourHorses.Controllers
             var pris = int.Parse(p);
             dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
             int numberOfProducts = dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
-            //return Content(dataService.GetCart());
             return Content(numberOfProducts.ToString());
-            //Uppdatera varukorg ajax från Details 
         }
 
         [HttpGet("IndexPartial")]
-        public IActionResult IndexPartial(int minPrice, int maxPrice, int maxHK, int minHK, string typer, string materials, bool isAscending, string sortOn, string searchString)
+        public IActionResult IndexPartial(int minPrice, int maxPrice, int maxHK, int minHK, string typer, string materials, bool isAscending, string sortOn)
         {
-            IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn, searchString);
+            IndexPartialVM[] model = dataService.GetIndexPartial(minPrice, maxPrice, minHK, maxHK, typer, materials, isAscending, sortOn);
             return PartialView("_IndexPartial", model);
         }
 
@@ -77,5 +76,6 @@ namespace HoldYourHorses.Controllers
             KassaVM[] model = dataService.GetKassaVM();
             return View(model);
 		}
+
     }
 }

@@ -159,10 +159,6 @@ async function resetFilter() {
 
 
 
-function searchFunction() {
-    searchString = document.getElementById("search-input").value;
-    getPartialView();
-}
 
 
 ///// Slider JAvascript code /////

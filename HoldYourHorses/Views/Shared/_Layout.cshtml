@@ -8,7 +8,10 @@
 	@RenderSection("CSS", false)
 	@RenderSection("JS", false)
 	<link rel="stylesheet" href="~/CSS/Navbar.css">
+	<link rel="stylesheet" href="~/CSS/footer.css">
 	<link rel="stylesheet" href="~/CSS/cookies.css">
+    <script src="~/JS/cookies.js" defer></script>
+	<script src="~/JS/navbar.js" defer></script>
 </head>
 <body>
 	@Html.Partial("_Navbar")
@@ -22,6 +25,6 @@
 	@Html.Partial("_Footer")
 	<script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
 	<script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
-	<script src="~/JS/cookies.js"></script>
+
 </body>
 </html>

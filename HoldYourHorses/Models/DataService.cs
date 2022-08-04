@@ -1,6 +1,7 @@
 ﻿using HoldYourHorses.Models.Entities;
 using HoldYourHorses.Views.Shared;
 using HoldYourHorses.Views.Sticks;
+using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
 
@@ -118,8 +119,16 @@ namespace HoldYourHorses.Models
             return kassaVM;
         }
 
-		internal async Task<IndexVM> GetIndexVMAsync()
+		internal async Task<IndexVM> GetIndexVMAsync(string search)
         {
+            if (!string.IsNullOrEmpty(search))
+            {
+                Accessor.HttpContext.Session.SetString("search", search);
+            }
+            else
+            {
+                Accessor.HttpContext.Session.SetString("search", String.Empty);
+            }
             var sticks = await context.Sticks.Select(o => new
             {
                 Artikelnamn = o.Artikelnamn,
@@ -143,8 +152,10 @@ namespace HoldYourHorses.Models
         }
 
         internal IndexPartialVM[] GetIndexPartial(int minPrice, int maxPrice, int minHK, int maxHK, string typer,
-            string materials, bool isAscending, string sortOn, string searchString)
+            string materials, bool isAscending, string sortOn)
         {
+            string searchString = Accessor.HttpContext.Session.GetString("search");
+
             var cards = context.Sticks.Where(o =>
             o.Pris >= minPrice &&
             o.Pris <= maxPrice &&

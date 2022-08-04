@@ -1,0 +1,36 @@
+﻿.footer-container, .foot-div > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
+    align-items: center;
+}
+.foot-div {
+    display: inline-block;
+    height:150px;
+    margin-right:40px;
+
+}
+    .foot-div > div *{
+        margin:10px;
+        height:50px;
+        margin-left:0;
+        max-width:50px;
+    }
+    .foot-div a{
+        color:black;
+    }
+    .footer-container b {
+        font-size: 20px;
+    }
+#info  a{
+    font-size:18px;
+    text-decoration:none;
+}
+.footer {
+    display:flex;
+    justify-content:center;
+    margin-top:60px;
+}
+#second-footer{
+    margin-top:10px;
+}
