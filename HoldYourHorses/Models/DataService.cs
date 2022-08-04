@@ -154,14 +154,19 @@ namespace HoldYourHorses.Models
             return model;
         }
 
-        public string GetCart()
+        public int GetCart()
         {
             var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
 
+            if (string.IsNullOrEmpty(cookieContent))
+            {
+                return 0;
+            }
             var shoppingCart = new List<ShoppingCartProduct>();
             shoppingCart = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
 
-            return shoppingCart.FirstOrDefault().Artikelnamn;
+
+            return shoppingCart.Sum(o => o.Antal);
         }
 
     }
