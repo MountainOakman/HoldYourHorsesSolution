@@ -1,9 +1,16 @@
-﻿window.onload = function() {
-    document.getElementById("cookiebutton").onclick = function () {
-
-        var overlay = document.getElementById("overlay");
-        var popup = document.getElementById("popup");
-        overlay.style.display = "none";
-        popup.style.display = "none";
+﻿window.onload = function () {
+    if (document.cookie.indexOf('.AspNet.Consent') == -1) {
+            var popup = document.getElementById("popup");
+            var overlay = document.getElementById("overlay");
+            overlay.style.display = "block";
+            popup.style.display = "block";
+        }
+        document.getElementById("cookiebutton").onclick = function () {
+            var popup = document.getElementById("popup");
+            var overlay = document.getElementById("overlay");
+            overlay.style.display = "none";
+            popup.style.display = "none";
+        };
     };
-};
+
+
