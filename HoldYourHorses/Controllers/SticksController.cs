@@ -64,6 +64,14 @@ namespace HoldYourHorses.Controllers
             //Uppdatera varukorg ajax från Details 
         }
 
+        [HttpGet("/deleteItem")]
+        public IActionResult Kassa(int artikelNr)
+        {
+            dataService.DeleteItem(artikelNr);
+            return Kassa();
+        }
+
+
         [HttpGet("IndexPartial")]
         public IActionResult IndexPartial(int minPrice, int maxPrice, int maxHK, int minHK, string typer, string materials, bool isAscending, string sortOn, string searchString)
         {
