@@ -48,9 +48,10 @@ namespace HoldYourHorses.Controllers
             return View();
         }
 
-        [HttpGet("uppdateravarukorg/")]
-        public IActionResult Details(int artikelNr, int antalVaror, string artikelNamn, decimal pris)
+        [HttpGet("/uppdateravarukorg/")]
+        public IActionResult Details(int artikelNr, int antalVaror, string artikelNamn, string price)
         {
+            var pris = decimal.Parse(price);
             dataService.AddToCart(artikelNr, antalVaror, artikelNamn, pris);
             //return Content(dataService.GetCart());
             return RedirectToAction("Index");

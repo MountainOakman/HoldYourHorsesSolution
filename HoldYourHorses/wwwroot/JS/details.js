@@ -1,5 +1,10 @@
-﻿function UppdateraVarukorg(varor, artikel, namn, pris) {
-    fetch(`/uppdateravarukorg/?artikelnr=${artikel}&antalvaror=${varor}&pris=${pris}&artikelnamn=${namn}`,
+﻿
+function UppdateraVarukorg() {
+    const pris = document.getElementById('price').innerHTML
+    const varor = document.getElementById('AntalVaror').value
+    const artikel = document.getElementById('artikelnr').innerHTML
+    const namn = document.getElementById('artikelnamn').innerHTML
+    fetch(`/uppdateravarukorg/?artikelnr=${artikel}&antalvaror=${varor}&price=${pris}&artikelnamn=${namn}`,
         {
             method: "GET",
         });
