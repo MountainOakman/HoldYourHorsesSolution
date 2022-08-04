@@ -2,7 +2,7 @@
 <a asp-controller="Sticks" asp-action="Index"><div class="logo">@Html.Partial("_Logo")</div></a><a id="logo-a" asp-controller="Sticks" asp-action="Index"> <div class="h1-navbar"><h1>HållDinKäpp.se</h1></div> </a>
 <div class="search-div">
 <div class="searchBar"><input id="search-input" type="text" placeholder="Sök" name="search"></div>
-<div class="searchIcon"><button onclick="myFunction()" id="search-btn" type="submit"><ion-icon id="icon" name="search-outline"></ion-icon></button></div>
+<div class="searchIcon"><button onclick="searchFunction()" id="search-btn" type="submit"><ion-icon id="icon" name="search-outline"></ion-icon></button></div>
 </div>
 <a id="a-cart" asp-controller="Sticks" asp-action="Checkout"><i class="fa badge fa-lg" value="0">
 	<svg xmlns="http://www.w3.org/2000/svg" id="cart" class="ionicon s-ion-icon" viewBox="0 0 470 450"><title>Cart</title><circle cx="176" cy="416" r="32"></circle><circle cx="400" cy="416" r="32"></circle><path d="M456.8 120.78a23.92 23.92 0 00-18.56-8.78H133.89l-6.13-34.78A16 16 0 00112 64H48a16 16 0 000 32h50.58l45.66 258.78A16 16 0 00160 368h256a16 16 0 000-32H173.42l-5.64-32h241.66A24.07 24.07 0 00433 284.71l28.8-144a24 24 0 00-5-19.93z"></path>

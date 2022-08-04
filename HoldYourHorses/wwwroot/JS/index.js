@@ -20,6 +20,7 @@ var sortOn = "Pris";
 var isAscending = true;
 var typer = "-";
 var materials = "-"
+var searchString = "";
 
 //event listeners
 allTypes.forEach(o => {
@@ -127,6 +128,7 @@ async function resetFilter() {
         fromInput.value = constMinPrice;
         toInputHK.value = constMaxHK;
         fromInputHK.value = constMinHK;
+        
 
 
         controlFromSlider(fromSlider, toSlider, fromInput)
@@ -155,14 +157,11 @@ async function resetFilter() {
     getPartialView();
 }
 
-function myFunction() {
-    var searchString = document.getElementById("search-input").value;
-    //1. lägg till search i fetch querin (rad 113) -- klar
-    //2.kalla på metod getpartial i metoden myfunction
-    //fixa servicen
-    
 
-    console.log(search);
+
+function searchFunction() {
+    searchString = document.getElementById("search-input").value;
+    getPartialView();
 }
 
 
