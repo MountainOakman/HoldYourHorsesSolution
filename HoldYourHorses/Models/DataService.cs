@@ -1,6 +1,9 @@
 ﻿using HoldYourHorses.Models.Entities;
+using HoldYourHorses.Views.Accounts;
 using HoldYourHorses.Views.Shared;
 using HoldYourHorses.Views.Sticks;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
@@ -10,14 +13,22 @@ namespace HoldYourHorses.Models
     public class DataService
     {
         private readonly SticksDBContext context;
+        private readonly UserManager<IdentityUser> userManager;
+        private readonly SignInManager<IdentityUser> signInManagere;
 
         public IHttpContextAccessor Accessor { get; }
+        public IdentityDbContext IdentityDBContext { get; }
 
-        public DataService(SticksDBContext context, IHttpContextAccessor accessor)
+        public DataService(SticksDBContext context, IHttpContextAccessor accessor, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManagere, IdentityDbContext identityDBContext)
         {
             this.context = context;
-            Accessor = accessor;
+            this.Accessor = accessor;
+            this.userManager = userManager;
+            this.signInManagere = signInManagere;
+            this.IdentityDBContext = identityDBContext;
         }
+
+
 
         internal DetailsVM GetDetailsVM(int artikelNr)
         {
@@ -41,6 +52,8 @@ namespace HoldYourHorses.Models
             //TODO:Tilldela prop :public string Bild { get; set; }
 
         }
+
+
 
         internal CheckoutVM Checkout(CheckoutVM checkoutVM)
         {
@@ -100,12 +113,12 @@ namespace HoldYourHorses.Models
         }
 
         internal void DeleteItem(int artikelNr)
-		{
+        {
             if (!string.IsNullOrEmpty(Accessor.HttpContext.Request.Cookies["ShoppingCart"]))
             {
                 var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
                 var products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
-                
+
                 var itemToBeDeleted = products.SingleOrDefault(p => p.ArtikelNr == artikelNr);
                 if (itemToBeDeleted != null)
                 {
@@ -118,17 +131,17 @@ namespace HoldYourHorses.Models
         }
 
 
-		internal KassaVM[] GetKassaVM()
-		{
+        internal KassaVM[] GetKassaVM()
+        {
             List<ShoppingCartProduct> products;
 
             var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
 
-			if (cookieContent == null)
-			{
+            if (cookieContent == null)
+            {
                 return null;
-			}
-            
+            }
+
             products = new List<ShoppingCartProduct>();
             products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
 
@@ -144,7 +157,7 @@ namespace HoldYourHorses.Models
             return kassaVM;
         }
 
-		internal async Task<IndexVM> GetIndexVMAsync(string search)
+        internal async Task<IndexVM> GetIndexVMAsync(string search)
         {
             if (!string.IsNullOrEmpty(search))
             {
@@ -224,7 +237,35 @@ namespace HoldYourHorses.Models
             return shoppingCart.Sum(o => o.Antal);
         }
 
-        
 
+        public async Task<string> TryRegister(RegisterVM viewModel)
+        {
+            IdentityUser user = new IdentityUser
+            {
+                UserName = viewModel.Username
+            };
+            IdentityResult createResult = await userManager.CreateAsync(user, viewModel.Password);
+
+            if (createResult.Succeeded)
+            {
+                await signInManagere.PasswordSignInAsync(
+                viewModel.Username,
+                viewModel.Password,
+                isPersistent: false,
+                lockoutOnFailure: false);
+            }
+            return createResult.Succeeded ? null : createResult.Errors.First().Description;
+        }
+        public async Task<bool> TryLogin(LoginVM viewModel)
+        {
+            SignInResult signInResult = await signInManagere.PasswordSignInAsync(
+                viewModel.Username,
+                viewModel.Password,
+                isPersistent: false,
+                lockoutOnFailure: false);
+
+            return signInResult.Succeeded;
+        }
     }
 }
+
