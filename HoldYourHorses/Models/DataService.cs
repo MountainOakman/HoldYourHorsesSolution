@@ -99,6 +99,19 @@ namespace HoldYourHorses.Models
             }
         }
 
+        internal void ClearCart()
+        {
+            if (!string.IsNullOrEmpty(Accessor.HttpContext.Request.Cookies["ShoppingCart"]))
+            {
+                var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
+                var products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
+                products.Clear();
+               
+                string json = JsonSerializer.Serialize(products);
+                Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", json);
+            }
+        }
+
         internal void DeleteItem(int artikelNr)
 		{
             if (!string.IsNullOrEmpty(Accessor.HttpContext.Request.Cookies["ShoppingCart"]))

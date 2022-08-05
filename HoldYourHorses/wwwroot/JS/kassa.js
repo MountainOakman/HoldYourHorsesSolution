@@ -3,7 +3,7 @@
         {
             method: "GET",
         }).then(o => {
-            var artikelContainer = document.querySelector(".artikel-container");
+           
             var artikel = document.getElementById(artikelnr);
             artikelContainer.removeChild(artikel);
             var totalsumma = document.getElementById('totalsumma');
@@ -14,18 +14,30 @@
         })
 }
 function kundvagn() {
+    var rensakorg = document.getElementById('rensakorg')
     var totalsumma = document.getElementById('totalsumma');
     if (totalsumma.innerHTML == "0 kr") {
         totalsumma.innerHTML = "Din kundvagn är tom"
         var summa = document.getElementById('summa');
         var betalning = document.getElementById('betalning');
         betalning.style.display = "none";
+        rensakorg.style.display = "none";
         summa.innerHTML = "";
+
     };
 }
 
-
-kundvagn()
+function rensakorg() {
+    fetch("/rensakorg",
+        {
+            method: "GET",
+        });
+        //.then(o => {
+        //    var artikel = document.getElementById('container').getElementsByClassName('artikel');
+        //    artikel = "";
+        //})
+}
 function checkout(){
     window.location = "/checkout";
    }
+kundvagn()

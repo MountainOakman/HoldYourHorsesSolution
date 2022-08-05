@@ -4,7 +4,7 @@
 }
 
 <h1>Din Kundvagn</h1>
-<div class="artikel-container">
+<div class="artikel-container" id="container">
 @if (Model != null)
 	{
 	@foreach (var item in Model)
@@ -31,6 +31,10 @@
 		<span id="summa">Summa</span>
 		<span id="totalsumma">@Model.Sum(x => x.Pris *  x.Antal) kr</span>
 		<button id="betalning" onclick="checkout()">Till betalning</button>
+	</div>
+
+	<div> 
+		<button id="rensakorg" onclick="rensakorg()">Töm varukorg</button>
 	</div>
 	}
 	

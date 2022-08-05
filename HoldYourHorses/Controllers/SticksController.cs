@@ -85,5 +85,11 @@ namespace HoldYourHorses.Controllers
             return View(model);
 		}
 
+        [HttpGet("rensakorg")]
+        public IActionResult Kassa(string korg)
+        {
+            dataService.ClearCart();
+            return Kassa();
+        }
     }
 }
