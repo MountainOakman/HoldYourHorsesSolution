@@ -53,8 +53,6 @@ namespace HoldYourHorses.Models
 
         }
 
-
-
         internal CheckoutVM Checkout(CheckoutVM checkoutVM)
         {
             return new CheckoutVM()
@@ -68,6 +66,8 @@ namespace HoldYourHorses.Models
                 Country = checkoutVM.Country,
             };
         }
+
+
 
         internal int AddToCart(int artikelNr, int antalVaror, string arikelNamn, int pris)
         {
@@ -111,6 +111,7 @@ namespace HoldYourHorses.Models
                 return products.Sum(o => o.Antal);
             }
         }
+
 
         internal void ClearCart()
         {

@@ -43,12 +43,6 @@ namespace HoldYourHorses.Controllers
             return RedirectToAction(nameof(Kvitto));
         }
 
-        [HttpGet("kvitto")]
-        public IActionResult Kvitto()
-        {
-            return View();
-        }
-
         [HttpGet("/uppdateravarukorg/")]
         public IActionResult Details(int artikelNr, int antalVaror, string artikelNamn, string price)
         {
@@ -90,6 +84,12 @@ namespace HoldYourHorses.Controllers
         {
             dataService.ClearCart();
             return Kassa();
+        }
+
+        [HttpGet("kvitto")]
+        public IActionResult Kvitto()
+        {
+            return View();
         }
     }
 }
