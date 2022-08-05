@@ -104,7 +104,6 @@ namespace HoldYourHorses.Models
             if (!string.IsNullOrEmpty(Accessor.HttpContext.Request.Cookies["ShoppingCart"]))
             {
                 var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
-                
                 var products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
                 
                 var itemToBeDeleted = products.SingleOrDefault(p => p.ArtikelNr == artikelNr);
@@ -190,8 +189,7 @@ namespace HoldYourHorses.Models
             typer.Contains(o.Kategori.Namn) &&
             materials.Contains(o.Material.Namn)
             && (string.IsNullOrEmpty(searchString)
-            || o.Artikelnamn.Contains(searchString)
-            || o.Kategori.Namn.Contains(searchString))).
+            || o.Artikelnamn.Contains(searchString))).
             Select(o => new IndexPartialVM
             {
                 Namn = o.Artikelnamn,

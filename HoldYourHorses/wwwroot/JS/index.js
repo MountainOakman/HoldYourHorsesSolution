@@ -102,16 +102,15 @@ toInputHK.addEventListener("change", (event) => {
 
 
 ///script starts here
-
-
 getPartialView();
+
+
 
 
 //functions
 async function getPartialView() {
-    console.log("getpartialView()")
     const superContainer = document.querySelector(".card-container");
-    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}&sortOn=${sortOn}&isAscending=${isAscending}&searchString=${searchString}`, { method: "GET" }).
+    await fetch(`/IndexPartial/?maxPrice=${maxPrice}&minPrice=${minPrice}&maxHK=${maxHK}&minHK=${minHK}&typer=${typer}&materials=${materials}&sortOn=${sortOn}&isAscending=${isAscending}`, { method: "GET" }).
         then(result => result.text()).
         then(html => {
             superContainer.innerHTML = html;
