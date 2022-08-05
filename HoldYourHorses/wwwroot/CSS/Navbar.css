@@ -18,10 +18,12 @@ h1 {
 
 .h1-navbar {
     font-size: 40px;
+    display:inline-block
 }
 
 .logo {
     height: 140px;
+    display:inline-block
 }
 
 .search-div {
@@ -47,6 +49,10 @@ h1 {
     cursor: pointer;
 }
 
+.navbar input[type=text]{
+    padding: 5px 10px;
+}
+
 #search-btn {
     height: 60px;
     border: none;
@@ -67,10 +73,6 @@ h1 {
     font-size: 26px;
 }
 
-#logo-a {
-    text-decoration: none;
-    color: black;
-}
 
 #logo-a, #a-cart {
     display: flex;
@@ -105,7 +107,14 @@ h1 {
     height:60px;
 }
 .logo-p{
-    font-size:14px;
+    font-size:16px;
     text-align:center;
     margin:5px;
 }
+
+#a-logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+

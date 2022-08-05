@@ -1,7 +1,6 @@
 ﻿<div class="navbar">
-    <div >
-    <a style="display:inline-block" asp-controller="Sticks" asp-action="Index"><div class="logo">@Html.Partial("_Logo")</div></a><a style="display:inline-block" id="logo-a" asp-controller="Sticks" asp-action="Index"> <div class="h1-navbar"><h1 >HållDinKäpp.se</h1></div> </a>
-    </div>
+
+    <a id="a-logo" asp-controller="Sticks" asp-action="Index"><div class="logo">@Html.Partial("_Logo")</div> <div class="h1-navbar"><h1 >HållDinKäpp.se</h1></div> </a>
     <div class="search-div">
         <div class="searchBar"><input id="search-input" type="text" placeholder="Sök" name="search"></div>
         <div class="searchIcon"><button onclick="searchFunction()" id="search-btn" type="submit"><ion-icon id="icon" name="search-outline"></ion-icon></button></div>
