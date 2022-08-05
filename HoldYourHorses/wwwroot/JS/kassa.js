@@ -3,7 +3,7 @@
         {
             method: "GET",
         }).then(o => {
-            var artikelContainer = document.getElementsByClassName("artikel-container");
+            var artikelContainer = document.querySelector(".artikel-container");
             var artikel = document.getElementById(artikelnr);
             artikelContainer.removeChild(artikel);
         })
