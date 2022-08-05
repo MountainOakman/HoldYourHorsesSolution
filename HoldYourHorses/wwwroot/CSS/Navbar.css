@@ -5,6 +5,7 @@
     min-height: 140px;
     flex-wrap: wrap;
     border-bottom: 3px solid black;
+    justify-content:space-around
 }
 .navbar a{
     color:black;
@@ -25,7 +26,6 @@ h1 {
 
 .search-div {
     display: flex;
-    margin-left: 150px;
 }
 
 .search-div > * {
@@ -86,7 +86,6 @@ h1 {
 }
 
 #a-cart {
-    margin-left: 60px;
     position: relative
 }
 
@@ -101,4 +100,12 @@ h1 {
     left: -20px;
     top: -45px;
     opacity: 0.9;
+}
+.user-logo{
+    height:60px;
+}
+.logo-p{
+    font-size:14px;
+    text-align:center;
+    margin:5px;
 }

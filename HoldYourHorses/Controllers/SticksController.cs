@@ -91,5 +91,6 @@ namespace HoldYourHorses.Controllers
             dataService.ClearCart();
             return Kassa();
         }
+
     }
 }
