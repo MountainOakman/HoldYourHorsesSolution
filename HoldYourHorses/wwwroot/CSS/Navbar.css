@@ -5,6 +5,7 @@
     min-height: 140px;
     flex-wrap: wrap;
     border-bottom: 3px solid black;
+    justify-content:space-around
 }
 .navbar a{
     color:black;
@@ -17,15 +18,16 @@ h1 {
 
 .h1-navbar {
     font-size: 40px;
+    display:inline-block
 }
 
 .logo {
     height: 140px;
+    display:inline-block
 }
 
 .search-div {
     display: flex;
-    margin-left: 150px;
 }
 
 .search-div > * {
@@ -45,6 +47,10 @@ h1 {
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     cursor: pointer;
+}
+
+.navbar input[type=text]{
+    padding: 5px 10px;
 }
 
 #search-btn {
@@ -67,10 +73,6 @@ h1 {
     font-size: 26px;
 }
 
-#logo-a {
-    text-decoration: none;
-    color: black;
-}
 
 #logo-a, #a-cart {
     display: flex;
@@ -86,7 +88,6 @@ h1 {
 }
 
 #a-cart {
-    margin-left: 60px;
     position: relative
 }
 
@@ -102,3 +103,18 @@ h1 {
     top: -45px;
     opacity: 0.9;
 }
+.user-logo{
+    height:60px;
+}
+.logo-p{
+    font-size:16px;
+    text-align:center;
+    margin:5px;
+}
+
+#a-logo{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
