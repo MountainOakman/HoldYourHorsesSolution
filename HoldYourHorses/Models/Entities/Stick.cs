@@ -5,6 +5,11 @@ namespace HoldYourHorses.Models.Entities
 {
     public partial class Stick
     {
+        public Stick()
+        {
+            Orderraders = new HashSet<Orderrader>();
+        }
+
         public int Artikelnr { get; set; }
         public decimal Pris { get; set; }
         public int Hästkrafter { get; set; }
@@ -19,5 +24,6 @@ namespace HoldYourHorses.Models.Entities
         public virtual Kategorier Kategori { get; set; } = null!;
         public virtual Material Material { get; set; } = null!;
         public virtual Tillverkningsländer Tillverkningsland { get; set; } = null!;
+        public virtual ICollection<Orderrader> Orderraders { get; set; }
     }
 }

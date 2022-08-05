@@ -18,6 +18,8 @@ namespace HoldYourHorses.Models.Entities
 
         public virtual DbSet<Kategorier> Kategoriers { get; set; } = null!;
         public virtual DbSet<Material> Materials { get; set; } = null!;
+        public virtual DbSet<Orderrader> Orderraders { get; set; } = null!;
+        public virtual DbSet<Ordrar> Ordrars { get; set; } = null!;
         public virtual DbSet<Stick> Sticks { get; set; } = null!;
         public virtual DbSet<Tillverkningsländer> Tillverkningsländers { get; set; } = null!;
 
@@ -41,6 +43,42 @@ namespace HoldYourHorses.Models.Entities
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
+            });
+
+            modelBuilder.Entity<Orderrader>(entity =>
+            {
+                entity.ToTable("Orderrader");
+
+                entity.Property(e => e.Pris).HasColumnType("money");
+
+                entity.HasOne(d => d.ArtikelNrNavigation)
+                    .WithMany(p => p.Orderraders)
+                    .HasForeignKey(d => d.ArtikelNr)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orderrade__Artik__5FB337D6");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.Orderraders)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orderrade__Order__5EBF139D");
+            });
+
+            modelBuilder.Entity<Ordrar>(entity =>
+            {
+                entity.ToTable("Ordrar");
+
+                entity.Property(e => e.Adress).HasMaxLength(50);
+
+                entity.Property(e => e.Efternamn).HasMaxLength(50);
+
+                entity.Property(e => e.Epost).HasMaxLength(50);
+
+                entity.Property(e => e.Förnamn).HasMaxLength(50);
+
+                entity.Property(e => e.Land).HasMaxLength(50);
+
+                entity.Property(e => e.Stad).HasMaxLength(50);
             });
 
             modelBuilder.Entity<Stick>(entity =>

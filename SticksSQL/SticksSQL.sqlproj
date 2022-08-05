@@ -62,8 +62,13 @@
     <Build Include="Material.sql" />
     <Build Include="Kategorier.sql" />
     <Build Include="Tillverkningsländer.sql" />
+    <Build Include="Ordrar.sql" />
+    <Build Include="Orderrader.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Qstringtxt.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="SticksSQL.refactorlog" />
   </ItemGroup>
 </Project>
