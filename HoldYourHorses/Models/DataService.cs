@@ -190,8 +190,7 @@ namespace HoldYourHorses.Models
             typer.Contains(o.Kategori.Namn) &&
             materials.Contains(o.Material.Namn)
             && (string.IsNullOrEmpty(searchString)
-            || o.Artikelnamn.Contains(searchString)
-            || o.Kategori.Namn.Contains(searchString))).
+            || o.Artikelnamn.Contains(searchString))).
             Select(o => new IndexPartialVM
             {
                 Namn = o.Artikelnamn,
