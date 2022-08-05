@@ -1,5 +1,4 @@
 .slider-super-container {
-  margin-top: 5rem;
   position: relative;
 }
 
@@ -21,17 +20,34 @@
 }
 .p-filter {
     font-size: 2rem;
-    text-align: center;
+    text-align: start;
     margin: 0;
+    font-weight: bold;
+    display:inline-block;
+}
+.div-p{
+    display:flex;
+    justify-content:flex-start;
+}
+.plus {
+    margin-left: auto;
+    margin-right: 40px;
+    cursor:pointer;
+}
+.p-filter-slider {
+    margin-left: 1rem;
 }
 .sliders_control {
-  position: relative;
-  min-height: 50px;
-  margin-top: 30px;
+    position: relative;
+    min-height: 50px;
+    margin-top: 30px;
+}
+#div-p-no-slider {
+    margin-top: 30px;
 }
 
 .form_control_container__time {
-  font-size: 2rem;
+    font-size: 2rem;
 }
 .form_control {
   position: relative;
@@ -112,14 +128,14 @@ input[type="range"] {
   display: inline-block;
   vertical-align: middle;
   cursor: pointer;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
 .checkboxes label {
   display: inline-block;
   vertical-align: middle;
   font-size: 1.7rem;
   cursor: pointer;
-  margin-top: 2rem;
+  margin-top: 0.5rem;
 }
 
 .filter-btn-div,
@@ -127,9 +143,9 @@ input[type="range"] {
 .material-container {
   flex-direction: column;
   display: flex;
-  align-items: center;
-  justify-content: center;
-  margin: 2rem;
+  align-items: start;
+  justify-content: start;
+  margin: 1rem;
 }
 
 .filter input::-webkit-outer-spin-button, .filter 
@@ -138,3 +154,7 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+#pris, #hastkrafter, #kategori, #material {
+    overflow: hidden;
+    transition: height 300ms ease-in;
+}

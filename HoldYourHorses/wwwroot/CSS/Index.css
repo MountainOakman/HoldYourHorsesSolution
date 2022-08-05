@@ -109,5 +109,5 @@
     width: auto;
     cursor: pointer;
     transition: transform 300ms ease-in;
-    transform: rotate(90deg)
+    transform: rotate(90deg);
 }

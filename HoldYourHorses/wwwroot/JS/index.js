@@ -295,21 +295,12 @@ function showHideFilter(){
     } 
     }
 
-    
- 
 
-//listArray.forEach((item) => {
-    //    if (counter >0) {
-    //        if (isHidden) {
-    //            item.style.display = "block";
-    //            isHidden == false;
-    //        }
-    //        else {
-    //            item.style.display = "none";
-    //            console.log(item);
-    //            isHidden = true;
-    //        }
-    //    }
-    //    counter++;
-
-    //});
+function hideProperty(id) {
+    if (id.style.height != "0px") {
+        id.style.height = "0"
+    }
+    else {
+        id.style.height = "auto"
+    }
+}
