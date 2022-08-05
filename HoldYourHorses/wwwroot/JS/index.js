@@ -259,7 +259,57 @@ toInputHK.oninput = () =>
     controlToInput(toSliderHK, fromInputHK, toInputHK, toSliderHK);
 
 
-var isHidden = true;
+var isShown = true;
 function showHideFilter(){
     const filter = document.querySelector(".filter");
-}
+    const listItems = filter.children;
+    const listArray = [...listItems];
+    listArray.shift();
+    const svg = document.querySelector("#hamburger");
+    console.log(svg)
+    if (isShown) {
+        for (var i = 0; i < listArray.length; i++) {
+            listArray[i].style.display = "none";
+        }
+        isShown = false;
+        console.log(filter);
+        filter.style.minWidth = "6rem";
+        filter.style.border = "0px solid black";
+        filter.style.background = "white";
+        svg.style.transform = 'rotate(0)';
+        
+    }
+    else {
+        isShown = true;
+        filter.style.minWidth = "35rem";
+        filter.style.border = "3px solid black";
+        filter.style.borderTop = "none";
+        filter.style.background = "#c6e6f5"
+        svg.style.transform = 'rotate(90deg)';
+
+        for (var i = 0; i < listArray.length; i++) {
+            setTimeout(function (a) { a.style.display = "block" }, 300, listArray[i]);
+            console.log(listArray[i]);
+        }
+        
+    } 
+    }
+
+    
+ 
+
+//listArray.forEach((item) => {
+    //    if (counter >0) {
+    //        if (isHidden) {
+    //            item.style.display = "block";
+    //            isHidden == false;
+    //        }
+    //        else {
+    //            item.style.display = "none";
+    //            console.log(item);
+    //            isHidden = true;
+    //        }
+    //    }
+    //    counter++;
+
+    //});
