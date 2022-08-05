@@ -10,5 +10,3 @@ function UppdateraVarukorg() {
             method: "GET",
         }).then(o => o.text()).then(o => (numberofproducts.attributes[2].value) = o);
 }
-
-

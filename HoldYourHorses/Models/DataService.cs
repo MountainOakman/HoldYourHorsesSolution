@@ -113,7 +113,7 @@ namespace HoldYourHorses.Models
                 }
 
                 string json = JsonSerializer.Serialize(products);
-                Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", json); //spara cookien som json igen.
+                Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", json);
             }
         }
 
