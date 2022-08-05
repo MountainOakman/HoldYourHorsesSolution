@@ -96,3 +96,9 @@
   overflow-wrap: break-word;
 }
 
+#hamburger {
+    fill: #000000;
+    stroke: #000000;
+    height: 50px;
+    width: auto:
+}

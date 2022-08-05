@@ -259,4 +259,7 @@ toInputHK.oninput = () =>
     controlToInput(toSliderHK, fromInputHK, toInputHK, toSliderHK);
 
 
-
+var isHidden = true;
+function showHideFilter(){
+    const filter = document.querySelector(".filter");
+}
