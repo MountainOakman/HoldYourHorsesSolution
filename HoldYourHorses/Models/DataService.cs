@@ -104,7 +104,6 @@ namespace HoldYourHorses.Models
             if (!string.IsNullOrEmpty(Accessor.HttpContext.Request.Cookies["ShoppingCart"]))
             {
                 var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
-                
                 var products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
                 
                 var itemToBeDeleted = products.SingleOrDefault(p => p.ArtikelNr == artikelNr);
