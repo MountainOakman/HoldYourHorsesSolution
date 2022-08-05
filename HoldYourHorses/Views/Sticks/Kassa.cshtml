@@ -30,7 +30,7 @@
 	<div class="summa">
 		<span id="summa">Summa</span>
 		<span id="totalsumma">@Model.Sum(x => x.Pris *  x.Antal) kr</span>
-		<button id="betalning">Till betalning</button>
+		<button id="betalning" onclick="checkout()">Till betalning</button>
 	</div>
 	}
 	

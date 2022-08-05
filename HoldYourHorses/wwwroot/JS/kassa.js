@@ -23,4 +23,9 @@ function kundvagn() {
         summa.innerHTML = "";
     };
 }
+
+
 kundvagn()
+function checkout(){
+    window.location = "/checkout";
+   }
