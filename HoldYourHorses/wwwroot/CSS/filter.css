@@ -33,6 +33,7 @@
     margin-left: auto;
     margin-right: 40px;
     cursor:pointer;
+    transform: translateX(-2px)
 }
 .p-filter-slider {
     margin-left: 1rem;
@@ -138,7 +139,7 @@ input[type="range"] {
   margin-top: 0.5rem;
 }
 
-.filter-btn-div,
+
 .kategori-container,
 .material-container {
   flex-direction: column;
@@ -157,4 +158,27 @@ input::-webkit-inner-spin-button {
 #pris, #hastkrafter, #kategori, #material {
     overflow: hidden;
     transition: height 300ms ease-in;
+}
+
+.filter input[type=checkbox] {
+    transform: scale(1.5);
+}
+.checkboxes{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+}
+.filter button{
+    width:240px;
+    margin-top:30px;
+    padding: 10px 20px;
+}
+
+.filter-btn-div {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 1rem;
 }

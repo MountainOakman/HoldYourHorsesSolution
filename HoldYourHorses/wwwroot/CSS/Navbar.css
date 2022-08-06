@@ -64,10 +64,11 @@ h1 {
     cursor: pointer;
 }
 
-#search-btn:active {
-    box-shadow: 0 2px rgba(20, 20, 20, 0.966);
-    transform: translateY(2px);
-}
+    #search-btn:active {
+        box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+        transform: translateY(2px);
+        filter: contrast(110%);
+    }
 
 #icon {
     font-size: 26px;
@@ -118,3 +119,6 @@ h1 {
     align-items:center;
 }
 
+input, select, button{
+    cursor:pointer;
+}

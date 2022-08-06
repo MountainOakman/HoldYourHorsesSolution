@@ -53,8 +53,6 @@ namespace HoldYourHorses.Models
 
         }
 
-
-
         internal CheckoutVM Checkout(CheckoutVM checkoutVM)
         {
             return new CheckoutVM()
@@ -119,7 +117,7 @@ namespace HoldYourHorses.Models
                 var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
                 var products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
                 products.Clear();
-               
+
                 string json = JsonSerializer.Serialize(products);
                 Accessor.HttpContext.Response.Cookies.Append("ShoppingCart", json);
             }
@@ -250,7 +248,6 @@ namespace HoldYourHorses.Models
             return shoppingCart.Sum(o => o.Antal);
         }
 
-
         public async Task<string> TryRegister(RegisterVM viewModel)
         {
             IdentityUser user = new IdentityUser
@@ -279,6 +276,70 @@ namespace HoldYourHorses.Models
 
             return signInResult.Succeeded;
         }
+        internal bool addCompare(int artikelnr)
+        {
+            var key = "compareString";
+            var compareString = Accessor.HttpContext.Request.Cookies[key];
+            if (string.IsNullOrEmpty(compareString))
+            {
+                var compareList = new List<int> { artikelnr };
+                string json = JsonSerializer.Serialize(compareList);
+                Accessor.HttpContext.Response.Cookies.Append(key, json);
+                return true;
+
+            }
+            else
+            {
+                var compareList = JsonSerializer.Deserialize<List<int>>(compareString);
+                if (compareList.Contains(artikelnr))
+                {
+                    compareList.Remove(artikelnr);
+                    string json = JsonSerializer.Serialize(compareList);
+                    Accessor.HttpContext.Response.Cookies.Append(key, json);
+                    return false;
+
+                }
+                else
+                {
+                    compareList.Add(artikelnr);
+                    string json = JsonSerializer.Serialize(compareList);
+                    Accessor.HttpContext.Response.Cookies.Append(key, json);
+                    return true;
+
+                }
+            }
+
+        }
+        internal async Task<CompareVM[]> getCompareVMAsync()
+        {
+            var key = "compareString";
+            var compareString = Accessor.HttpContext.Request.Cookies[key];
+            var compareList = JsonSerializer.Deserialize<List<int>>(compareString);
+            var model = await context.Sticks.Where(o => compareList.Contains(o.Artikelnr)).Select(o => new CompareVM
+            {
+                ArtikelNamn = o.Artikelnamn,
+                ArtikelNr = o.Artikelnr,
+                Hästkrafter = o.Hästkrafter,
+                Land = o.Tillverkningsland.Namn,
+                Material = o.Material.Namn,
+                Kategori = o.Kategori.Namn,
+                Trädensitet = o.Trädensitet
+            }).ToArrayAsync();
+
+            return model;
+    }
+        internal string getCompare()
+        {
+            return Accessor.HttpContext.Request.Cookies["compareString"];
+        }
+
+
+        internal void removeCompare()
+        {
+            Accessor.HttpContext.Response.Cookies.Append("compareString", "");
+        }
+
+
     }
 }
 

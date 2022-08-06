@@ -111,3 +111,37 @@
     transition: transform 300ms ease-in;
     transform: rotate(90deg);
 }
+
+.compare-svg{
+    position:absolute;
+    opacity:50;
+    fill: grey;
+    height:30px;
+    z-index:100;
+    top:30px;
+    left:20px;
+    cursor:pointer;
+
+}
+
+.compare-svg:hover{
+   fill: blue;
+}
+.compare-select {
+    margin-top:25px;
+    margin-bottom:10px;
+    display:flex;
+    width:350px;
+    justify-content:space-between
+
+}
+.compare-select  * {
+    height:30px;
+    width:150px;
+}
+.compare-btn{
+    cursor:pointer;
+}
+.checkboxes{
+    width:90%;
+}

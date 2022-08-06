@@ -92,5 +92,29 @@ namespace HoldYourHorses.Controllers
             return Kassa();
         }
 
+        [HttpGet("jämför")]
+        public async Task<IActionResult> CompareAsync()
+        {
+            CompareVM[] model = await dataService.getCompareVMAsync();
+            return View(model);
+        }
+
+        [HttpGet("compareAdd")]
+        public IActionResult CompareAdd(int artikelnr)
+        {
+            return Content(dataService.addCompare(artikelnr).ToString());
+        }
+        [HttpGet("getCompare")]
+        public IActionResult GetCompare()
+        {
+            string model = dataService.getCompare();
+            return Content(model);
+        }
+        [HttpGet("removeCompare")]
+        public IActionResult removeCompare()
+        {
+           dataService.removeCompare();
+            return Ok();
+        }
     }
 }
