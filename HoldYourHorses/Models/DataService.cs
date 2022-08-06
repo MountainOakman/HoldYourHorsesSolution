@@ -67,6 +67,8 @@ namespace HoldYourHorses.Models
             };
         }
 
+
+
         internal int AddToCart(int artikelNr, int antalVaror, string arikelNamn, int pris)
         {
             List<ShoppingCartProduct> products;
@@ -109,6 +111,7 @@ namespace HoldYourHorses.Models
                 return products.Sum(o => o.Antal);
             }
         }
+
 
         internal void ClearCart()
         {

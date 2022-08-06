@@ -1,14 +1,6 @@
-﻿@model CheckoutVM
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Title</title>
-</head>
-<body>
-    <h1>Tack för köpet @Model.FirstName</h1>
-    <p>Vi skickar en bekräftelse till @Model.Email inom kort.</p>
+﻿@model KvittoVM
 
-    <input href="/index" value="Fortsätt handla" />
-</body>
+@*<h1>Tack för köpet @Model.Förnamn</h1>
+<p>Vi skickar en bekräftelse till @Model.Epost inom kort.</p>*@
+
+<a asp-controller="Sticks" asp-action="Index"><button type="button">Fortsätt handla</button></a>

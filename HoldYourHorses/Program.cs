@@ -26,6 +26,17 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddDefaultTokenProviders();
 builder.Services.ConfigureApplicationCookie(o => o.LoginPath = "/Index");
 
+builder.Services.Configure<IdentityOptions>(options =>
+{
+    // Changed Password settings.
+    options.Password.RequireDigit = false;
+    options.Password.RequireLowercase = true;
+    options.Password.RequireNonAlphanumeric = false;
+    options.Password.RequireUppercase = false;
+    options.Password.RequiredLength = 6;
+    options.Password.RequiredUniqueChars = 0;
+});
+
 
 var app = builder.Build();
 

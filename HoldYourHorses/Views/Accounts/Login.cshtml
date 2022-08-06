@@ -15,3 +15,11 @@
     <input type="submit" value="Log In" />
 </form>
 <div asp-validation-summary="All"></div>
+
+<div>Har du inget konto?</div>
+<input type='button' value='Skapa ett här' onClick='redirectOnClick()' />
+<script>
+    function redirectOnClick() {
+        document.location = 'register';
+    }
+</script>

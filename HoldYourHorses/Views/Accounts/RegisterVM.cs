@@ -4,6 +4,7 @@ namespace HoldYourHorses.Views.Accounts
 {
     public class RegisterVM
     {
+        [Display(Name = "Email-adress")]
         [Required]
         public string Username { get; set; }
 
