@@ -115,5 +115,6 @@ namespace HoldYourHorses.Controllers
            dataService.removeCompare();
             return Ok();
         }
+
     }
 }

@@ -95,8 +95,7 @@ toInputHK.addEventListener("change", (event) => {
   getPartialView();
 });
 
-///script starts here
-getPartialView();
+
 
 //functions
 async function getPartialView() {
@@ -174,9 +173,14 @@ async function compare(artikelnr, artikelNamn) {
     .then((o) => (didAdd = o));
   console.log(didAdd);
   const svg = document.querySelector("#svg-" + artikelnr);
-  if (didAdd == "True") {
-      svg.style.fill = "blue";
-      numberOfCompares++;
+    if (didAdd == "True") {
+        if (numberOfCompares < 4) {
+            svg.style.fill = "blue";
+            numberOfCompares++;
+        }
+        else {
+            alert("Du kan inte jämföra fler än fyra käpphästar samtidigt!")
+        }
       ShowOrHideCompareButton();
   } else {
       svg.style.fill = "grey";
@@ -185,8 +189,9 @@ async function compare(artikelnr, artikelNamn) {
   }
 }
 async function getCompare() {
-    var articleList = await fetch("/getCompare").then((o) =>o.json() ); 
-    if (articleList != null) {
+    var articleList = await fetch("/getCompare")
+    try {
+    articleList = await articleList.json();
         numberOfCompares = articleList.length;
         for (let index = 0; index < articleList.length; index++) {
             const svg = document.querySelector("#svg-" + articleList[index]);
@@ -194,8 +199,9 @@ async function getCompare() {
                 svg.style.fill = "blue";
             }
         }
+
     }
-    else { numberOfCompares = 0; }
+    catch(error) { numberOfCompares = 0; }
     ShowOrHideCompareButton();
    
   }
@@ -365,3 +371,6 @@ fromInputHK.oninput = () =>
 toInputHK.oninput = () =>
   controlToInput(toSliderHK, fromInputHK, toInputHK, toSliderHK);
 
+
+///script starts here
+getPartialView();

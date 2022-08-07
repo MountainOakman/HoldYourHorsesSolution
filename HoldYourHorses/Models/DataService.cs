@@ -304,11 +304,13 @@ namespace HoldYourHorses.Models
                 }
                 else
                 {
-                    compareList.Add(artikelnr);
-                    string json = JsonSerializer.Serialize(compareList);
-                    Accessor.HttpContext.Response.Cookies.Append(key, json);
+                    if(compareList.Count <4)
+                    {
+                        compareList.Add(artikelnr);
+                        string json = JsonSerializer.Serialize(compareList);
+                        Accessor.HttpContext.Response.Cookies.Append(key, json);
+                    }
                     return true;
-
                 }
             }
 

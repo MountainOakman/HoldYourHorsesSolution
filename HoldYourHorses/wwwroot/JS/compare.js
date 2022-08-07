@@ -8,7 +8,7 @@ var wood;
 var land
 var counter = 0;
 var timeFactor = 5
-//****Get selectors and animation
+//****Get selectors and add animation
 const goal = document.querySelector(".goal")
 var numberOfHorses = document.querySelector(".numberOfHorses").innerHTML
 numberOfHorses = parseInt(numberOfHorses);
@@ -26,7 +26,7 @@ horses.forEach((e) => {
     let t = (intKategori * density* intLand * timeFactor) / horsepowers;
     console.log([intKategori, density, horsepowers, wood]);
     let child = Array.from(e.children);
-    child.forEach((c) => {
+    child.forEach((c) => { //adderar animationen till bild, namn och cirkel
         c.style.animationTimingFunction = getBezier(wood);
         c.style.animationDuration = t + "s";
         c.style.animationFillMode = "forwards";
