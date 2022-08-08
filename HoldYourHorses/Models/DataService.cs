@@ -44,12 +44,14 @@ namespace HoldYourHorses.Models
                     Adress = o.Address,
                     Land = o.Country
                 });
+            //Avkommentera nedan rad för att spara till databas
+            // context.SaveChanges(); 
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.FirstName)] = o.FirstName;
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.Epost)] = o.Email;
 
-    }
+        }
 
-    internal DetailsVM GetDetailsVM(int artikelNr)
+        internal DetailsVM GetDetailsVM(int artikelNr)
         {
             return context.Sticks
                  .Where(o => o.Artikelnr == artikelNr)
