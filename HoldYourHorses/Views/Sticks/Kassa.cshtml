@@ -37,6 +37,19 @@
 
 </div>
 	<div class="summa">
-		<span id="summa">Summa</span>
-		<span id="totalsumma">@Model.Sum(x => x.Pris *  x.Antal) kr</span>
+		
+		 @if(Model != null) {
+			 <span id="summa">Summa</span>
+			 <span id="totalsumma">
+			@Model.Sum(x => x.Pris *  x.Antal) kr</span>
+	}
+
+	else
+	{
+		 <span id="totalsumma">
+			Din kundvagn är tom.</span>
+	}
+	
+
+		
 	</div>
