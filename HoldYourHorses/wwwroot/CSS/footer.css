@@ -16,21 +16,28 @@
         margin-left:0;
         max-width:50px;
     }
-    .foot-div a{
-        color:black;
-    }
+
     .footer-container b {
         font-size: 20px;
     }
-#info  a{
-    font-size:18px;
-    text-decoration:none;
+#info a {
+    font-size: 18px;
+    text-decoration: none;
+    color: var(--light-purple)
 }
 .footer {
-    display:flex;
-    justify-content:center;
-    margin-top:60px;
+    display: flex;
+    justify-content: center;
+    margin-top: 60px;
+    background: var(--navbar-logos);
+    color: var(--light-purple)
 }
-#second-footer{
-    margin-top:10px;
+#second-footer {
+    margin-top:0;
+    padding-top: 10px;
+}
+
+.footer svg{
+    fill: var(--light-purple);
+    cursor:pointer;
 }

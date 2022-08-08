@@ -3,7 +3,7 @@
     <a id="a-logo" asp-controller="Sticks" asp-action="Index"><div class="logo">@Html.Partial("_Logo")</div> <div class="h1-navbar"><h1 >HållDinKäpp.se</h1></div> </a>
     <div class="search-div">
         <div class="searchBar"><input id="search-input" type="text" placeholder="Sök" name="search"></div>
-        <div class="searchIcon"><button onclick="searchFunction()" id="search-btn" type="submit"><ion-icon id="icon" name="search-outline"></ion-icon></button></div>
+        <div class="searchIcon"><button onclick="searchFunction()" id="search-btn" type="submit"><svg id="icon" fill="#000000" xmlns="http://www.w3.org/2000/svg"  viewBox="0 0 50 50" ><path d="M 21 3 C 11.621094 3 4 10.621094 4 20 C 4 29.378906 11.621094 37 21 37 C 24.710938 37 28.140625 35.804688 30.9375 33.78125 L 44.09375 46.90625 L 46.90625 44.09375 L 33.90625 31.0625 C 36.460938 28.085938 38 24.222656 38 20 C 38 10.621094 30.378906 3 21 3 Z M 21 5 C 29.296875 5 36 11.703125 36 20 C 36 28.296875 29.296875 35 21 35 C 12.703125 35 6 28.296875 6 20 C 6 11.703125 12.703125 5 21 5 Z"/></svg></button></div>
     </div>
          <a id="a-cart" asp-controller="Accounts" asp-action="Login">
     <?xml version="1.0" encoding="utf-8"?>
@@ -14,14 +14,14 @@
 <p class="logo-p"> Konto</p>
  </a>
     <a id="a-cart" asp-controller="Sticks" asp-action="Kassa">
-        <i id="number-of-products" class="fa badge fa-lg" value="@await Component.InvokeAsync("ShoppingCart")">
+        <span id="number-of-products" class="fa badge fa-lg" value="@await Component.InvokeAsync("ShoppingCart")">
             <svg xmlns="http://www.w3.org/2000/svg" id="cart" class="ionicon s-ion-icon" viewBox="0 0 470 450">
                 <title>Cart</title>
                 <circle cx="176" cy="416" r="32"></circle>
                 <circle cx="400" cy="416" r="32"></circle>
                 <path d="M456.8 120.78a23.92 23.92 0 00-18.56-8.78H133.89l-6.13-34.78A16 16 0 00112 64H48a16 16 0 000 32h50.58l45.66 258.78A16 16 0 00160 368h256a16 16 0 000-32H173.42l-5.64-32h241.66A24.07 24.07 0 00433 284.71l28.8-144a24 24 0 00-5-19.93z"></path>
             </svg>
-        </i>
+        </span>
         <p class="logo-p"> Kundvagn</p>
     </a>
 

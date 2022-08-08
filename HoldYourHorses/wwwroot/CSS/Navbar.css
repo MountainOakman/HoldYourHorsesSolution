@@ -1,29 +1,49 @@
-﻿.navbar {
+﻿:root {
+    --navbar-background: white;
+    /* --navbar-logos:  #ffdcd9 #*/
+    --navbar-logos: #7b63ad;
+    --body-background: #f2f2f2;
+    --filter-background: #937DC2;
+    --light-purple: #e2d7f7;
+    --price-tag: #7b63ad ;
+    --light-pink: #E8A0BF;
+}
+body{margin:0;
+     background: var(--body-background)
+}
+.navbar {
     display: flex;
     flex-direction: row;
     align-content: center;
     min-height: 140px;
     flex-wrap: wrap;
-    border-bottom: 3px solid black;
-    justify-content:space-around
+    justify-content:space-around;
+    background: var(--navbar-background);
+    box-shadow: 0 0px 5px rgb(0 0 0 / 15%);
 }
+
+
 .navbar a{
     color:black;
     text-decoration:none;
         
 }
+
 h1 {
     margin: 0;
 }
 
 .h1-navbar {
     font-size: 40px;
-    display:inline-block
+    display: inline-block;
+    color: var(--navbar-logos);
+
 }
 
 .logo {
     height: 140px;
-    display:inline-block
+    display: inline-block;
+    fill: var(--navbar-logos);
 }
 
 .search-div {
@@ -42,36 +62,44 @@ h1 {
     width: 300px;
     font-size: 20px;
     border: none;
-    outline: 2px solid black;
+    outline: 3px solid var(--navbar-logos);
     box-sizing: border-box;
     border-top-left-radius: 0.5rem;
     border-bottom-left-radius: 0.5rem;
     cursor: pointer;
+    background: var(--light-purple)
 }
 
 .navbar input[type=text]{
     padding: 5px 10px;
+    color: var(--navbar-logos);
 }
 
+    .navbar input[type=text]::placeholder {
+        color: var(--navbar-logos);
+    }
 #search-btn {
     height: 60px;
     border: none;
     width: 60px;
-    outline: 2px solid black;
+    outline: 3px solid var(--navbar-logos);
     box-sizing: border-box;
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
     cursor: pointer;
+    background: var(--light-purple);
+    
 }
 
-    #search-btn:active {
-        box-shadow: 0 2px rgba(20, 20, 20, 0.966);
-        transform: translateY(2px);
-        filter: contrast(110%);
-    }
+#search-btn:active {
+    box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+    transform: translateY(2px);
+    filter: contrast(110%);
+}
 
 #icon {
-    font-size: 26px;
+    fill: var(--navbar-logos);
+    height: 35px;
 }
 
 
@@ -86,6 +114,7 @@ h1 {
 #cart {
     height: 60px;
     width: auto;
+    fill: var(--navbar-logos)
 }
 
 #a-cart {
@@ -95,22 +124,23 @@ h1 {
 .badge::after {
     content: attr(value);
     font-size: 20px;
-    color: #fff;
-    background: red;
+    color: var(--navbar-logos);
+    background: var(--light-purple);
     border-radius: 50%;
     padding: 5px 10px;
     position: relative;
     left: -20px;
     top: -45px;
-    opacity: 0.9;
 }
 .user-logo{
     height:60px;
+    fill: var(--navbar-logos)
 }
 .logo-p{
     font-size:16px;
     text-align:center;
     margin:5px;
+    color: var(--navbar-logos)
 }
 
 #a-logo{

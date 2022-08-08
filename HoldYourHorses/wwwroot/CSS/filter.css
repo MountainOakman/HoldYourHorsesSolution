@@ -1,3 +1,7 @@
+:root{
+    
+}
+
 .slider-super-container {
   position: relative;
 }
@@ -81,7 +85,7 @@ input[type="range"]::-moz-range-thumb {
 }
 
 input[type="range"]::-webkit-slider-thumb:hover {
-  background: #f7f7f7;
+  background: #e2d7f7;
 }
 
 input[type="range"]::-webkit-slider-thumb:active {
@@ -96,7 +100,7 @@ input[type="range"]::-webkit-slider-thumb:active {
     font-size: 20px;
     border: none;
     -moz-appearance: textfield;
-    background: var(--background);
+    background: var(--filter-background);
     color: black;
     padding: 0;
 }
@@ -126,18 +130,23 @@ input[type="range"] {
 }
 
 .checkboxes input[type="checkbox"] {
-  display: inline-block;
-  vertical-align: middle;
-  cursor: pointer;
-  margin-top: 0.5rem;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-top: 0.5rem;
+    accent-color: var(--light-purple);
+
+
 }
-.checkboxes label {
-  display: inline-block;
-  vertical-align: middle;
-  font-size: 1.7rem;
-  cursor: pointer;
-  margin-top: 0.5rem;
-}
+
+
+    .checkboxes label {
+        display: inline-block;
+        vertical-align: middle;
+        font-size: 1.7rem;
+        cursor: pointer;
+        margin-top: 0.5rem;
+    }
 
 
 .kategori-container,

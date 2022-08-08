@@ -175,7 +175,7 @@ async function compare(artikelnr, artikelNamn) {
   const svg = document.querySelector("#svg-" + artikelnr);
     if (didAdd == "True") {
         if (numberOfCompares < 4) {
-            svg.style.fill = "blue";
+            svg.style.fill = "#7b63ad";
             numberOfCompares++;
         }
         else {
@@ -196,7 +196,7 @@ async function getCompare() {
         for (let index = 0; index < articleList.length; index++) {
             const svg = document.querySelector("#svg-" + articleList[index]);
             if (svg != null) {
-                svg.style.fill = "blue";
+                svg.style.fill = "#7b63ad";
             }
         }
 
@@ -207,6 +207,8 @@ async function getCompare() {
   }
 
 var isShown = true;
+
+var filterstyle = document.querySelector(".filter").style;
 function showHideFilter() {
     const filter = document.querySelector(".filter");
     const listItems = filter.children;
@@ -222,14 +224,12 @@ function showHideFilter() {
         console.log(filter);
         filter.style.minWidth = "6rem";
         filter.style.border = "0px solid black";
-        filter.style.background = "white";
         svg.style.transform = "rotate(0)";
+        filter.style.height = "100vh"
     } else {
         isShown = true;
-        filter.style.minWidth = "35rem";
-        filter.style.border = "3px solid black";
-        filter.style.borderTop = "none";
-        filter.style.background = "#c6e6f5";
+        filter.style = filterstyle;
+        
         svg.style.transform = "rotate(90deg)";
 
         for (var i = 0; i < listArray.length; i++) {
@@ -252,7 +252,7 @@ window.onbeforeunload = function (e) {
 async function removeCompare() {
     await fetch(`/removeCompare`, { method: "GET" })
     var articles = document.querySelectorAll(".compare-svg");
-    articles.forEach(e => e.style.fill = "grey")
+    articles.forEach(e => e.style.fill = "#e2d7f7");
     numberOfCompares = 0;
     ShowOrHideCompareButton();
 
@@ -277,7 +277,7 @@ function ShowOrHideCompareButton() {
 ///// Slider JAvascript code /////
 function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
   const [from, to] = getParsed(fromInput, toInput);
-  fillSlider(fromInput, toInput, "#C6C6C6", "#25daa5", controlSlider);
+    fillSlider(fromInput, toInput, "black", "#e2d7f7", controlSlider);
   if (from > to) {
     fromSlider.value = to;
     fromInput.value = to;
@@ -288,7 +288,7 @@ function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
 
 function controlToInput(toSlider, fromInput, toInput, controlSlider) {
   const [from, to] = getParsed(fromInput, toInput);
-  fillSlider(fromInput, toInput, "#C6C6C6", "#25daa5", controlSlider);
+  fillSlider(fromInput, toInput, "black", "#e2d7f7", controlSlider);
   setToggleAccessible(toInput);
   if (from <= to) {
     toSlider.value = to;
@@ -300,7 +300,7 @@ function controlToInput(toSlider, fromInput, toInput, controlSlider) {
 
 function controlFromSlider(fromSlider, toSlider, fromInput) {
   const [from, to] = getParsed(fromSlider, toSlider);
-  fillSlider(fromSlider, toSlider, "#C6C6C6", "#25daa5", toSlider);
+  fillSlider(fromSlider, toSlider, "black", "#e2d7f7", toSlider);
   if (from > to) {
     fromSlider.value = to;
     fromInput.value = to;
@@ -311,7 +311,7 @@ function controlFromSlider(fromSlider, toSlider, fromInput) {
 
 function controlToSlider(fromSlider, toSlider, toInput) {
   const [from, to] = getParsed(fromSlider, toSlider);
-  fillSlider(fromSlider, toSlider, "#C6C6C6", "#25daa5", toSlider);
+  fillSlider(fromSlider, toSlider, "black", "#e2d7f7", toSlider);
   setToggleAccessible(toSlider);
   if (from <= to) {
     toSlider.value = to;
@@ -351,10 +351,10 @@ function setToggleAccessible(currentTarget) {
   }
 }
 
-fillSlider(fromSlider, toSlider, "#C6C6C6", "#25daa5", toSlider);
+fillSlider(fromSlider, toSlider, "black", "#e2d7f7", toSlider);
 setToggleAccessible(toSlider);
 
-fillSlider(fromSliderHK, toSliderHK, "#C6C6C6", "#25daa5", toSliderHK);
+fillSlider(fromSliderHK, toSliderHK, "black", "#e2d7f7", toSliderHK);
 setToggleAccessible(toSliderHK);
 
 fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
