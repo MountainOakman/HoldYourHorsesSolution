@@ -29,7 +29,7 @@ values
 (1500, 300, 350, 'Kingdra the Scaler', 1, 3, 'Simmar snabbt i vatten', 4, 0),
 (1423, 300, 350, 'The Cimarron Spirit', 4, 3, 'Druknar snabbt i vatten och lera', 4, 0), --samma stats som Kingdra med flit
 (1630, 400, 200, 'Secretariat', 3, 2, 'Världens mest kända häst', 3, 1),
-(900, 150, 200, 'SkyScraper Horsea', 1,1, 'Längre än Empire State nyggnaden i New York', 1,1)
+(900, 150, 200, 'SkyScraper Horsea', 1,1, 'Längre än Empire State Byggnaden i New York', 1,1)
 go
 
 --visa tabellerna
