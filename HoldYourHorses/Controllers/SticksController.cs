@@ -39,7 +39,7 @@ namespace HoldYourHorses.Controllers
             if (!ModelState.IsValid)
                 return View();
             else
-                dataService.Checkout(checkoutVM);
+                dataService.SaveOrder(checkoutVM);
             return RedirectToAction(nameof(Kvitto));
         }
 
@@ -72,12 +72,12 @@ namespace HoldYourHorses.Controllers
             return PartialView("_IndexPartial", model);
         }
 
-		[HttpGet("Kassa")]
+        [HttpGet("Kassa")]
         public IActionResult Kassa()
-		{
+        {
             KassaVM[] model = dataService.GetKassaVM();
             return View(model);
-		}
+        }
 
         [HttpGet("rensakorg")]
         public IActionResult Kassa(string korg)
@@ -89,7 +89,7 @@ namespace HoldYourHorses.Controllers
         [HttpGet("kvitto")]
         public IActionResult Kvitto()
         {
-            return View();
+           return View(dataService.GetReceipt());
         }
         [HttpGet("jämför")]
         public async Task<IActionResult> CompareAsync()
@@ -112,7 +112,7 @@ namespace HoldYourHorses.Controllers
         [HttpGet("removeCompare")]
         public IActionResult removeCompare()
         {
-           dataService.removeCompare();
+            dataService.removeCompare();
             return Ok();
         }
 
