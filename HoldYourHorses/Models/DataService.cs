@@ -68,7 +68,6 @@ namespace HoldYourHorses.Models
         }
 
 
-
         internal int AddToCart(int artikelNr, int antalVaror, string arikelNamn, int pris)
         {
             List<ShoppingCartProduct> products;
@@ -276,7 +275,6 @@ namespace HoldYourHorses.Models
                 viewModel.Password,
                 isPersistent: false,
                 lockoutOnFailure: false);
-
             return signInResult.Succeeded;
         }
         internal bool addCompare(int artikelnr)
@@ -304,7 +302,7 @@ namespace HoldYourHorses.Models
                 }
                 else
                 {
-                    if(compareList.Count <4)
+                    if (compareList.Count < 4)
                     {
                         compareList.Add(artikelnr);
                         string json = JsonSerializer.Serialize(compareList);
@@ -332,7 +330,7 @@ namespace HoldYourHorses.Models
             }).ToArrayAsync();
 
             return model;
-    }
+        }
         internal string getCompare()
         {
             return Accessor.HttpContext.Request.Cookies["compareString"];
@@ -344,7 +342,10 @@ namespace HoldYourHorses.Models
             Accessor.HttpContext.Response.Cookies.Append("compareString", "");
         }
 
-
+        internal async Task LogOutUserAsync()
+        {
+            await signInManagere.SignOutAsync();
+        }
     }
 }
 

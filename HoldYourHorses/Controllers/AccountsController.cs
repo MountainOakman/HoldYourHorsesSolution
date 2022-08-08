@@ -69,5 +69,12 @@ namespace HoldYourHorses.Controllers
         {
             return View(new UserpageVM { Username = User.Identity.Name });
         }
+        [Authorize]
+        [HttpGet("logout")]
+        public async Task<IActionResult> LogoutAsync()
+        {
+            await dataService.LogOutUserAsync();
+            return RedirectToAction(nameof(Login));
+        }
     }
 }
