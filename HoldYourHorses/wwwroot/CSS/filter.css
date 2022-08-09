@@ -27,7 +27,10 @@
     text-align: start;
     margin: 0;
     font-weight: bold;
-    display:inline-block;
+    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .div-p{
     display:flex;
@@ -113,7 +116,7 @@ input[type="number"]::-webkit-outer-spin-button {
 input[type="range"] {
   -webkit-appearance: none;
   appearance: none;
-  height: 2px;
+  height: 4px;
   width: 100%;
   position: absolute;
   background-color: #c6c6c6;
@@ -134,9 +137,7 @@ input[type="range"] {
     vertical-align: middle;
     cursor: pointer;
     margin-top: 0.5rem;
-    accent-color: var(--light-purple);
-
-
+    accent-color: var( --navbar-logos);
 }
 
 

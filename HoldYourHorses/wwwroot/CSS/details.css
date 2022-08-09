@@ -4,7 +4,7 @@
 
     .grid-container
 {
-        margin-top:20px;
+    margin-top:20px;
     width: 300px;
     display: grid;
     column-gap: 0px;
@@ -48,12 +48,13 @@
     box-sizing:border-box;
 }
 
-#image {
+#image> * {
     width: 300px;
     height: 300px;
     object-fit: contain;
     border: 2px solid var(--navbar-logos);
     border-radius: 5px;
+    background:white;
 }
 
 

@@ -252,7 +252,7 @@ window.onbeforeunload = function (e) {
 async function removeCompare() {
     await fetch(`/removeCompare`, { method: "GET" })
     var articles = document.querySelectorAll(".compare-svg");
-    articles.forEach(e => e.style.fill = "#e2d7f7");
+    articles.forEach(e => e.style.fill = "#7b63ad");
     numberOfCompares = 0;
     ShowOrHideCompareButton();
 
@@ -277,7 +277,7 @@ function ShowOrHideCompareButton() {
 ///// Slider JAvascript code /////
 function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
   const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, "black", "#e2d7f7", controlSlider);
+    fillSlider(fromInput, toInput, "black", "#7b63ad", controlSlider);
   if (from > to) {
     fromSlider.value = to;
     fromInput.value = to;
@@ -288,7 +288,7 @@ function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
 
 function controlToInput(toSlider, fromInput, toInput, controlSlider) {
   const [from, to] = getParsed(fromInput, toInput);
-  fillSlider(fromInput, toInput, "black", "#e2d7f7", controlSlider);
+  fillSlider(fromInput, toInput, "black", "#7b63ad", controlSlider);
   setToggleAccessible(toInput);
   if (from <= to) {
     toSlider.value = to;
@@ -300,7 +300,7 @@ function controlToInput(toSlider, fromInput, toInput, controlSlider) {
 
 function controlFromSlider(fromSlider, toSlider, fromInput) {
   const [from, to] = getParsed(fromSlider, toSlider);
-  fillSlider(fromSlider, toSlider, "black", "#e2d7f7", toSlider);
+  fillSlider(fromSlider, toSlider, "black", "#7b63ad", toSlider);
   if (from > to) {
     fromSlider.value = to;
     fromInput.value = to;
@@ -311,7 +311,7 @@ function controlFromSlider(fromSlider, toSlider, fromInput) {
 
 function controlToSlider(fromSlider, toSlider, toInput) {
   const [from, to] = getParsed(fromSlider, toSlider);
-  fillSlider(fromSlider, toSlider, "black", "#e2d7f7", toSlider);
+  fillSlider(fromSlider, toSlider, "black", "#7b63ad", toSlider);
   setToggleAccessible(toSlider);
   if (from <= to) {
     toSlider.value = to;
@@ -351,10 +351,10 @@ function setToggleAccessible(currentTarget) {
   }
 }
 
-fillSlider(fromSlider, toSlider, "black", "#e2d7f7", toSlider);
+fillSlider(fromSlider, toSlider, "black", "#7b63ad", toSlider);
 setToggleAccessible(toSlider);
 
-fillSlider(fromSliderHK, toSliderHK, "black", "#e2d7f7", toSliderHK);
+fillSlider(fromSliderHK, toSliderHK, "black", "#7b63ad", toSliderHK);
 setToggleAccessible(toSliderHK);
 
 fromSlider.oninput = () => controlFromSlider(fromSlider, toSlider, fromInput);
