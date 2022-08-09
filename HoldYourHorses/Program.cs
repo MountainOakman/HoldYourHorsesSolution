@@ -40,7 +40,6 @@ builder.Services.Configure<IdentityOptions>(options =>
 
 var app = builder.Build();
 
-
 app.UseSession();
 app.UseCookiePolicy();
 app.UseStaticFiles();
