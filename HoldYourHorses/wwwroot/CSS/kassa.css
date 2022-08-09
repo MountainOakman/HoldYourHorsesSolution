@@ -1,0 +1,44 @@
+﻿.artikel-container{
+    margin-left: 20px;
+}
+
+.artikel{
+    display:flex;
+    width: 50px;
+    margin-bottom: 30px;
+}
+
+.artikel img {
+    height: 100px;
+    margin-right: 30px;
+}
+    .artikel p {
+        font-size: 20px;
+        width: 250px;
+        margin-top: 0;
+        margin-bottom: 10px;
+        display: inline-block;
+    }
+
+.artikel span {
+    font-size: 40px;
+}
+.pris-namn{
+    display:flex;
+    flex-direction: column;
+}
+.p-antal{
+
+}
+
+.p-namn{
+    font-weight:bold;
+   
+}
+
+#trash{
+    height:20px;
+    cursor:pointer;
+    transform:translateY(3px);
+    margin-bottom: 10px;
+}
