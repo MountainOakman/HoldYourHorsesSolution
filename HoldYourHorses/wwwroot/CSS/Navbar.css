@@ -31,14 +31,15 @@ body{margin:0;
 
 @font-face {
     font-family: Good Unicorn;
-    src: url("'~/Typsnitt/Good Unicorn - TTF.ttf'")
+    src: url('../Typsnitt/Good Unicorn - TTF.ttf')
 }
 
 .h1-navbar {
     font-family: Good Unicorn;
-    font-size: 50px;
+    font-size:50px;
     display: inline-block;
     color: var(--navbar-logos);
+    letter-spacing: 2.5px;
    
 }
     .h1-navbar h1 {

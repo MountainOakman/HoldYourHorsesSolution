@@ -59,3 +59,30 @@
 
 
 
+
+.name-price input[type=button] {
+    background: var(--navbar-logos);
+    color: white;
+    outline: 3px solid var(--light-purple);
+    outline-offset: -8px;
+    border: none;
+    padding: 15px;
+    transition: outline 150ms ease-in;
+    border-radius: 5px;
+}
+
+    .name-price input[type=button]:hover {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .name-price input[type=button]:focus {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .name-price input[type=button]:active {
+        box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+        transform: translateY(2px);
+        filter: contrast(110%);
+    }      

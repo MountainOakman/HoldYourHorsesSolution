@@ -222,9 +222,13 @@ input::-webkit-inner-spin-button {
         outline: 3px solid var(--navbar-logos);
         outline-offset: 4px;
     }
+    .filter button:focus {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
 
     .filter button:active {
         box-shadow: 0 2px rgba(20, 20, 20, 0.966);
         transform: translateY(2px);
         filter: contrast(110%);
-    }
+    }                                               
