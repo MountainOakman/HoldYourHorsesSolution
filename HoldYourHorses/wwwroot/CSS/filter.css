@@ -49,7 +49,6 @@
     margin-left: auto;
     margin-right: 40px;
     cursor:pointer;
-    transform: translateX(-2px)
 }
 .p-filter-slider {
     margin-left: 1rem;
@@ -231,4 +230,24 @@ input::-webkit-inner-spin-button {
         box-shadow: 0 2px rgba(20, 20, 20, 0.966);
         transform: translateY(2px);
         filter: contrast(110%);
-    }                                               
+    }
+
+.div-plus {
+    font-size: 2rem;
+    font-weight: bold;
+    padding-top: 0;
+    padding-bottom: 0;
+    color: var(--gold-color);
+    margin-left: 1rem;
+    width: 2rem;
+    height: 2rem;
+    text-align: center;
+    margin-left: auto;
+    margin-right: 1rem;
+}
+
+.svg-plus {
+    height: 1.5rem;
+    width: auto;
+    fill: var(--navbar-logos);
+}

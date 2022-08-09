@@ -153,17 +153,14 @@ function hideProperty(id, minus) {
     id.style.height = "0";
   } else {
     id.style.height = "auto";
-  }
-  var minusP = document.getElementById(minus);
- 
-  if (minusP.innerHTML == "-") {
-      minusP.innerHTML = "+";
-      minusP.style.transform = "translateX(-0px)";
-  } else if (minusP.innerHTML == "+") {
-      minusP.innerHTML = "-";
-      minusP.style.transform = "translateX(-2px)";
     }
-    console.log(minusP);
+    var id = "svg" + minus;
+  var minusP = document.getElementById(id);
+    if (minusP.innerHTML == '<path d="M0 10h24v4h-24z"></path>') {
+        minusP.innerHTML = '<path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z"></path>'
+    } else if (minusP.innerHTML == '<path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z"></path>') {
+        minusP.innerHTML = '<path d="M0 10h24v4h-24z"></path>'
+    }
 }
 
 async function compare(artikelnr, artikelNamn) {
