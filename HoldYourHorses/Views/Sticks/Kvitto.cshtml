@@ -2,8 +2,12 @@
 @section JS{
      <script src="~/JS/kvitto.js"></script>
 }
-
+@section CSS{
+     <link rel="stylesheet" href="~/CSS/Kvitto.css">
+}
+<div class="super-container">
 <h1>Tack för köpet @Model.FirstName</h1>
 <p>Vi skickar en bekräftelse till @Model.Epost inom kort.</p>
 
 <a asp-controller="Sticks" asp-action="Index"><button type="button">Fortsätt handla</button></a>
+</div>
