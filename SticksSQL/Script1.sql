@@ -40,7 +40,7 @@ values
 (1000, 240, 250, 'Butterfly Flip', 3, 1, 'Med Butterfly Flip, även kallad Flippan, kommer du flyga över alla hinder.', 1, 1),
 (800, 150, 170, 'Giddy Up', 1, 3, 'Den vilda käpphästen älskar full fart och äventyr! Ta hästen i tyglarna och klicka på knappen för att höra hovarna klappra mot marken, med så realistiska ljudeffekter att du nästan glömmer att det bara är en lek.', 3, 0),
 (700, 160, 190, 'Playfun', 2, 1, 'Hästen har en regnbågsfärgad man och ett glittrigt horn i pannan. Käppen har flera färger och är beströdd med glänsande stjärnor.', 2, 0),
-(10000, 200, 205, 'Hermes', 3, 2, 'Hermes är en käpphäst med stil och klass.', 3, 1)
+(9999, 200, 205, 'Hermes', 3, 2, 'Hermes är en käpphäst med stil och klass.', 3, 1)
 go
 
 --visa tabellerna
