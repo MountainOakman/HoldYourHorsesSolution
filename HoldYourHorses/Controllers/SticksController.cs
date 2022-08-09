@@ -113,7 +113,7 @@ namespace HoldYourHorses.Controllers
         public IActionResult removeCompare()
         {
            dataService.removeCompare();
-            return Ok();
+           return Ok();
         }
 
     }

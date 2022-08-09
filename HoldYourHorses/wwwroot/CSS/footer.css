@@ -30,7 +30,8 @@
     justify-content: center;
     margin-top: 60px;
     background: var(--navbar-logos);
-    color: var(--light-purple)
+    color: var(--light-purple);
+    padding-top: 30px;
 }
 #second-footer {
     margin-top:0;

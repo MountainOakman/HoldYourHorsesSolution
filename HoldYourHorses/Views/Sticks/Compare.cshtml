@@ -5,6 +5,7 @@
   @section JS{
  <script src="~/JS/compare.js" defer></script>
  }
+ <div class="race-container">
     <div class="race">
       <div class="goal"></div>
       @foreach (var item in Model)
@@ -18,10 +19,10 @@
           id="a1"
           class="box"
         />
-        
 
     </div>
     }
      
 </div>
 <div style="display:none" class="numberOfHorses">@Model.Count()</div>
+</div>
