@@ -42,6 +42,7 @@ body{margin:0;
     }
     .logo {
         height: 140px;
+        width:auto;
         display: inline-block;
         fill: var(--navbar-logos);
     }

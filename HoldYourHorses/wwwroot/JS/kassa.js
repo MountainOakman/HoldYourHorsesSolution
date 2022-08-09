@@ -7,10 +7,13 @@
             var artikel = document.getElementById(artikelnr);
             artikelContainer.removeChild(artikel);
             var totalsumma = document.getElementById('totalsumma');
-            totalsumma.innerHTML = parseInt(totalsumma.innerHTML) - pris * antal + " kr";
+            totalsumma.innerHTML = parseInt(totalsumma.innerHTML.replace(" ", "")) - pris * antal + " kr";
+            console.log(totalsumma.innerHTML);
             kundvagn();
             const numberofproducts = document.getElementById('number-of-products');
             numberofproducts.attributes[2].value = parseInt(numberofproducts.attributes[2].value) - antal;
+            
+
         })
 }
 function kundvagn() {
@@ -41,9 +44,20 @@ function rensakorg() {
             artikelContainer.innerHTML = "";
             const numberofproducts = document.getElementById('number-of-products');
             numberofproducts.attributes[2].value = 0;
+            console.log(numberofproducts)
         })
 }
 function checkout() {
     window.location = "/checkout";
 }
-kundvagn()
+function ShowOrHideButtons() {
+    const numberofproducts = document.getElementById('number-of-products');
+    console.log(numberofproducts)
+    if (numberofproducts.attributes[2].value == 0) {
+        document.querySelector("#rensakorg").style.display = "none";
+        document.querySelector("#betalning").style.display = "none";
+    }
+}
+
+kundvagn();
+ShowOrHideButtons();

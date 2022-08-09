@@ -15,11 +15,13 @@
     background-color: var(--filter-background);
     border-top:none;
     transition: min-width 300ms ease-in, background 300ms ease-in, border 300ms ease-in;
+    min-height:100vh;
 }
 
 .filter > *{
  opacity:100;
  transition: opacity 300ms ease-in;
+
 }
 
 .main-div {

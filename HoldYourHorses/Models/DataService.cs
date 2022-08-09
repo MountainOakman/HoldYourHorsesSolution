@@ -70,6 +70,7 @@ namespace HoldYourHorses.Models
                  .Single();
         }
 
+
         internal KvittoVM GetReceipt()
         {
             return new KvittoVM
@@ -356,6 +357,12 @@ namespace HoldYourHorses.Models
         internal async Task LogOutUserAsync()
         {
             await signInManagere.SignOutAsync();
+        }
+        internal void GetOrderHistory()
+        {
+            var id = Accessor.HttpContext.User.Identity.Name;
+
+            context.Ordrars.Where(o => o.User == id);
         }
     }
 }

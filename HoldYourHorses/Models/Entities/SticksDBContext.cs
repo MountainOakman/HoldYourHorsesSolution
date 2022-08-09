@@ -116,7 +116,7 @@ namespace HoldYourHorses.Models.Entities
             {
                 entity.ToTable("Kategorier");
 
-                entity.HasIndex(e => e.Namn, "UQ__Kategori__737584FD9C29E4A4")
+                entity.HasIndex(e => e.Namn, "UQ__Kategori__737584FD65149C7A")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
@@ -126,7 +126,7 @@ namespace HoldYourHorses.Models.Entities
             {
                 entity.ToTable("Material");
 
-                entity.HasIndex(e => e.Id, "UQ__Material__3214EC067C94AEA9")
+                entity.HasIndex(e => e.Id, "UQ__Material__3214EC060DE02C13")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
@@ -142,13 +142,13 @@ namespace HoldYourHorses.Models.Entities
                     .WithMany(p => p.Orderraders)
                     .HasForeignKey(d => d.ArtikelNr)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Orderrade__Artik__5FB337D6");
+                    .HasConstraintName("FK__Orderrade__Artik__45F365D3");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.Orderraders)
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Orderrade__Order__5EBF139D");
+                    .HasConstraintName("FK__Orderrade__Order__44FF419A");
             });
 
             modelBuilder.Entity<Ordrar>(entity =>
@@ -166,14 +166,21 @@ namespace HoldYourHorses.Models.Entities
                 entity.Property(e => e.Land).HasMaxLength(50);
 
                 entity.Property(e => e.Stad).HasMaxLength(50);
+
+                entity.Property(e => e.User).HasMaxLength(450);
+
+                entity.HasOne(d => d.UserNavigation)
+                    .WithMany(p => p.Ordrars)
+                    .HasForeignKey(d => d.User)
+                    .HasConstraintName("FK__Ordrar__User__5AEE82B9");
             });
 
             modelBuilder.Entity<Stick>(entity =>
             {
                 entity.HasKey(e => e.Artikelnr)
-                    .HasName("PK__Sticks__CB7A9C8315D2DB06");
+                    .HasName("PK__Sticks__CB7A9C833267315B");
 
-                entity.HasIndex(e => e.Artikelnamn, "UQ__Sticks__6A6FEA84587C7EA6")
+                entity.HasIndex(e => e.Artikelnamn, "UQ__Sticks__6A6FEA8430739F62")
                     .IsUnique();
 
                 entity.Property(e => e.Artikelnamn).HasMaxLength(50);
@@ -186,26 +193,26 @@ namespace HoldYourHorses.Models.Entities
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.KategoriId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Kategori__4CA06362");
+                    .HasConstraintName("FK__Sticks__Kategori__47DBAE45");
 
                 entity.HasOne(d => d.Material)
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.MaterialId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Material__4BAC3F29");
+                    .HasConstraintName("FK__Sticks__Material__46E78A0C");
 
                 entity.HasOne(d => d.Tillverkningsland)
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.TillverkningslandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Tillverk__4D94879B");
+                    .HasConstraintName("FK__Sticks__Tillverk__48CFD27E");
             });
 
             modelBuilder.Entity<Tillverkningsländer>(entity =>
             {
                 entity.ToTable("Tillverkningsländer");
 
-                entity.HasIndex(e => e.Namn, "UQ__Tillverk__737584FD5DAEC99C")
+                entity.HasIndex(e => e.Namn, "UQ__Tillverk__737584FDC65CABF1")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
