@@ -76,5 +76,12 @@ namespace HoldYourHorses.Controllers
             await dataService.LogOutUserAsync();
             return RedirectToAction(nameof(Login));
         }
+        [Authorize]
+        [HttpGet("orderhistory")]
+        public IActionResult Orderhistory()
+        {
+            dataService.GetOrderHistory();
+            return RedirectToAction(nameof(Login));
+        }
     }
 }

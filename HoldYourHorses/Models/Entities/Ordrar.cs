@@ -18,7 +18,9 @@ namespace HoldYourHorses.Models.Entities
         public int Postnummer { get; set; }
         public string Adress { get; set; } = null!;
         public string Land { get; set; } = null!;
+        public string? User { get; set; }
 
+        public virtual AspNetUser? UserNavigation { get; set; }
         public virtual ICollection<Orderrader> Orderraders { get; set; }
     }
 }
