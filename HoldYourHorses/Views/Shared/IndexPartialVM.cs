@@ -14,6 +14,11 @@
                 nfi.NumberGroupSeparator = " ";
                 return Pris.ToString("#,0", nfi);
         }
+
+        public string GetPictureUrl()
+        {
+            return $"/Produktbilder/{Namn}.jpg";
+        }
     }
 
 
