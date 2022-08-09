@@ -50,7 +50,6 @@
 
 .buttons > *{
      width: 185px;
-     box-sizing: border-box;
      padding: 10px 0;
      margin-right: 50px;
 }
