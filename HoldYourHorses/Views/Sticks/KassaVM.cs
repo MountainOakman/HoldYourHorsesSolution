@@ -22,6 +22,9 @@
 			return pris.ToString("#,0", nfi);
 		}
 
-
+		public string GetPictureUrl()
+		{
+			return $"/Produktbilder/{ArtikelNamn}.jpg";
+		}
 	}
 }

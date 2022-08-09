@@ -13,7 +13,7 @@
 	@foreach (var item in Model)
 	{
 	<div class="artikel" id="@item.ArtikelNr">
-		<img src="https://www.hooks.se/pub_images/original/940005-11_1.jpg?extend=copy&width=1024&method=fit&height=1024&type=webp&timestamp=1634910071" />
+		<img src="@item.GetPictureUrl()" />
 		<div class="pris-namn">
 		<p class="p-namn">@item.ArtikelNamn</p>
 		<p>@item.getPriceFormatted() kr</p>
