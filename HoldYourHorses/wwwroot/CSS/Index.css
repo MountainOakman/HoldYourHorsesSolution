@@ -16,6 +16,7 @@
     border-top:none;
     transition: min-width 300ms ease-in, background 300ms ease-in, border 300ms ease-in;
     min-height:100vh;
+
 }
 
 .filter > *{
