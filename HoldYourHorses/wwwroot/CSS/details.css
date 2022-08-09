@@ -1,7 +1,10 @@
-﻿
-    .grid-container
+﻿.super-container{
+    margin:15px;
+}
 
+    .grid-container
 {
+        margin-top:20px;
     width: 300px;
     display: grid;
     column-gap: 0px;
@@ -25,5 +28,33 @@
     border: 3px solid #73AD21;
     padding: 10px;
 }
+
+.first-half, .second-half {
+    display: flex;
+}
+
+.name-price{
+    margin-left: 15px;
+}
+
+.name-price > * {
+    margin-bottom: 15px;
+    margin-top: 0px;
+}
+
+.name-price input{
+    display:block;
+    width: 150px;
+    box-sizing:border-box;
+}
+
+#image {
+    width: 300px;
+    height: 300px;
+    object-fit: contain;
+    border: 2px solid var(--navbar-logos);
+    border-radius: 5px;
+}
+
 
 
