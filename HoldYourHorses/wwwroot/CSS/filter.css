@@ -208,15 +208,23 @@ input::-webkit-inner-spin-button {
 
 
 
-button {
+.filter button {
     background: var(--navbar-logos);
     color: white;
-    outline: 2px solid var(--light-purple);
-    outline-offset: -5px;
+    outline: 3px solid var(--light-purple);
+    outline-offset: -8px;
     border:none;
+    padding: 15px;
     transition: outline 150ms ease-in;
+    border-radius: 5px;
 }
-    button:hover {
+    .filter button:hover {
         outline: 3px solid var(--navbar-logos);
-        outline-offset: 3px;
+        outline-offset: 4px;
+    }
+
+    .filter button:active {
+        box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+        transform: translateY(2px);
+        filter: contrast(110%);
     }
