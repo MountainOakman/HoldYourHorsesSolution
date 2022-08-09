@@ -32,7 +32,8 @@ body{margin:0;
 
 
 .h1-navbar {
-    font-size: 40px;
+    font-family: 'Good Unicorn';
+    font-size: 50px;
     display: inline-block;
     color: var(--navbar-logos);
    
