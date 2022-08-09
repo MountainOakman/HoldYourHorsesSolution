@@ -44,6 +44,13 @@ namespace HoldYourHorses.Models
                     Adress = o.Address,
                     Land = o.Country
                 });
+            //if (Accessor.HttpContext.User.Identity.IsAuthenticated) 
+            //{
+            //    var userId = Accessor.HttpContext.User.Identity.Name;
+            //    var client = context.Ordrars.Where(o => o.Epost == userId)
+            //        .SingleOrDefault();
+            //    client.User = userId;
+            //}
             context.SaveChanges();
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.FirstName)] = o.FirstName;
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.Epost)] = o.Email;
