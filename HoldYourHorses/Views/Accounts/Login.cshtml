@@ -1,23 +1,29 @@
 ﻿@using HoldYourHorses.Views.Accounts
 
 @model LoginVM
-
-<h3>Log In</h3>
+@section CSS{
+    <link rel="stylesheet" href="~/CSS/login.css">
+}
+<div class="login-body">
+<h1>Log In</h1>
 <form asp-controller="Accounts" asp-action="Login">
-    <label asp-for="Username"></label>
+    <div class="info-div">
+    <label class="login-label" asp-for="Username"></label>
     <input asp-for="Username" />
     <span asp-validation-for="Username"></span>
-
-    <label asp-for="Password"></label>
+    </div>
+     <div class="info-div">
+    <label class="login-label" asp-for="Password"></label>
     <input asp-for="Password" />
     <span asp-validation-for="Password"></span>
-    <br />
+    </div>
     <input type="submit" value="Log In" />
 </form>
 <div asp-validation-summary="All"></div>
 
 <div>Har du inget konto?</div>
 <input type='button' value='Skapa ett här' onClick='redirectOnClick()' />
+</div>
 <script>
     function redirectOnClick() {
         document.location = 'register';

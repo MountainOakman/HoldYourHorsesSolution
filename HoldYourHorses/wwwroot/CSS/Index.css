@@ -42,7 +42,7 @@
 }
 
 .article-card {
-  width: 23rem;
+  width: 25rem;
   margin: 2rem;
   padding-bottom: 5rem;
   box-shadow: rgba(0, 0, 0, 0.3) 0px 2.5px 10px;
@@ -57,6 +57,9 @@
         width: inherit;
         border-top-right-radius:1rem;
         border-top-left-radius:1rem;
+        object-fit: contain;
+        height: 250px;
+        width: 250px;
 
     }
 

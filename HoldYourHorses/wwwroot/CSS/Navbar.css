@@ -29,22 +29,22 @@ body{margin:0;
         
 }
 
-h1 {
-    margin: 0;
-}
+
 
 .h1-navbar {
     font-size: 40px;
     display: inline-block;
     color: var(--navbar-logos);
-
+   
 }
-
-.logo {
-    height: 140px;
-    display: inline-block;
-    fill: var(--navbar-logos);
-}
+    .h1-navbar h1 {
+        margin: 0;
+    }
+    .logo {
+        height: 140px;
+        display: inline-block;
+        fill: var(--navbar-logos);
+    }
 
 .search-div {
     display: flex;

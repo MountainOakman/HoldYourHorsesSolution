@@ -1,15 +1,17 @@
 ﻿
 .race {
     position: relative;
-    margin-top:40px;
+    margin-top: 40px;
 }
-
+.race-container{
+    min-height:350px;
+}
 .goal {
     position: absolute;
     width: 5px;
-    background: rgb(15, 14, 14);
+    background: var(--navbar-logos);
     margin-left: 795px;
-    transform:translateY(-20px)
+    transform: translateY(-20px)
 }
 
 .box {

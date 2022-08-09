@@ -112,8 +112,8 @@ namespace HoldYourHorses.Controllers
         [HttpGet("removeCompare")]
         public IActionResult removeCompare()
         {
-            dataService.removeCompare();
-            return Ok();
+           dataService.removeCompare();
+           return Ok();
         }
 
     }
