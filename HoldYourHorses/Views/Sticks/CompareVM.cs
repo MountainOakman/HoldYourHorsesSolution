@@ -15,5 +15,11 @@
 
 		public int Trädensitet { get; set; }
 
+
+		public string GetPictureUrl()
+		{
+			return $"/Produktbilder/{ArtikelNamn}.jpg";
+		}
+
 	}
 }

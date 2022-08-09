@@ -25,6 +25,10 @@
         {
             return AbsBroms ? "Ja" : "Nej";
         }
+        public string GetPictureUrl()
+        {
+            return $"/Produktbilder/{Artikelnamn}.jpg";
+        }
 
     }
 }
