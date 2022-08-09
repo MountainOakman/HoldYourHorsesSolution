@@ -4,7 +4,7 @@
 
 .artikel{
     display:flex;
-    width: 50px;
+    width: 500px;
     margin-bottom: 30px;
 }
 
@@ -40,5 +40,23 @@
     height:20px;
     cursor:pointer;
     transform:translateY(3px);
+    margin-bottom: 10px;
+}
+#totalsumma, #summa{
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 20px;
+}
+
+.buttons > *{
+     width: 185px;
+     box-sizing: border-box;
+     padding: 10px 0;
+     margin-right: 50px;
+}
+.line {
+    width: 420px;
+    height: 2px;
+    background: black;
     margin-bottom: 10px;
 }

@@ -44,9 +44,10 @@
 	<div class="summa">
 		
 		 @if(Model != null && Model?.Count() != 0) {
-			 <span id="summa">Summa</span>
+			 <div class="line"></div>
+			 <span id="summa">Summa: </span>
 			 <span id="totalsumma">
-			@Model.Sum(x => x.Pris *  x.Antal) kr</span>
+			@KassaVM.getPriceFormatted(Model.Sum(x => x.Pris *  x.Antal)) kr</span>
 	}
 
 	else
@@ -54,7 +55,7 @@
 		 <span id="totalsumma">
 			Din kundvagn är tom.</span>
 	}
-		<div> 
+		<div class="buttons"> 
 		<button id="rensakorg" onclick="rensakorg()">Töm varukorg</button>
 		<button id="betalning" onclick="checkout()">Till betalning</button>
 	</div>

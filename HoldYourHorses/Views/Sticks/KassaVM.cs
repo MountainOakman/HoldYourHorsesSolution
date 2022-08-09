@@ -2,6 +2,7 @@
 {
 	public class KassaVM
 	{
+		
 		public string ArtikelNamn { get; set; }
 		public int Pris { get; set; }
 		public int Antal { get; set; }
@@ -13,5 +14,14 @@
 			nfi.NumberGroupSeparator = " ";
 			return Pris.ToString("#,0", nfi);
 		}
+
+		public static string getPriceFormatted(int pris)
+		{
+			var nfi = (System.Globalization.NumberFormatInfo)System.Globalization.CultureInfo.InvariantCulture.NumberFormat.Clone();
+			nfi.NumberGroupSeparator = " ";
+			return pris.ToString("#,0", nfi);
+		}
+
+
 	}
 }
