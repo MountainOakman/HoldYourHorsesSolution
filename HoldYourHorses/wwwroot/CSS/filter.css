@@ -1,16 +1,20 @@
 :root{
     
 }
+
+.slider-super-container {
+  position: relative;
+}
 .hamburger-div {
     display: flex;
     flex-direction: column;
     align-items: center;
     width: 60px;
 }
-.slider-super-container {
-  position: relative;
+#hamburger {
+    fill: var(--navbar-logos);
+    stroke: var(--navbar-logos)
 }
-
 .range_container {
   display: flex;
   flex-direction: column;
@@ -200,3 +204,19 @@ input::-webkit-inner-spin-button {
 #last-filter-btn{
     margin-bottom: 30px;
 }
+
+
+
+
+button {
+    background: var(--navbar-logos);
+    color: white;
+    outline: 2px solid var(--light-purple);
+    outline-offset: -5px;
+    border:none;
+    transition: outline 150ms ease-in;
+}
+    button:hover {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 3px;
+    }
