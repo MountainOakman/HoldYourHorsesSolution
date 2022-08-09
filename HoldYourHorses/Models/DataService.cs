@@ -42,16 +42,24 @@ namespace HoldYourHorses.Models
                     Stad = o.City,
                     Postnummer = o.ZipCode,
                     Adress = o.Address,
-                    Land = o.Country
+                    Land = o.Country                   
                 });
-            //if (Accessor.HttpContext.User.Identity.IsAuthenticated) 
-            //{
-            //    var userId = Accessor.HttpContext.User.Identity.Name;
-            //    var client = context.Ordrars.Where(o => o.Epost == userId)
-            //        .SingleOrDefault();
-            //    client.User = userId;
-            //}
             context.SaveChanges();
+            if (Accessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                var userId = Accessor.HttpContext.User.Identity.Name;
+                var clientInfo = context.AspNetUsers.Where(o => o.UserName == userId)
+                    .Select(o => o.Id)
+                    .Single();
+
+                var client = context.Ordrars.Where(o => o.Epost == userId)
+                    .OrderBy(o => o.Id)
+                    .LastOrDefault();
+
+
+                client.User = clientInfo;
+                context.SaveChanges();
+            }
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.FirstName)] = o.FirstName;
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.Epost)] = o.Email;
 
@@ -365,11 +373,19 @@ namespace HoldYourHorses.Models
         {
             await signInManagere.SignOutAsync();
         }
-        internal void GetOrderHistory()
+        internal OrderhistoryVM GetOrderHistory()
         {
-            var id = Accessor.HttpContext.User.Identity.Name;
+            var email = Accessor.HttpContext.User.Identity.Name;
+            var id = context.AspNetUsers.Where(o => o.UserName == email)
+                .Select(o => o.Id)
+                .Single();
+                
 
-            context.Ordrars.Where(o => o.User == id);
+           Ordrar[] array = context.Ordrars.Where(o => o.User == id)
+                .Select(o => new Ordrar {Förnamn = o.Förnamn, Epost = o.Epost })
+                .ToArray();
+
+            return new OrderhistoryVM { Historik = array} ;
         }
     }
 }

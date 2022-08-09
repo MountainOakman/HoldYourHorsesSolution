@@ -80,8 +80,7 @@ namespace HoldYourHorses.Controllers
         [HttpGet("orderhistory")]
         public IActionResult Orderhistory()
         {
-            dataService.GetOrderHistory();
-            return RedirectToAction(nameof(Login));
+            return View(dataService.GetOrderHistory());
         }
     }
 }
