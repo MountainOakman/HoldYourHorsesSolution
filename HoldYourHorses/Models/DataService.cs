@@ -15,20 +15,41 @@ namespace HoldYourHorses.Models
         private readonly SticksDBContext context;
         private readonly UserManager<IdentityUser> userManager;
         private readonly SignInManager<IdentityUser> signInManagere;
+        private readonly ITempDataDictionaryFactory tempFactory;
 
         public IHttpContextAccessor Accessor { get; }
         public IdentityDbContext IdentityDBContext { get; }
 
-        public DataService(SticksDBContext context, IHttpContextAccessor accessor, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManagere, IdentityDbContext identityDBContext)
+        public DataService(SticksDBContext context, IHttpContextAccessor accessor, UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManagere, IdentityDbContext identityDBContext, ITempDataDictionaryFactory tempFactory)
         {
             this.context = context;
             this.Accessor = accessor;
             this.userManager = userManager;
             this.signInManagere = signInManagere;
             this.IdentityDBContext = identityDBContext;
+            this.tempFactory = tempFactory;
         }
 
+        internal void SaveOrder(CheckoutVM checkoutVM)
+        {
+            var o = checkoutVM;
+            context.Ordrars.Add(
+                new Ordrar
+                {
+                    Förnamn = o.FirstName,
+                    Efternamn = o.LastName,
+                    Epost = o.Email,
+                    Stad = o.City,
+                    Postnummer = o.ZipCode,
+                    Adress = o.Address,
+                    Land = o.Country
+                });
+            //Avkommentera nedan rad för att spara till databas
+            // context.SaveChanges(); 
+            tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.FirstName)] = o.FirstName;
+            tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.Epost)] = o.Email;
 
+        }
 
         internal DetailsVM GetDetailsVM(int artikelNr)
         {
@@ -48,25 +69,16 @@ namespace HoldYourHorses.Models
                      AbsBroms = o.AbsBroms,
                  })
                  .Single();
-
-            //TODO:Tilldela prop :public string Bild { get; set; }
-
         }
 
-        internal CheckoutVM Checkout(CheckoutVM checkoutVM)
+        internal KvittoVM GetReceipt()
         {
-            return new CheckoutVM()
+            return new KvittoVM
             {
-                FirstName = checkoutVM.FirstName,
-                LastName = checkoutVM.LastName,
-                Email = checkoutVM.Email,
-                Address = checkoutVM.Address,
-                City = checkoutVM.City,
-                ZipCode = checkoutVM.ZipCode,
-                Country = checkoutVM.Country,
+                FirstName = (string)tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.FirstName)],
+                Epost = (string)tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.Epost)]
             };
         }
-
 
         internal int AddToCart(int artikelNr, int antalVaror, string arikelNamn, int pris)
         {

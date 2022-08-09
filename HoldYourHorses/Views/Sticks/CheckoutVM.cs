@@ -27,7 +27,7 @@ namespace HoldYourHorses.Views.Sticks
 
         [Display(Name = "Postkod")]
         [Required(ErrorMessage = "Var vänlig och mata in ditt postnummer")]
-        public string ZipCode { get; set; }
+        public int ZipCode { get; set; }
 
         [Display(Name = "Land")]
         [Required(ErrorMessage = "Var vänlig och mata in ditt land")]

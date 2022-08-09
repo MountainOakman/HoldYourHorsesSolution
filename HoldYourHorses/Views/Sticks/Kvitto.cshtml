@@ -1,6 +1,9 @@
 ﻿@model KvittoVM
+@section JS{
+     <script src="~/JS/kvitto.js"></script>
+}
 
-@*<h1>Tack för köpet @Model.Förnamn</h1>
-<p>Vi skickar en bekräftelse till @Model.Epost inom kort.</p>*@
+<h1>Tack för köpet @Model.FirstName</h1>
+<p>Vi skickar en bekräftelse till @Model.Epost inom kort.</p>
 
 <a asp-controller="Sticks" asp-action="Index"><button type="button">Fortsätt handla</button></a>
