@@ -29,10 +29,13 @@ body{margin:0;
         
 }
 
-
+@font-face {
+    font-family: Good Unicorn;
+    src: url("'~/Typsnitt/Good Unicorn - TTF.ttf'")
+}
 
 .h1-navbar {
-    font-family: 'Good Unicorn';
+    font-family: Good Unicorn;
     font-size: 50px;
     display: inline-block;
     color: var(--navbar-logos);
@@ -138,6 +141,7 @@ body{margin:0;
     height:60px;
     fill: var(--navbar-logos)
 }
+
 .logo-p{
     font-size:16px;
     text-align:center;
