@@ -3,7 +3,7 @@
         {
             method: "GET",
         }).then(o => {
-            artikelContainer = document.querySelector(".artikel-container");
+            artikelContainer = document.querySelector(".another-container");
             var artikel = document.getElementById(artikelnr);
             artikelContainer.removeChild(artikel);
             var totalsumma = document.getElementById('totalsumma');

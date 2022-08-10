@@ -176,7 +176,7 @@ body{margin:0;
     align-items:center;
 }
 
-input, select, button{
+input, select, button, option{
     cursor:pointer;
 }
 

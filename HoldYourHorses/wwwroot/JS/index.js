@@ -180,7 +180,7 @@ async function compare(artikelnr, artikelNamn) {
         }
       ShowOrHideCompareButton();
   } else {
-      svg.style.fill = "grey";
+      svg.style.fill = "";
       numberOfCompares--;
       ShowOrHideCompareButton();
   }
