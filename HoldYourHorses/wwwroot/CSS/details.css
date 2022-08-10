@@ -1,5 +1,7 @@
 ﻿.super-container{
     margin:15px;
+    display:flex;
+    justify-content:center;
 }
 
     .grid-container
@@ -69,6 +71,7 @@
     padding: 15px;
     transition: outline 150ms ease-in;
     border-radius: 5px;
+    font-size:15px;
 }
 
     .name-price input[type=button]:hover {

@@ -9,6 +9,7 @@
     
 }
 <div class="super-container">
+    <div>
     <div class="first-half">
     <div id="image" class="col">
         <img src="@Model.GetPictureUrl()" alt="@Model.Artikelnamn"  />
@@ -44,7 +45,7 @@
         <div class="grid-item">ABS-broms</div>
         <div class="grid-item">@Model.BoolCheck()</div>
     </div>
-    @*</div>*@
+ </div>
 
     <div id="price" style="display: none;">@Model.getPriceFormatted()</div>
     </div>
