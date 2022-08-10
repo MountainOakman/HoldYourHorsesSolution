@@ -30,6 +30,10 @@ namespace HoldYourHorses.Models
             this.tempFactory = tempFactory;
         }
 
+        public string GetItemName()
+        {
+            return "hej";
+        }
         internal void SaveOrder(CheckoutVM checkoutVM)
         {
             var o = checkoutVM;
@@ -44,7 +48,14 @@ namespace HoldYourHorses.Models
                     Adress = o.Address,
                     Land = o.Country                   
                 });
+
             context.SaveChanges();
+                        
+            AddToOrderrader(context.Ordrars.OrderBy(o => o.Id)
+                .Select(o => o.Id)
+                .Last());
+        
+
             if (Accessor.HttpContext.User.Identity.IsAuthenticated)
             {
                 var userId = Accessor.HttpContext.User.Identity.Name;
@@ -63,6 +74,26 @@ namespace HoldYourHorses.Models
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.FirstName)] = o.FirstName;
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.Epost)] = o.Email;
 
+        }
+
+        private void AddToOrderrader(int id)
+        {
+            List<ShoppingCartProduct> products;
+            var cookieContent = Accessor.HttpContext.Request.Cookies["ShoppingCart"];
+            products = JsonSerializer.Deserialize<List<ShoppingCartProduct>>(cookieContent);
+            foreach (var item in products)
+            {
+                Orderrader orderrad = new Orderrader()
+                {
+                    Antal = item.Antal,
+                    ArtikelNr = item.ArtikelNr,
+                    Pris = item.Pris,
+                    OrderId = id
+                };
+
+                context.Orderraders.Add(orderrad);
+                //context.Orderraders.Select(o => new ShoppingCartProduct { Antal = item.Antal, ArtikelNr = item.ArtikelNr, Pris = item.Pris });
+            }
         }
 
         internal DetailsVM GetDetailsVM(int artikelNr)
@@ -376,13 +407,13 @@ namespace HoldYourHorses.Models
         internal OrderhistoryVM GetOrderHistory()
         {
             var email = Accessor.HttpContext.User.Identity.Name;
-            var id = context.AspNetUsers.Where(o => o.UserName == email)
+            var id = context.Ordrars.Where(o => o.Epost == email)
                 .Select(o => o.Id)
                 .Single();
                 
-
-           Ordrar[] array = context.Ordrars.Where(o => o.User == id)
-                .Select(o => new Ordrar {Förnamn = o.Förnamn, Epost = o.Epost })
+           Orderrader[] array = context.Orderraders.Where(o => o.OrderId == id)
+                .OrderBy(o => o.ArtikelNr)
+                .Select(o => new Orderrader {Antal = o.Antal, ArtikelNr = o.ArtikelNr, Pris = o.Pris })
                 .ToArray();
 
             return new OrderhistoryVM { Historik = array} ;
