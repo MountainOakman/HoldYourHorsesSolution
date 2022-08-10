@@ -30,10 +30,6 @@ namespace HoldYourHorses.Models
             this.tempFactory = tempFactory;
         }
 
-        public string GetItemName()
-        {
-            return "hej";
-        }
         internal void SaveOrder(CheckoutVM checkoutVM)
         {
             var o = checkoutVM;
@@ -88,7 +84,8 @@ namespace HoldYourHorses.Models
                     Antal = item.Antal,
                     ArtikelNr = item.ArtikelNr,
                     Pris = item.Pris,
-                    OrderId = id
+                    OrderId = id,
+                    ArtikelNamn = item.Artikelnamn
                 };
 
                 context.Orderraders.Add(orderrad);
@@ -407,16 +404,31 @@ namespace HoldYourHorses.Models
         internal OrderhistoryVM GetOrderHistory()
         {
             var email = Accessor.HttpContext.User.Identity.Name;
-            var id = context.Ordrars.Where(o => o.Epost == email)
+            var allOrders = context.Ordrars.Where(o => o.Epost == email)
                 .Select(o => o.Id)
-                .Single();
-                
-           Orderrader[] array = context.Orderraders.Where(o => o.OrderId == id)
-                .OrderBy(o => o.ArtikelNr)
-                .Select(o => new Orderrader {Antal = o.Antal, ArtikelNr = o.ArtikelNr, Pris = o.Pris })
                 .ToArray();
 
-            return new OrderhistoryVM { Historik = array} ;
+            List<Orderrader> array = new List<Orderrader>();
+            foreach (var id in allOrders)
+            {
+              var q = context.Orderraders.Where(o => o.OrderId == id)
+                 .Select(o => new Orderrader
+                 {
+                     Antal = o.Antal,
+                     ArtikelNr = o.ArtikelNr,
+                     Pris = o.Pris,
+                     ArtikelNamn = o.ArtikelNamn,
+                     OrderId = id
+                 }).ToList();
+
+                foreach (var item in q)
+                {
+                    array.Add(item);
+                }
+               
+            }
+
+            return new OrderhistoryVM { Historik = array.ToArray()} ;
         }
     }
 }
