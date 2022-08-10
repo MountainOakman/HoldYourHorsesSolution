@@ -221,6 +221,9 @@ input::-webkit-inner-spin-button {
     padding: 15px;
     transition: outline 150ms ease-in;
     border-radius: 5px;
+    font-size: 15px;
+    height:30px;
+    box-sizing:content-box;
 }
     .filter button:hover {
         outline: 3px solid var(--navbar-logos);

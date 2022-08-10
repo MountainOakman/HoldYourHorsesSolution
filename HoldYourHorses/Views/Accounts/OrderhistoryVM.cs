@@ -2,8 +2,12 @@
 
 namespace HoldYourHorses.Views.Accounts
 {
-    public class OrderhistoryVM
+    public class OrderhistoryVM 
     {
-        public Ordrar[] Historik { get; set; }
+        public Orderrader[] Historik { get; set; }
+        public string[] ArtikelNamn { get; set; }
+        //public string GetItemName()
+        //{
+        //}
     }
 }

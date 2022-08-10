@@ -34,9 +34,15 @@ body {
     flex-wrap: wrap;
     justify-content:space-around;
     background: var(--navbar-background);
-    box-shadow: 0 0px 5px rgb(0 0 0 / 15%);
+    box-shadow: 0 0px 5px -5px rgb(0 0 0 / 15%);
+    margin-right:8%;
+    margin-left:8%;
 }
+.navbar-container{
+    width:100%;
+    background:white;
 
+}
 
 .navbar a{
     color:black;
@@ -48,8 +54,8 @@ body {
 
 
 .h1-navbar {
-    font-family: 'Good Unicorn';
-    font-size:50px;
+    font-family: Good Unicorn;
+    font-size:40px;
     display: inline-block;
     color: var(--navbar-logos);
     letter-spacing: 2.5px;
@@ -172,4 +178,10 @@ body {
 
 input, select, button{
     cursor:pointer;
+}
+
+.logos{
+    display:flex;
+    width: 200px;
+    justify-content:space-between;
 }
