@@ -11,6 +11,21 @@
 body{margin:0;
      background: var(--body-background)
 }
+
+@font-face {
+    font-family: Good Unicorn;
+    src: url('../Typsnitt/Good Unicorn - TTF.ttf')
+}
+
+@font-face {
+    font-family: Gotham Narrow Book;
+    src: url('../Typsnitt/GothamNarrowBook.ttf')
+}
+
+body {
+    font-family: 'Gotham Narrow Book';
+}
+
 .navbar {
     display: flex;
     flex-direction: row;
@@ -29,13 +44,11 @@ body{margin:0;
         
 }
 
-@font-face {
-    font-family: Good Unicorn;
-    src: url('../Typsnitt/Good Unicorn - TTF.ttf')
-}
+
+
 
 .h1-navbar {
-    font-family: Good Unicorn;
+    font-family: 'Good Unicorn';
     font-size:50px;
     display: inline-block;
     color: var(--navbar-logos);
@@ -85,6 +98,7 @@ body{margin:0;
         color: var(--navbar-logos);
     }
 #search-btn {
+    font-family: 'Gotham Narrow Book';
     height: 60px;
     border: none;
     width: 60px;

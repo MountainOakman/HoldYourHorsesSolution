@@ -2,6 +2,11 @@
     
 }
 
+@font-face {
+    font-family: Gotham Narrow Book;
+    src: url('../Typsnitt/GothamNarrowBook.ttf')
+}
+
 .slider-super-container {
   position: relative;
 }
@@ -66,11 +71,11 @@
     font-size: 2rem;
 }
 .form_control {
-  position: relative;
-  display: flex;
-  justify-content: space-between;
-  font-size: 24px;
-  color: #635a5a;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    font-size: 24px;
+    color: #635a5a;
 }
 
 input[type="range"]::-webkit-slider-thumb {
@@ -212,7 +217,7 @@ input::-webkit-inner-spin-button {
     color: white;
     outline: 3px solid var(--light-purple);
     outline-offset: -8px;
-    border:none;
+    border: none;
     padding: 15px;
     transition: outline 150ms ease-in;
     border-radius: 5px;
