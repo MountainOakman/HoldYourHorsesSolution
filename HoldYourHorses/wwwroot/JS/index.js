@@ -249,7 +249,7 @@ window.onbeforeunload = function (e) {
 async function removeCompare() {
     await fetch(`/removeCompare`, { method: "GET" })
     var articles = document.querySelectorAll(".compare-svg");
-    articles.forEach(e => e.style.fill = "#7b63ad");
+    articles.forEach(e => e.style.fill = "#e2d7f7");
     numberOfCompares = 0;
     ShowOrHideCompareButton();
 
