@@ -155,3 +155,15 @@
     width:90%;
 }
 
+.heart{
+    height:30px;
+    position:absolute;
+    right:22px;
+    top:30px;
+    fill:white;
+    stroke: var(--navbar-logos);
+    cursor:pointer;
+}
+    .heart:hover {
+        fill: rgb(248,48,95);
+    }
