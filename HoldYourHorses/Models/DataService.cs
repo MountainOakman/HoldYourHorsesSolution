@@ -251,7 +251,7 @@ namespace HoldYourHorses.Models
                 PrisMin = Decimal.ToInt32(sticks.Min(o => o.Pris)),
                 HästkrafterMax = sticks.Max(o => o.Hästkrafter),
                 HästkrafterMin = sticks.Min(o => o.Hästkrafter),
-                Materialer = sticks.DistinctBy(o => o.Material.Namn).Select(o => o.Material.Namn).ToArray(),
+                Material = sticks.DistinctBy(o => o.Material.Namn).Select(o => o.Material.Namn).ToArray(),
                 Kategorier = sticks.DistinctBy(o => o.Typ).Select(o => o.Typ).ToArray(),
             };
             return indexVM;

@@ -13,8 +13,8 @@ namespace HoldYourHorses.Controllers
         {
             this.dataService = dataService;
         }
-        [HttpGet("")]
 
+        [HttpGet("")]
         public async Task<IActionResult> IndexAsync(string search)
         {
             IndexVM model = await dataService.GetIndexVMAsync(search);
