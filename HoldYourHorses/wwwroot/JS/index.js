@@ -249,7 +249,7 @@ window.onbeforeunload = function (e) {
 async function removeCompare() {
     await fetch(`/removeCompare`, { method: "GET" })
     var articles = document.querySelectorAll(".compare-svg");
-    articles.forEach(e => e.style.fill = "#e2d7f7");
+    articles.forEach(e => e.style.fill = "");
     numberOfCompares = 0;
     ShowOrHideCompareButton();
 
@@ -268,7 +268,15 @@ function ShowOrHideCompareButton() {
 }
 
 
+function addHeart(svg, artikelNr) {
+    if ("" +svg.style.fill == "") {
+        svg.style.fill = "rgb(248,48,95)"
+    }
+    else {
+        svg.style.fill = "";
+    }
 
+}
 
 
 ///// Slider JAvascript code /////

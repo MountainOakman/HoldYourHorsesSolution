@@ -9,13 +9,11 @@
   flex-direction: row;
 }
 
-.filter {
-    height: fit-content;
+.filter {   
     min-width: 35rem;
     background-color: var(--filter-background);
     border-top:none;
     transition: min-width 300ms ease-in, background 300ms ease-in, border 300ms ease-in !important;
-    min-height:100vh;
 
 }
 
@@ -34,10 +32,7 @@
     margin-left: 2%;
 }
 
-#Norden {
-  font-size: 4rem;
-  margin-top:1rem;
-}
+
 
 .card-container {
   display: flex;
@@ -140,17 +135,12 @@
     margin-top:25px;
     margin-bottom:10px;
     display:flex;
-    width:350px;
+    width:450px;
     justify-content:space-between
 
 }
-.compare-select  * {
-    height:30px;
-    width:150px;
-}
-.compare-btn{
-    cursor:pointer;
-}
+
+
 .checkboxes{
     width:90%;
 }
@@ -166,4 +156,79 @@
 }
     .heart:hover {
         fill: rgb(248,48,95);
+    }
+
+.header-picture {
+    width: 1000px;
+    margin-top: 20px;
+    filter: brightness(55%);
+
+}
+.div-img {
+    position: relative;
+    padding:0;
+    width:fit-content;
+}
+#Norden {
+    font-size: 6rem;
+    position: absolute;
+    width:100%;
+    margin:0;
+    padding:0;
+    color: white;
+    top: 55%;
+    left: 50%; 
+    transform: translate( -50%, -50% );
+    text-align:center;
+}
+
+#Norden2 {
+    font-size: 4rem;
+    color: var(--navbar-logos);
+
+}
+
+.main-div select {
+    height: 30px;
+    font-size: 18px;
+    background: var(--navbar-logos);
+    color: white;
+    border: var(--navbar-logos);
+    border-radius: 5px;
+    width: 180px;
+    padding: 15px;
+    box-sizing: content-box;
+    text-align:center;
+
+}
+.compare-btn {
+    background: var(--navbar-logos);
+    color: white;
+    outline: 3px solid var(--light-purple);
+    outline-offset: -8px;
+    border: none;
+    padding: 15px;
+    width:  180px;
+    transition: outline 150ms ease-in;
+    border-radius: 5px;
+    font-size: 18px;
+    height: 30px;
+    box-sizing: content-box;
+    font-family: inherit;
+}
+
+    .compare-btn:hover, .main-div select:hover {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .compare-btn:focus, .main-div select:focus{
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .compare-btn:active {
+        box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+        transform: translateY(2px);
+        filter: contrast(110%);
     }

@@ -50,10 +50,13 @@
     width:520px;
     box-sizing:border-box;
 }
+    .second-half{
+        flex-direction:column;
+    }
 
-.name-price{
-    margin-left: 35px;
-}
+    .name-price {
+        margin-left: 35px;
+    }
 
 .name-price > * {
     margin-bottom: 15px;
