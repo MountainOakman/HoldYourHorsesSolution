@@ -22,7 +22,7 @@ body{margin:0;
     src: url('../Typsnitt/GothamNarrowBook.ttf')
 }
 
-*{
+*:not(.h1-logo) {
     font-family: 'Gotham Narrow Book';
 }
 
@@ -61,7 +61,7 @@ body{margin:0;
    
 }
 .h1-logo {
-    font-family: Good Unicorn !important;
+    font-family: Good Unicorn;
 }
     .h1-navbar h1 {
         margin: 0;
