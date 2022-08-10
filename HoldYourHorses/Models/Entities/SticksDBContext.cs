@@ -116,7 +116,7 @@ namespace HoldYourHorses.Models.Entities
             {
                 entity.ToTable("Kategorier");
 
-                entity.HasIndex(e => e.Namn, "UQ__Kategori__737584FD65149C7A")
+                entity.HasIndex(e => e.Namn, "UQ__Kategori__737584FDE18FCA44")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
@@ -126,7 +126,10 @@ namespace HoldYourHorses.Models.Entities
             {
                 entity.ToTable("Material");
 
-                entity.HasIndex(e => e.Id, "UQ__Material__3214EC060DE02C13")
+                entity.HasIndex(e => e.Id, "UQ__Material__3214EC06E9C96F3D")
+                    .IsUnique();
+
+                entity.HasIndex(e => e.Namn, "UQ__Material__737584FDFF4CC94F")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
@@ -136,19 +139,28 @@ namespace HoldYourHorses.Models.Entities
             {
                 entity.ToTable("Orderrader");
 
+                entity.Property(e => e.ArtikelNamn).HasMaxLength(50);
+
                 entity.Property(e => e.Pris).HasColumnType("money");
 
+                entity.HasOne(d => d.ArtikelNamnNavigation)
+                    .WithMany(p => p.OrderraderArtikelNamnNavigations)
+                    .HasPrincipalKey(p => p.Artikelnamn)
+                    .HasForeignKey(d => d.ArtikelNamn)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orderrade__Artik__47DBAE45");
+
                 entity.HasOne(d => d.ArtikelNrNavigation)
-                    .WithMany(p => p.Orderraders)
+                    .WithMany(p => p.OrderraderArtikelNrNavigations)
                     .HasForeignKey(d => d.ArtikelNr)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Orderrade__Artik__45F365D3");
+                    .HasConstraintName("FK__Orderrade__Artik__46E78A0C");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.Orderraders)
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Orderrade__Order__44FF419A");
+                    .HasConstraintName("FK__Orderrade__Order__45F365D3");
             });
 
             modelBuilder.Entity<Ordrar>(entity =>
@@ -172,15 +184,15 @@ namespace HoldYourHorses.Models.Entities
                 entity.HasOne(d => d.UserNavigation)
                     .WithMany(p => p.Ordrars)
                     .HasForeignKey(d => d.User)
-                    .HasConstraintName("FK__Ordrar__User__5AEE82B9");
+                    .HasConstraintName("FK__Ordrar__User__48CFD27E");
             });
 
             modelBuilder.Entity<Stick>(entity =>
             {
                 entity.HasKey(e => e.Artikelnr)
-                    .HasName("PK__Sticks__CB7A9C833267315B");
+                    .HasName("PK__Sticks__CB7A9C837677BB82");
 
-                entity.HasIndex(e => e.Artikelnamn, "UQ__Sticks__6A6FEA8430739F62")
+                entity.HasIndex(e => e.Artikelnamn, "UQ__Sticks__6A6FEA8434D79BA5")
                     .IsUnique();
 
                 entity.Property(e => e.Artikelnamn).HasMaxLength(50);
@@ -193,26 +205,26 @@ namespace HoldYourHorses.Models.Entities
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.KategoriId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Kategori__47DBAE45");
+                    .HasConstraintName("FK__Sticks__Kategori__4AB81AF0");
 
                 entity.HasOne(d => d.Material)
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.MaterialId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Material__46E78A0C");
+                    .HasConstraintName("FK__Sticks__Material__49C3F6B7");
 
                 entity.HasOne(d => d.Tillverkningsland)
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.TillverkningslandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Tillverk__48CFD27E");
+                    .HasConstraintName("FK__Sticks__Tillverk__4BAC3F29");
             });
 
             modelBuilder.Entity<Tillverkningsländer>(entity =>
             {
                 entity.ToTable("Tillverkningsländer");
 
-                entity.HasIndex(e => e.Namn, "UQ__Tillverk__737584FDC65CABF1")
+                entity.HasIndex(e => e.Namn, "UQ__Tillverk__737584FDA550A48F")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
