@@ -8,7 +8,7 @@ namespace HoldYourHorses.Views.Accounts
         [Required]
         public string Username { get; set; }
 
-        [Display(Name ="Lösenord")]
+        [Display(Name = "Lösenord")]
         [Required]
         [DataType(DataType.Password)]
         public string Password { get; set; }
