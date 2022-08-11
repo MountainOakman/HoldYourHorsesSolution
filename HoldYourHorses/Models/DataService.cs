@@ -34,6 +34,10 @@ namespace HoldYourHorses.Models
 
         internal void SaveOrder(CheckoutVM checkoutVM)
         {
+            var userId = Accessor.HttpContext.User.Identity.Name;
+            var clientInfo = context.AspNetUsers.Where(o => o.UserName == userId)
+                .Select(o => o.Id)
+                .Single();
             var o = checkoutVM;
             context.Ordrars.Add(
                 new Ordrar
@@ -44,7 +48,8 @@ namespace HoldYourHorses.Models
                     Stad = o.City,
                     Postnummer = o.ZipCode,
                     Adress = o.Address,
-                    Land = o.Country
+                    Land = o.Country,
+                    User = clientInfo
                 });
 
             context.SaveChanges();
@@ -56,17 +61,17 @@ namespace HoldYourHorses.Models
 
             if (Accessor.HttpContext.User.Identity.IsAuthenticated)
             {
-                var userId = Accessor.HttpContext.User.Identity.Name;
-                var clientInfo = context.AspNetUsers.Where(o => o.UserName == userId)
-                    .Select(o => o.Id)
-                    .Single();
+                //var userId = Accessor.HttpContext.User.Identity.Name;
+                //var clientInfo = context.AspNetUsers.Where(o => o.UserName == userId)
+                //    .Select(o => o.Id)
+                //    .Single();
 
-                var client = context.Ordrars.Where(o => o.Epost == userId)
+                var client = context.Ordrars.Where(o => o.User == userId)
                     .OrderBy(o => o.Id)
                     .LastOrDefault();
 
 
-                client.User = clientInfo;
+                //client.User = clientInfo;
                 context.SaveChanges();
             }
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.FirstName)] = o.FirstName;
@@ -405,8 +410,13 @@ namespace HoldYourHorses.Models
         }
         internal OrderhistoryVM GetOrderHistory()
         {
-            var email = Accessor.HttpContext.User.Identity.Name;
-            var allOrders = context.Ordrars.Where(o => o.Epost == email)
+
+
+            var userName = Accessor.HttpContext.User.Identity.Name;
+
+            var userId = context.AspNetUsers.Where(o => o.UserName == userName).Select(o => o.Id).Single();
+
+            var allOrders = context.Ordrars.Where(o => o.User == userId)
                 .Select(o => o.Id)
                 .ToArray();
 
@@ -440,7 +450,7 @@ namespace HoldYourHorses.Models
             var userName = Accessor.HttpContext.User.Identity.Name;
             string id = context.AspNetUsers.Where(o => o.UserName == userName).Select(o => o.Id).Single();
             var article = context.Favourites.SingleOrDefault(o => o.User == id && o.Artikelnr == artikelnr);
-            if(article == null)
+            if (article == null)
             {
                 context.Favourites.Add(new Favourite
                 {
@@ -448,7 +458,7 @@ namespace HoldYourHorses.Models
                     User = id
                 }); ;
                 context.SaveChanges();
-            return true;
+                return true;
             }
             else
             {
