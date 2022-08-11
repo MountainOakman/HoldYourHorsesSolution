@@ -1,10 +1,16 @@
 ﻿@model OrderhistoryVM
+@section CSS{
 
+    <style>.container{
+    min-height:500px;
+    }
+        </style>
+}
 @foreach (var orderId in Model.OrderHej)
 {
 
     var hejhej = orderId;
-    <div>
+    <div class="container">
         <h2>Order: @orderId</h2>
 
         <ul>
