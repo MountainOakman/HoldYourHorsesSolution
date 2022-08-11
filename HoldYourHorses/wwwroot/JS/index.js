@@ -106,7 +106,10 @@ async function getPartialView() {
     .then((html) => {
       superContainer.innerHTML = html;
     })
-    .then((o) => getCompare());
+    .then((o) => {
+      getCompare();
+      getHearts();
+    });
 }
 
 async function resetFilter() {
@@ -242,6 +245,7 @@ function showHideFilter() {
 
 window.onbeforeunload = function(e) {
   getCompare();
+  getHearts();
 };
 
 async function removeCompare() {
@@ -254,7 +258,6 @@ async function removeCompare() {
 
 function ShowOrHideCompareButton() {
   var button = document.querySelector(".compare-btn");
-  console.log(button);
   console.log(numberOfCompares);
   if (numberOfCompares < 1) {
     button.style.display = "none";
@@ -263,16 +266,32 @@ function ShowOrHideCompareButton() {
   }
 }
 
-function addHeart(svg, artikelNr) {
+async function addHeart(svg, artikelNr) {
   var didAddHeart;
-  fetch(`/addFavourite/?artikelnr=${artikelNr}`)
+  await fetch(`/addFavourite/?artikelnr=${artikelNr}`)
     .then((o) => o.text())
     .then((o) => (didAddHeart = o));
-  if (didAddHeart == "true") {
+  console.log(didAddHeart);
+  if (didAddHeart == "True") {
     svg.style.fill = "rgb(248,48,95)";
   } else {
     svg.style.fill = "";
   }
+}
+
+async function getHearts() {
+  var articleNumbers = await fetch(`/getFavourites`);
+  console.log(articleNumbers);
+  try {
+    articleNumbers = await articleNumbers.json();
+    console.log(articleNumbers);
+    for (let index = 0; index < articleNumbers.length; index++) {
+      const svg = document.querySelector("#svg2-" + articleNumbers[index]);
+      if (svg != null) {
+        svg.style.fill = "rgb(248,48,95)";
+      }
+    }
+  } catch (error) {}
 }
 
 ///// Slider JAvascript code /////
