@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
 using System.Text.Json;
+using static HoldYourHorses.Views.Accounts.OrderhistoryVM;
 
 namespace HoldYourHorses.Models
 {
@@ -42,15 +43,15 @@ namespace HoldYourHorses.Models
                     Stad = o.City,
                     Postnummer = o.ZipCode,
                     Adress = o.Address,
-                    Land = o.Country                   
+                    Land = o.Country
                 });
 
             context.SaveChanges();
-                        
+
             AddToOrderrader(context.Ordrars.OrderBy(o => o.Id)
                 .Select(o => o.Id)
                 .Last());
-        
+
 
             if (Accessor.HttpContext.User.Identity.IsAuthenticated)
             {
@@ -407,27 +408,28 @@ namespace HoldYourHorses.Models
                 .Select(o => o.Id)
                 .ToArray();
 
-            List<Orderrader> array = new List<Orderrader>();
+            List<Order> array = new List<Order>();
             foreach (var id in allOrders)
             {
-              var q = context.Orderraders.Where(o => o.OrderId == id)
-                 .Select(o => new Orderrader
-                 {
-                     Antal = o.Antal,
-                     ArtikelNr = o.ArtikelNr,
-                     Pris = o.Pris,
-                     ArtikelNamn = o.ArtikelNamn,
-                     OrderId = id
-                 }).ToList();
+                var q = context.Orderraders.Where(o => o.OrderId == id)
+                   .Select(o => new Order
+                   {
+                       Antal = o.Antal,
+                       Pris = o.Pris,
+                       ArtikelNamn = o.ArtikelNamn,
+                       OrderId = id
+                   }).ToList();
 
                 foreach (var item in q)
                 {
                     array.Add(item);
                 }
-               
+
             }
 
-            return new OrderhistoryVM { Historik = array.ToArray()} ;
+            var p = array.Select(o => o.OrderId).DistinctBy(o => o).ToArray();
+
+            return new OrderhistoryVM { Historik = array.ToArray(), OrderHej = p };
         }
 
 

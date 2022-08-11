@@ -1,21 +1,28 @@
 ﻿@using HoldYourHorses.Views.Accounts
-
 @model RegisterVM
-<h3>Register</h3>
+@section CSS{
+    <link rel="stylesheet" href="~/CSS/Register.css">
+}
+<h1>Registrera</h1>
+<div class="register-body">
 <form asp-controller="Accounts" asp-action="Register">
-
-    <label asp-for="Username"></label>
+    <div class="info-div">
+    <label class="register-label" asp-for="Username"></label>
     <input asp-for="Username" />
     <span asp-validation-for="Username"></span>
-
-    <label asp-for="Password"></label>
+    </div>
+    <div class="info-div">
+    <label class="register-label" asp-for="Password"></label>
     <input asp-for="Password" />
     <span asp-validation-for="Password"></span>
-
-    <label asp-for="PasswordRepeat"></label>
+    </div>
+    <div class="info-div">
+    <label class="register-label" asp-for="PasswordRepeat"></label>
     <input asp-for="PasswordRepeat" />
     <span asp-validation-for="PasswordRepeat"></span>
+    </div>
     <br />
-    <input type="submit" value="Register" />
+    <input type="submit" value="Registrera" />
 </form>
 <div asp-validation-summary="All"></div>
+</div>
