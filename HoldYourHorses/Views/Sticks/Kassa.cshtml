@@ -7,7 +7,7 @@
 }
 
 <div class="artikel-container" id="container">
-	
+<div>
 
 @if (Model != null && Model?.Count() != 0)
 	{
@@ -60,7 +60,10 @@
 		}
     else
 	{
-		 <h1>Din kundvagn är tom</h1>
+		<h1>Din kundvagn är tom</h1>
+		<button class="tom-kassa-btn" id="fortsättHandla" onclick="location.href='/'" >Bläddra bland våra produkter</button> 
+
     }
 </div>
+</div>	
 

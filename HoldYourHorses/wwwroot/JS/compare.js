@@ -1,6 +1,4 @@
 ﻿//****variables****/
-
-
 var kategori;
 var density;
 var horsepowers;
@@ -12,9 +10,7 @@ var timeFactor = 5
 const goal = document.querySelector(".goal")
 var numberOfHorses = document.querySelector(".numberOfHorses").innerHTML
 numberOfHorses = parseInt(numberOfHorses);
-console.log(goal.style.height)
 goal.style.height = (160 * numberOfHorses) + "px";
-
 let horses = document.querySelectorAll(".horse");
 horses.forEach((e) => {
     intKategori = getKategori(e.dataset.kategori);
@@ -22,9 +18,7 @@ horses.forEach((e) => {
     horsepowers = e.dataset.horsepowers;
     wood = e.dataset.wood;
     intLand = getCountry(e.dataset.land);
-
     let t = (intKategori * density* intLand * timeFactor) / horsepowers;
-    console.log([intKategori, density, horsepowers, wood]);
     let child = Array.from(e.children);
     child.forEach((c) => { //adderar animationen till bild, namn och cirkel
         c.style.animationTimingFunction = getBezier(wood);
