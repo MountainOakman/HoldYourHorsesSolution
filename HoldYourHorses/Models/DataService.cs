@@ -34,12 +34,15 @@ namespace HoldYourHorses.Models
 
         internal void SaveOrder(CheckoutVM checkoutVM)
         {
-            var userId = Accessor.HttpContext.User.Identity.Name;
-            var clientInfo = context.AspNetUsers.Where(o => o.UserName == userId)
-                .Select(o => o.Id)
-                .Single();
             var o = checkoutVM;
-            context.Ordrars.Add(
+
+            if (Accessor.HttpContext.User.Identity.IsAuthenticated)
+            {
+                var userId = Accessor.HttpContext.User.Identity.Name;
+                var clientInfo = context.AspNetUsers.Where(o => o.UserName == userId)
+                    .Select(o => o.Id)
+                    .Single();
+                context.Ordrars.Add(
                 new Ordrar
                 {
                     Förnamn = o.FirstName,
@@ -52,27 +55,30 @@ namespace HoldYourHorses.Models
                     User = clientInfo
                 });
 
-            context.SaveChanges();
-
-            AddToOrderrader(context.Ordrars.OrderBy(o => o.Id)
-                .Select(o => o.Id)
-                .Last());
-
-
-            if (Accessor.HttpContext.User.Identity.IsAuthenticated)
-            {
-                //var userId = Accessor.HttpContext.User.Identity.Name;
-                //var clientInfo = context.AspNetUsers.Where(o => o.UserName == userId)
-                //    .Select(o => o.Id)
-                //    .Single();
-
-                var client = context.Ordrars.Where(o => o.User == userId)
-                    .OrderBy(o => o.Id)
-                    .LastOrDefault();
-
-
-                //client.User = clientInfo;
+                AddToOrderrader(context.Ordrars.OrderBy(o => o.Id)
+                    .Select(o => o.Id)
+                    .Last());
                 context.SaveChanges();
+            }
+            else
+            {
+                context.Ordrars.Add(
+                new Ordrar
+                {
+                    Förnamn = o.FirstName,
+                    Efternamn = o.LastName,
+                    Epost = o.Email,
+                    Stad = o.City,
+                    Postnummer = o.ZipCode,
+                    Adress = o.Address,
+                    Land = o.Country
+                });
+
+                //AddToOrderrader(context.Ordrars.OrderBy(o => o.Id)
+                //    .Select(o => o.Id)
+                //    .Last());
+                context.SaveChanges();
+
             }
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.FirstName)] = o.FirstName;
             tempFactory.GetTempData(Accessor.HttpContext)[nameof(KvittoVM.Epost)] = o.Email;
