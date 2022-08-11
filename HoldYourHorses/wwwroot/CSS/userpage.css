@@ -115,7 +115,7 @@
 #buttons {
     display: flex;
     justify-content:flex-start;
-    margin-top: 50px;
+    margin-top: 0px;
     color: var(--light-purple);
     padding-top: 20px;
     
