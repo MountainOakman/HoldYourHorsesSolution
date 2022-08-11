@@ -433,9 +433,27 @@ namespace HoldYourHorses.Models
         }
 
 
-        internal string AddFavourite(int artikelnr)
+        internal bool AddFavourite(int artikelnr)
         {
-            return "";
+            var userName = Accessor.HttpContext.User.Identity.Name;
+            var id = context.AspNetUsers.Where(o => o.UserName == userName).Select(o => o.Id);
+            
+            var article = context.Favourites.SingleOrDefault(o => o.User == userName && o.Artikelnr == artikelnr);
+            if(article == null)
+            {
+                context.Favourites.Add(new Favourite
+                {
+                    Artikelnr = artikelnr,
+                    User = Accessor.HttpContext.User.Identity.Name
+                });
+                context.SaveChanges();
+            return true;
+            }
+            else
+            {
+                context.Favourites.Remove(article);
+                return false;
+            }
         }
     }
 

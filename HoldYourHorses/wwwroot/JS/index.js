@@ -95,8 +95,6 @@ toInputHK.addEventListener("change", (event) => {
   getPartialView();
 });
 
-
-
 //functions
 async function getPartialView() {
   const superContainer = document.querySelector(".card-container");
@@ -107,8 +105,8 @@ async function getPartialView() {
     .then((result) => result.text())
     .then((html) => {
       superContainer.innerHTML = html;
-    }).then(o => getCompare());
-
+    })
+    .then((o) => getCompare());
 }
 
 async function resetFilter() {
@@ -153,14 +151,16 @@ function hideProperty(id, minus) {
     id.style.height = "0";
   } else {
     id.style.height = "auto";
-    }
-    var id = "svg" + minus;
+  }
+  var id = "svg" + minus;
   var minusP = document.getElementById(id);
-    if (minusP.innerHTML == '<path d="M0 10h24v4h-24z"></path>') {
-        minusP.innerHTML = '<path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z"></path>'
-    } else if (minusP.innerHTML == '<path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z"></path>') {
-        minusP.innerHTML = '<path d="M0 10h24v4h-24z"></path>'
-    }
+  if (minusP.innerHTML == '<path d="M0 10h24v4h-24z"></path>') {
+    minusP.innerHTML = '<path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z"></path>';
+  } else if (
+    minusP.innerHTML == '<path d="M24 9h-9v-9h-6v9h-9v6h9v9h6v-9h9z"></path>'
+  ) {
+    minusP.innerHTML = '<path d="M0 10h24v4h-24z"></path>';
+  }
 }
 
 async function compare(artikelnr, artikelNamn) {
@@ -170,123 +170,115 @@ async function compare(artikelnr, artikelNamn) {
     .then((o) => (didAdd = o));
   console.log(didAdd);
   const svg = document.querySelector("#svg-" + artikelnr);
-    if (didAdd == "True") {
-        if (numberOfCompares < 4) {
-            svg.style.fill = "#7b63ad";
-            numberOfCompares++;
-        }
-        else {
-            alert("Du kan inte jämföra fler än fyra käpphästar samtidigt!")
-        }
-      ShowOrHideCompareButton();
+  if (didAdd == "True") {
+    if (numberOfCompares < 4) {
+      svg.style.fill = "#7b63ad";
+      numberOfCompares++;
+    } else {
+      alert("Du kan inte jämföra fler än fyra käpphästar samtidigt!");
+    }
+    ShowOrHideCompareButton();
   } else {
-      svg.style.fill = "";
-      numberOfCompares--;
-      ShowOrHideCompareButton();
+    svg.style.fill = "";
+    numberOfCompares--;
+    ShowOrHideCompareButton();
   }
 }
 async function getCompare() {
-    var articleList = await fetch("/getCompare")
-    try {
+  var articleList = await fetch("/getCompare");
+  try {
     articleList = await articleList.json();
-        numberOfCompares = articleList.length;
-        for (let index = 0; index < articleList.length; index++) {
-            const svg = document.querySelector("#svg-" + articleList[index]);
-            if (svg != null) {
-                svg.style.fill = "#7b63ad";
-            }
-        }
-
+    numberOfCompares = articleList.length;
+    for (let index = 0; index < articleList.length; index++) {
+      const svg = document.querySelector("#svg-" + articleList[index]);
+      if (svg != null) {
+        svg.style.fill = "#7b63ad";
+      }
     }
-    catch(error) { numberOfCompares = 0; }
-    ShowOrHideCompareButton();
-   
+  } catch (error) {
+    numberOfCompares = 0;
   }
+  ShowOrHideCompareButton();
+}
 
 var isShown = true;
 
 var filterstyle = document.querySelector(".filter").style;
 function showHideFilter() {
-    const filter = document.querySelector(".filter");
-    const listItems = filter.children;
-    const listArray = [...listItems];
-    listArray.shift();
-    const svg = document.querySelector("#hamburger");
-    console.log(svg);
-    if (isShown) {
-        for (var i = 0; i < listArray.length; i++) {
-            listArray[i].style.display = "none";
-        }
-        isShown = false;
-        console.log(filter);
-        filter.style.minWidth = "6rem";
-        filter.style.border = "0px solid black";
-        svg.style.transform = "rotate(0)";
-        filter.style.height = "100vh"
-    } else {
-        isShown = true;
-        filter.style = filterstyle;
-        
-        svg.style.transform = "rotate(90deg)";
-
-        for (var i = 0; i < listArray.length; i++) {
-            setTimeout(
-                function (a) {
-                    a.style.display = "block";
-                },
-                300,
-                listArray[i]
-            );
-            console.log(listArray[i]);
-        }
+  const filter = document.querySelector(".filter");
+  const listItems = filter.children;
+  const listArray = [...listItems];
+  listArray.shift();
+  const svg = document.querySelector("#hamburger");
+  console.log(svg);
+  if (isShown) {
+    for (var i = 0; i < listArray.length; i++) {
+      listArray[i].style.display = "none";
     }
+    isShown = false;
+    console.log(filter);
+    filter.style.minWidth = "6rem";
+    filter.style.border = "0px solid black";
+    svg.style.transform = "rotate(0)";
+    filter.style.height = "100vh";
+  } else {
+    isShown = true;
+    filter.style = filterstyle;
+
+    svg.style.transform = "rotate(90deg)";
+
+    for (var i = 0; i < listArray.length; i++) {
+      setTimeout(
+        function(a) {
+          a.style.display = "block";
+        },
+        300,
+        listArray[i]
+      );
+      console.log(listArray[i]);
+    }
+  }
 }
 
-window.onbeforeunload = function (e) {
-    getCompare();
+window.onbeforeunload = function(e) {
+  getCompare();
 };
 
 async function removeCompare() {
-    await fetch(`/removeCompare`, { method: "GET" })
-    var articles = document.querySelectorAll(".compare-svg");
-    articles.forEach(e => e.style.fill = "");
-    numberOfCompares = 0;
-    ShowOrHideCompareButton();
-
+  await fetch(`/removeCompare`, { method: "GET" });
+  var articles = document.querySelectorAll(".compare-svg");
+  articles.forEach((e) => (e.style.fill = ""));
+  numberOfCompares = 0;
+  ShowOrHideCompareButton();
 }
 
 function ShowOrHideCompareButton() {
-    var button = document.querySelector(".compare-btn");
-    console.log(button)
-    console.log(numberOfCompares)
-    if (numberOfCompares < 1) {
-        button.style.display = "none"
-    }
-    else {
-        button.style.display = "block";
-    }
+  var button = document.querySelector(".compare-btn");
+  console.log(button);
+  console.log(numberOfCompares);
+  if (numberOfCompares < 1) {
+    button.style.display = "none";
+  } else {
+    button.style.display = "block";
+  }
 }
 
-
-//function addHeart(svg, artikelNr) {
-//    var didAddHeart;
-//    await fetch(`/addFavourite/?artikelnr=${artikelnr}`)
-//        .then((o) => o.text())
-//        .then((o) => (didAdd = o));
-//    if ("" +svg.style.fill == "") {
-//        svg.style.fill = "rgb(248,48,95)"
-//    }
-//    else {
-//        svg.style.fill = "";
-//    }
-
-//}
-
+function addHeart(svg, artikelNr) {
+  var didAddHeart;
+  fetch(`/addFavourite/?artikelnr=${artikelNr}`)
+    .then((o) => o.text())
+    .then((o) => (didAddHeart = o));
+  if (didAddHeart == "true") {
+    svg.style.fill = "rgb(248,48,95)";
+  } else {
+    svg.style.fill = "";
+  }
+}
 
 ///// Slider JAvascript code /////
 function controlFromInput(fromSlider, fromInput, toInput, controlSlider) {
   const [from, to] = getParsed(fromInput, toInput);
-    fillSlider(fromInput, toInput, "black", "#7b63ad", controlSlider);
+  fillSlider(fromInput, toInput, "black", "#7b63ad", controlSlider);
   if (from > to) {
     fromSlider.value = to;
     fromInput.value = to;
@@ -379,7 +371,6 @@ fromInputHK.oninput = () =>
   controlFromInput(fromSliderHK, fromInputHK, toInputHK, toSliderHK);
 toInputHK.oninput = () =>
   controlToInput(toSliderHK, fromInputHK, toInputHK, toSliderHK);
-
 
 ///script starts here
 getPartialView();
