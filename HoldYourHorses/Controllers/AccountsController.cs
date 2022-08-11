@@ -67,7 +67,8 @@ namespace HoldYourHorses.Controllers
         [HttpGet("Userpage")]
         public IActionResult Userpage()
         {
-            return View(new UserpageVM { Username = User.Identity.Name });
+            UserpageVM model = dataService.getUserPageVM(User.Identity.Name);
+            return View(model);
         }
         [Authorize]
         [HttpGet("logout")]
