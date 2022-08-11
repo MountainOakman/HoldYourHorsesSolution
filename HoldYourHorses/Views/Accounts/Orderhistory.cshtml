@@ -1,7 +1,26 @@
 ﻿@model OrderhistoryVM
-@*@foreach (var item in Model.Historik.GroupBy(o => o.OrderId).Select(o => o).ToArray())
+
+@foreach (var orderId in Model.OrderHej)
 {
-    <li>Artikel: @item.ArtikelNamn Antal: @item.Antal Pris: @Model.getPriceFormatted(item.Pris)</li>
-   
-    
-}*@
+
+    var hejhej = orderId;
+    <div>
+        <h2>Order: @orderId</h2>
+
+        <ul>
+            @foreach (var item in Model.Historik)
+            {
+                @if (hejhej == item.OrderId)
+                {
+                    <li>
+                        Antal: @item.Antal
+
+                        Artikelnamn: @item.ArtikelNamn
+
+                        Pris: @Model.getPriceFormatted(@item.Pris)
+                    </li>
+                }
+            }
+        </ul>
+    </div>
+}
