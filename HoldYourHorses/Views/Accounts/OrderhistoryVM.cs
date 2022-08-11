@@ -13,6 +13,7 @@ namespace HoldYourHorses.Views.Accounts
             return pris.ToString("#,0", nfi);
         }
 
+       
         public class Order
         {
             public int Antal { get; set; }

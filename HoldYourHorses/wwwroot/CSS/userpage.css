@@ -1,4 +1,8 @@
-﻿.artikel {
+﻿.dina-f{
+    margin-top:50px !important;
+}
+
+.artikel {
     display: flex;
     width: 200px;
     margin-bottom: 20px;
