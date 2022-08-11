@@ -223,7 +223,6 @@ function showHideFilter() {
     filter.style.minWidth = "6rem";
     filter.style.border = "0px solid black";
     svg.style.transform = "rotate(0)";
-    filter.style.height = "100vh";
   } else {
     isShown = true;
     filter.style = filterstyle;
