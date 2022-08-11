@@ -4,7 +4,7 @@ namespace HoldYourHorses.Views.Accounts
 {
     public class LoginVM
     {
-        [Display(Name = "Email-adress")]
+        [Display(Name = "Användarnamn")]
         [Required]
         public string Username { get; set; }
 
