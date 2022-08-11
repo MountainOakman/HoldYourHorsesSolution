@@ -75,6 +75,7 @@
     <Build Include="Tillverkningsländer.sql" />
     <Build Include="Ordrar.sql" />
     <Build Include="Orderrader.sql" />
+    <Build Include="Favourites.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Script1.sql" />

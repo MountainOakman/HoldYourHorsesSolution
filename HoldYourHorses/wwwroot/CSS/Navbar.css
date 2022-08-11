@@ -51,8 +51,6 @@ body{margin:0;
 }
 
 
-
-
 .h1-navbar {
     font-size:40px;
     display: inline-block;
@@ -178,7 +176,7 @@ body{margin:0;
     align-items:center;
 }
 
-input, select, button{
+input, select, button, option{
     cursor:pointer;
 }
 

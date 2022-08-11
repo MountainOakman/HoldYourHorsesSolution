@@ -6,7 +6,7 @@
 .artikel{
     display:flex;
     width: 500px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .artikel img {
@@ -58,14 +58,65 @@
     margin-bottom: 20px;
 }
 
-.buttons > *{
+/*.buttons > *{
      width: 185px;
      padding: 10px 0;
      margin-right: 50px;
-}
+}*/
 .line {
     width: 420px;
     height: 2px;
     background: black;
     margin-bottom: 10px;
 }
+
+
+.filter button {
+    width: 240px;
+    margin-top: 30px;
+    padding: 10px 20px;
+}
+
+.artikel-container {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*margin: 1rem;*/
+}
+
+.kassa-btn-div {
+    display: flex;
+    align-items: center;
+    /*justify-content: space-between;*/
+    /*margin: 1rem;*/
+}
+
+.artikel-container button {
+    background: var(--navbar-logos);
+    color: white;
+    outline: 3px solid var(--light-purple);
+    outline-offset: -8px;
+    border: none;
+    padding: 20px;
+    transition: outline 150ms ease-in;
+    border-radius: 5px;
+    margin-right: 40px;
+    font-size: 15px;
+}
+
+    .artikel-container button:hover {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .artikel-container button:focus {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .artikel-container button:active {
+        box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+        transform: translateY(2px);
+        filter: contrast(110%);
+    }

@@ -13,8 +13,8 @@ namespace HoldYourHorses.Controllers
         {
             this.dataService = dataService;
         }
-        [HttpGet("")]
 
+        [HttpGet("")]
         public async Task<IActionResult> IndexAsync(string search)
         {
             IndexVM model = await dataService.GetIndexVMAsync(search);
@@ -116,5 +116,10 @@ namespace HoldYourHorses.Controllers
            return Ok();
         }
 
+        //[HttpGet("addFavourite")]
+        //public IActionResult AddFavourite(int artikelnr)
+        //{
+        //    return Content(dataService.AddFavourite(artikelnr).ToString());
+        //}
     }
 }

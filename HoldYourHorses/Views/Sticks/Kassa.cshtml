@@ -7,9 +7,12 @@
 }
 
 <div class="artikel-container" id="container">
-<h1>Din Kundvagn</h1>
-@if (Model != null)
+	
+
+@if (Model != null && Model?.Count() != 0)
 	{
+		<div class="another-container">
+		<h1>Din kundvagn</h1>
 	@foreach (var item in Model)
 	{
 	<div class="artikel" id="@item.ArtikelNr">
@@ -40,26 +43,24 @@
 	}
 
 	
-	}
-	
 
 	<div class="summa">
 		
-		 @if(Model != null && Model?.Count() != 0) {
 			 <div class="line"></div>
 			 <span id="summa">Summa: </span>
 			 <span id="totalsumma">
 			@KassaVM.getPriceFormatted(Model.Sum(x => x.Pris *  x.Antal)) kr</span>
-	}
 
-	else
+	<div class="kassa-btn-div">
+        <button class="btn" id="rensakorg" onclick="rensakorg()">Töm varukorg</button>
+        <button class="btn" id="betalning" onclick="checkout()" >Till betalning</button>
+    </div>
+	</div>
+	</div>
+		}
+    else
 	{
-		 <span id="totalsumma">
-			Din kundvagn är tom.</span>
-	}
-		<div class="buttons"> 
-		<button id="rensakorg" onclick="rensakorg()">Töm varukorg</button>
-		<button id="betalning" onclick="checkout()">Till betalning</button>
-	</div>
-	</div>
+		 <h1>Din kundvagn är tom</h1>
+    }
 </div>
+

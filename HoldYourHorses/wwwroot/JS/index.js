@@ -180,7 +180,7 @@ async function compare(artikelnr, artikelNamn) {
         }
       ShowOrHideCompareButton();
   } else {
-      svg.style.fill = "grey";
+      svg.style.fill = "";
       numberOfCompares--;
       ShowOrHideCompareButton();
   }
@@ -249,7 +249,7 @@ window.onbeforeunload = function (e) {
 async function removeCompare() {
     await fetch(`/removeCompare`, { method: "GET" })
     var articles = document.querySelectorAll(".compare-svg");
-    articles.forEach(e => e.style.fill = "#7b63ad");
+    articles.forEach(e => e.style.fill = "");
     numberOfCompares = 0;
     ShowOrHideCompareButton();
 
@@ -268,7 +268,19 @@ function ShowOrHideCompareButton() {
 }
 
 
+//function addHeart(svg, artikelNr) {
+//    var didAddHeart;
+//    await fetch(`/addFavourite/?artikelnr=${artikelnr}`)
+//        .then((o) => o.text())
+//        .then((o) => (didAdd = o));
+//    if ("" +svg.style.fill == "") {
+//        svg.style.fill = "rgb(248,48,95)"
+//    }
+//    else {
+//        svg.style.fill = "";
+//    }
 
+//}
 
 
 ///// Slider JAvascript code /////
