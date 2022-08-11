@@ -22,7 +22,7 @@
 								<div class="orderinfo">
 									@item.Antal st
 									@item.ArtikelNamn
-									@Model.getPriceFormatted(@item.Pris) kr
+									@Model.getPriceFormatted(@item.Pris*item.Antal) kr
 								</div>
 							</li>
 

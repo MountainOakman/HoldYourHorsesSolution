@@ -15,3 +15,8 @@
 .orderinfo{
     margin-bottom: 10px;
 }
+
+.artikel-container  ul {
+    list-style-type: none;
+    padding:0;
+}
