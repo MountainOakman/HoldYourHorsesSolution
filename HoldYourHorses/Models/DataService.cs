@@ -113,7 +113,6 @@ namespace HoldYourHorses.Models
                  .Single();
         }
 
-
         internal KvittoVM GetReceipt()
         {
             return new KvittoVM
@@ -431,5 +430,10 @@ namespace HoldYourHorses.Models
             return new OrderhistoryVM { Historik = array.ToArray()} ;
         }
     }
+    internal string AddFavourite(int artikelnr)
+    {
+        return "";
+    }
+
 }
 
