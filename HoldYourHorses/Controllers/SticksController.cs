@@ -116,10 +116,19 @@ namespace HoldYourHorses.Controllers
            return Ok();
         }
 
-        //[HttpGet("addFavourite")]
-        //public IActionResult AddFavourite(int artikelnr)
-        //{
-        //    return Content(dataService.AddFavourite(artikelnr).ToString());
-        //}
+        [HttpGet("addFavourite")]
+        public IActionResult AddFavourite(int artikelnr)
+        {
+            return Content(dataService.AddFavourite(artikelnr).ToString());
+        }
+
+        [HttpGet("getFavourites")]
+        public IActionResult getFavourites()
+        {
+            var model = dataService.GetFavourites();
+            return Content(model);
+        }
+
+
     }
 }

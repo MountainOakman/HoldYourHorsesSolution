@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 using System.Text.Json;
 using static HoldYourHorses.Views.Accounts.OrderhistoryVM;
 
@@ -113,6 +114,7 @@ namespace HoldYourHorses.Models
                  })
                  .Single();
         }
+
 
         internal KvittoVM GetReceipt()
         {
@@ -433,10 +435,41 @@ namespace HoldYourHorses.Models
         }
 
 
-        internal string AddFavourite(int artikelnr)
+        internal bool AddFavourite(int artikelnr)
         {
-            return "";
+            var userName = Accessor.HttpContext.User.Identity.Name;
+            string id = context.AspNetUsers.Where(o => o.UserName == userName).Select(o => o.Id).Single();
+            var article = context.Favourites.SingleOrDefault(o => o.User == id && o.Artikelnr == artikelnr);
+            if(article == null)
+            {
+                context.Favourites.Add(new Favourite
+                {
+                    Artikelnr = artikelnr,
+                    User = id
+                }); ;
+                context.SaveChanges();
+            return true;
+            }
+            else
+            {
+                context.Favourites.Remove(article);
+                context.SaveChanges();
+                return false;
+            }
         }
+
+        internal string GetFavourites()
+        {
+            var userName = Accessor.HttpContext.User.Identity.Name;
+            if (string.IsNullOrEmpty(userName))
+            {
+                return "";
+            }
+            string id = context.AspNetUsers.Where(o => o.UserName == userName).Select(o => o.Id).Single();
+            var favourites = context.Favourites.Where(o => o.User == id).Select(o => o.Artikelnr).ToList();
+            return JsonSerializer.Serialize(favourites);
+        }
+
     }
 
 
