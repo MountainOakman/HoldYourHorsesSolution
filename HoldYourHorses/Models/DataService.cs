@@ -445,7 +445,7 @@ namespace HoldYourHorses.Models
             List<Order> array = new List<Order>();
             foreach (var id in allOrders)
             {
-                var q = context.Orderraders.Where(o => o.OrderId == id)
+                var q = context.Orderraders.Where(o => o.Id == id)
                    .Select(o => new Order
                    {
                        Antal = o.Antal,
