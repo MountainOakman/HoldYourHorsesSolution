@@ -19,14 +19,22 @@
                 @if (hejhej == item.OrderId)
                 {
                     <li>
-                        Antal: @item.Antal
-
-                        Artikelnamn: @item.ArtikelNamn
-
-                        Pris: @Model.getPriceFormatted(@item.Pris)
+                        @item.Antal st
+                        @item.ArtikelNamn
+                        <br/>
+                        Pris: @Model.getPriceFormatted(@item.Pris) kr
                     </li>
+                    <br/>
+                    @*<div>
+                    <strong>Totalsumma:  @Model.Historik.Where(o => o.OrderId == hejhej).Select(o => o.Pris).Sum()</strong>  
+                    </div>*@
+
                 }
             }
         </ul>
+        
+                    <div>
+                    <strong>Totalsumma:  @Model.getPriceFormatted(@Model.Historik.Where(o => o.OrderId == hejhej).Select(o => o.Pris).Sum()) kr</strong>  
+                    </div
     </div>
 }
