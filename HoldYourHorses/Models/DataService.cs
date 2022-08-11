@@ -429,11 +429,14 @@ namespace HoldYourHorses.Models
 
             return new OrderhistoryVM { Historik = array.ToArray()} ;
         }
+
+
+        internal string AddFavourite(int artikelnr)
+        {
+            return "";
+        }
     }
-    internal string AddFavourite(int artikelnr)
-    {
-        return "";
-    }
+
 
 }
 
