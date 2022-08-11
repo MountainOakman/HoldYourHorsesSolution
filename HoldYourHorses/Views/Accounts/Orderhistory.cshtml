@@ -29,7 +29,7 @@
             }
         </ul>
         <div>
-            <strong>Totalsumma:  @Model.getPriceFormatted(@Model.Historik.Where(o => o.OrderId == hejhej).Select(o => o.Pris).Sum()) kr</strong>
+            <strong>Totalsumma:  @Model.getPriceFormatted(@Model.Historik.Where(o => o.OrderId == hejhej).Select(o => o.Pris*o.Antal).Sum()) kr</strong>
         </div>
     </div>
 }
