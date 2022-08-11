@@ -15,6 +15,33 @@ Välkommen tillbaka @Model.Username
 @*<a asp-controller="Accounts" asp-action="Logout">Logga ut</a>
 <a asp-controller="Accounts" asp-action="Orderhistory">Orderhistorik</a>*@
 </div>
+<div>
+    <div class="article-container">
+    <h1>Dina favoriter</h1>
+                @if(Model.Cards.Length == 0)
+            {
+                <p>Du har inga favoritmarkerade käpphästar :( </p>
+            }
+            else
+            {
+                foreach (var card in Model.Cards)
+                {
+                    <a href="/product/@card.ArticleNr">
+                    <div class="artikel" id="@card.ArticleName">
+		<div class="img-div">
+		<img src="@card.GetPictureUrl()" />
+		</div>
+		<div class="pris-namn">
+		<p class="p-namn">@card.ArticleName</p>
+		<p>@card.getPriceFormatted() kr</p>
+	
+		</div>
+        </div>
+        </a>
+                }
+            }
+        </div>
+        </div>
 </div>
 
 <script>
