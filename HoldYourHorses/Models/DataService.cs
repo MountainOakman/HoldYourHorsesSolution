@@ -55,6 +55,8 @@ namespace HoldYourHorses.Models
                     User = clientInfo
                 });
 
+                context.SaveChanges();
+
                 AddToOrderrader(context.Ordrars.OrderBy(o => o.Id)
                     .Select(o => o.Id)
                     .Last());
@@ -445,7 +447,7 @@ namespace HoldYourHorses.Models
             List<Order> array = new List<Order>();
             foreach (var id in allOrders)
             {
-                var q = context.Orderraders.Where(o => o.Id == id)
+                var q = context.Orderraders.Where(o => o.OrderId == id)
                    .Select(o => new Order
                    {
                        Antal = o.Antal,
@@ -462,7 +464,7 @@ namespace HoldYourHorses.Models
             }
 
             var p = array.Select(o => o.OrderId).DistinctBy(o => o).ToArray();
-
+            var t = new OrderhistoryVM { Historik = array.ToArray(), OrderHej = p };
             return new OrderhistoryVM { Historik = array.ToArray(), OrderHej = p };
         }
 
