@@ -6,7 +6,8 @@
     }
         </style>
 }
-@foreach (var orderId in Model.OrderHej)
+
+@foreach (var orderId in Model.OrderHej.OrderByDescending(o => o))
 {
 
     var hejhej = orderId;
@@ -24,7 +25,7 @@
                         <br />
                         Pris: @Model.getPriceFormatted(@item.Pris) kr
                     </li>
-                    <br/>
+                    
                 }
             }
         </ul>
