@@ -22,6 +22,7 @@ namespace HoldYourHorses.Models.Entities
         public virtual DbSet<AspNetUserClaim> AspNetUserClaims { get; set; } = null!;
         public virtual DbSet<AspNetUserLogin> AspNetUserLogins { get; set; } = null!;
         public virtual DbSet<AspNetUserToken> AspNetUserTokens { get; set; } = null!;
+        public virtual DbSet<Favourite> Favourites { get; set; } = null!;
         public virtual DbSet<Kategorier> Kategoriers { get; set; } = null!;
         public virtual DbSet<Material> Materials { get; set; } = null!;
         public virtual DbSet<Orderrader> Orderraders { get; set; } = null!;
@@ -112,11 +113,27 @@ namespace HoldYourHorses.Models.Entities
                     .HasForeignKey(d => d.UserId);
             });
 
+            modelBuilder.Entity<Favourite>(entity =>
+            {
+                entity.Property(e => e.User).HasMaxLength(450);
+
+                entity.HasOne(d => d.ArtikelnrNavigation)
+                    .WithMany(p => p.Favourites)
+                    .HasForeignKey(d => d.Artikelnr)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Favourite__Artik__48CFD27E");
+
+                entity.HasOne(d => d.UserNavigation)
+                    .WithMany(p => p.Favourites)
+                    .HasForeignKey(d => d.User)
+                    .HasConstraintName("FK__Favourites__User__47DBAE45");
+            });
+
             modelBuilder.Entity<Kategorier>(entity =>
             {
                 entity.ToTable("Kategorier");
 
-                entity.HasIndex(e => e.Namn, "UQ__Kategori__737584FD2808DACD")
+                entity.HasIndex(e => e.Namn, "UQ__Kategori__737584FD93780F24")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
@@ -126,10 +143,10 @@ namespace HoldYourHorses.Models.Entities
             {
                 entity.ToTable("Material");
 
-                entity.HasIndex(e => e.Id, "UQ__Material__3214EC06AF04CCEC")
+                entity.HasIndex(e => e.Id, "UQ__Material__3214EC06C2A2A4EF")
                     .IsUnique();
 
-                entity.HasIndex(e => e.Namn, "UQ__Material__737584FDB540A98D")
+                entity.HasIndex(e => e.Namn, "UQ__Material__737584FD8B88BC1C")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
@@ -139,19 +156,28 @@ namespace HoldYourHorses.Models.Entities
             {
                 entity.ToTable("Orderrader");
 
+                entity.Property(e => e.ArtikelNamn).HasMaxLength(50);
+
                 entity.Property(e => e.Pris).HasColumnType("money");
 
+                entity.HasOne(d => d.ArtikelNamnNavigation)
+                    .WithMany(p => p.OrderraderArtikelNamnNavigations)
+                    .HasPrincipalKey(p => p.Artikelnamn)
+                    .HasForeignKey(d => d.ArtikelNamn)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK__Orderrade__Artik__4BAC3F29");
+
                 entity.HasOne(d => d.ArtikelNrNavigation)
-                    .WithMany(p => p.Orderraders)
+                    .WithMany(p => p.OrderraderArtikelNrNavigations)
                     .HasForeignKey(d => d.ArtikelNr)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Orderrade__Artik__46E78A0C");
+                    .HasConstraintName("FK__Orderrade__Artik__4AB81AF0");
 
                 entity.HasOne(d => d.Order)
                     .WithMany(p => p.Orderraders)
                     .HasForeignKey(d => d.OrderId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Orderrade__Order__45F365D3");
+                    .HasConstraintName("FK__Orderrade__Order__49C3F6B7");
             });
 
             modelBuilder.Entity<Ordrar>(entity =>
@@ -175,15 +201,15 @@ namespace HoldYourHorses.Models.Entities
                 entity.HasOne(d => d.UserNavigation)
                     .WithMany(p => p.Ordrars)
                     .HasForeignKey(d => d.User)
-                    .HasConstraintName("FK__Ordrar__User__47DBAE45");
+                    .HasConstraintName("FK__Ordrar__User__4CA06362");
             });
 
             modelBuilder.Entity<Stick>(entity =>
             {
                 entity.HasKey(e => e.Artikelnr)
-                    .HasName("PK__Sticks__CB7A9C83438F0AA7");
+                    .HasName("PK__Sticks__CB7A9C838541894C");
 
-                entity.HasIndex(e => e.Artikelnamn, "UQ__Sticks__6A6FEA8446A9F860")
+                entity.HasIndex(e => e.Artikelnamn, "UQ__Sticks__6A6FEA84D0D31373")
                     .IsUnique();
 
                 entity.Property(e => e.Artikelnamn).HasMaxLength(50);
@@ -196,26 +222,26 @@ namespace HoldYourHorses.Models.Entities
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.KategoriId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Kategori__49C3F6B7");
+                    .HasConstraintName("FK__Sticks__Kategori__4E88ABD4");
 
                 entity.HasOne(d => d.Material)
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.MaterialId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Material__48CFD27E");
+                    .HasConstraintName("FK__Sticks__Material__4D94879B");
 
                 entity.HasOne(d => d.Tillverkningsland)
                     .WithMany(p => p.Sticks)
                     .HasForeignKey(d => d.TillverkningslandId)
                     .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__Sticks__Tillverk__4AB81AF0");
+                    .HasConstraintName("FK__Sticks__Tillverk__4F7CD00D");
             });
 
             modelBuilder.Entity<Tillverkningsländer>(entity =>
             {
                 entity.ToTable("Tillverkningsländer");
 
-                entity.HasIndex(e => e.Namn, "UQ__Tillverk__737584FD8FA7CD74")
+                entity.HasIndex(e => e.Namn, "UQ__Tillverk__737584FD5635248C")
                     .IsUnique();
 
                 entity.Property(e => e.Namn).HasMaxLength(50);
