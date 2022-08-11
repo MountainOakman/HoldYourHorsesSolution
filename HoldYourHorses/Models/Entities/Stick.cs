@@ -7,8 +7,7 @@ namespace HoldYourHorses.Models.Entities
     {
         public Stick()
         {
-            OrderraderArtikelNamnNavigations = new HashSet<Orderrader>();
-            OrderraderArtikelNrNavigations = new HashSet<Orderrader>();
+            Orderraders = new HashSet<Orderrader>();
         }
 
         public int Artikelnr { get; set; }
@@ -25,7 +24,6 @@ namespace HoldYourHorses.Models.Entities
         public virtual Kategorier Kategori { get; set; } = null!;
         public virtual Material Material { get; set; } = null!;
         public virtual Tillverkningsländer Tillverkningsland { get; set; } = null!;
-        public virtual ICollection<Orderrader> OrderraderArtikelNamnNavigations { get; set; }
-        public virtual ICollection<Orderrader> OrderraderArtikelNrNavigations { get; set; }
+        public virtual ICollection<Orderrader> Orderraders { get; set; }
     }
 }
