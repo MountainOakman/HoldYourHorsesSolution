@@ -20,7 +20,7 @@ function kundvagn() {
     var totalsumma = document.getElementById('totalsumma');
     var container = document.querySelector(".artikel-container")
     if (totalsumma.innerHTML == "0 kr") {
-        container.innerHTML = "<h1>Din Kundvagn är tom</h1>"
+        container.innerHTML = `<h1>Din kundvagn är tom</h1><button class="tom-kassa-btn" id="fortsättHandla" onclick="location.href='/'">Bläddra bland våra produkter</button>`
     };
 }
 
@@ -31,7 +31,7 @@ function rensakorg() {
         })
         .then(o => {
             var container = document.querySelector(".artikel-container")
-            container.innerHTML = "<h1>Din Kundvagn är tom</h1>"
+            container.innerHTML = `<h1>Din kundvagn är tom</h1><button class="tom-kassa-btn" id="fortsättHandla" onclick="location.href='/'">Bläddra bland våra produkter</button>`
             const numberofproducts = document.getElementById('number-of-products');
             numberofproducts.attributes[2].value = 0;
             console.log(numberofproducts)

@@ -105,6 +105,10 @@
     font-size: 15px;
 }
 
+.tom-kassa-btn{
+    margin-left: 30px;
+}
+
     .artikel-container button:hover {
         outline: 3px solid var(--navbar-logos);
         outline-offset: 4px;
