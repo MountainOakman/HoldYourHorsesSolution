@@ -82,5 +82,14 @@ namespace HoldYourHorses.Controllers
         {
             return View(dataService.GetOrderHistory());
         }
+        [Authorize]
+        [HttpGet("orderhistoryget")]
+        public IActionResult Orderhistoryget()
+        {
+            var order = dataService.GetOrderHistory();
+
+            //dataService.SortHistory()
+            return View(order);
+        }
     }
 }
