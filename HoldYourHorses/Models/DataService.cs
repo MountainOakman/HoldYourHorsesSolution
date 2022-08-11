@@ -79,6 +79,22 @@ namespace HoldYourHorses.Models
 
         }
 
+        internal UserpageVM getUserPageVM(string? name)
+        {
+            var userName = Accessor.HttpContext.User.Identity.Name;
+            string id = context.AspNetUsers.Where(o => o.UserName == userName).Select(o => o.Id).Single();
+            var articleNumbers = context.Favourites.Where(o => o.User == id).Select(o => o.Artikelnr);
+            var cards = context.Sticks.Where(o => articleNumbers.Contains(o.Artikelnr)).Select(o =>
+            new Card
+            {
+                ArticleName = o.Artikelnamn,
+                ArticleNr = o.Artikelnr,
+                Price = decimal.ToInt32(o.Pris)
+            }).ToArray();
+
+            return new UserpageVM { Cards = cards, Username = name };
+        }
+
         private void AddToOrderrader(int id)
         {
             List<ShoppingCartProduct> products;

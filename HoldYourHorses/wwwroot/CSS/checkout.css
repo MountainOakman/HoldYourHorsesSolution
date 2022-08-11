@@ -1,7 +1,12 @@
 ﻿
+.my-div{
+    margin-left:400px;
+}
 
-.mycredit{
-    display:flex;
+
+.mycredit {
+    display: flex;
+    width: 800px;
 }
 
     .mycredit input, .inside-form input {
@@ -15,7 +20,6 @@
 .div-first-form{
     width:420px;
     box-sizing:border-box;
-    padding:20px 0 0 20px;
     box-sizing:border-box;
 }
 
@@ -61,7 +65,6 @@ body {
 
 .payment-title {
     width: 100%;
-    padding-left:20px;
 }
 
 .form-container .field-container:first-of-type {
@@ -96,7 +99,6 @@ body {
     grid-template-rows: 90px 90px 90px;
     grid-template-areas: "name name""number number""expiration security";
     max-width: 400px;
-    padding: 20px;
 
 }
 
@@ -388,6 +390,60 @@ label {
         transform: rotateY(180deg);
     }
 
-.confirm-btn{
-    margin-left:20px;
+
+
+
+
+
+
+
+
+.super-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 390px;
 }
+
+.confirm-btn {
+    width: 240px;
+    margin-top: 30px;
+    padding: 10px 20px;
+}
+
+.confirm-btn {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*margin: 1rem;*/
+}
+
+.confirm-btn {
+    background: var(--navbar-logos);
+    color: white;
+    outline: 3px solid var(--light-purple);
+    outline-offset: -8px;
+    border: none;
+    padding: 20px;
+    transition: outline 150ms ease-in;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+    .confirm-btn:hover {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .confirm-btn:focus {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .confirm-btn:active {
+        box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+        transform: translateY(2px);
+        filter: contrast(110%);
+    }

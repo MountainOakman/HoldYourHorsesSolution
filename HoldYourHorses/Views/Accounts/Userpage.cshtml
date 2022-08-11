@@ -1,9 +1,29 @@
 ﻿@using HoldYourHorses.Views.Accounts
 @model UserpageVM
+@section CSS{
+    <link rel="stylesheet" href="~/CSS/userpage.css">
+}
+<div class="user-body">
+
 <div style="min-height: 400px">
-<h3>User Page</h3>
+<h3 id="Norden2">Mitt Konto</h3>
 Välkommen tillbaka @Model.Username
 
-<a asp-controller="Accounts" asp-action="Logout">Logga ut</a>
-<a asp-controller="Accounts" asp-action="Orderhistory">Orderhistorik</a>
+<div class="konto" id="buttons">
+<input type='button' value='Logga ut' onClick='redirectOnClick()' />
+<input type='button' value='Orderhistorik' onClick='redirectOnClick2()' />
+@*<a asp-controller="Accounts" asp-action="Logout">Logga ut</a>
+<a asp-controller="Accounts" asp-action="Orderhistory">Orderhistorik</a>*@
 </div>
+</div>
+
+<script>
+    function redirectOnClick() {
+        document.location = 'logout';
+    }
+</script>
+<script>
+    function redirectOnClick2() {
+        document.location = 'orderhistory';
+    }
+</script>

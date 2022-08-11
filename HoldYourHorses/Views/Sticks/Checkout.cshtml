@@ -1,11 +1,5 @@
 ﻿@model CheckoutVM
 
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>My Title</title>
     @section CSS{
         <link rel="stylesheet" href="~/CSS/checkout.css">
     }
@@ -13,8 +7,9 @@
          <script src="~/JS/checkout.js" defer></script>
          <script src="https://cdnjs.cloudflare.com/ajax/libs/imask/3.4.0/imask.min.js" defer></script>
     }
-</head>
-<body> <div class="payment-title">
+    <div class="super-container">
+        <div class="my-div">
+    <div class="payment-title">
      <h1>Leveransinformation</h1>
      </div>
       <form  asp-controller="Sticks" asp-action="checkout">
@@ -205,5 +200,5 @@
     <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.6.0.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/jquery.validate/1.19.2/jquery.validate.min.js"></script>
     <script src="https://ajax.aspnetcdn.com/ajax/mvc/5.2.3/jquery.validate.unobtrusive.min.js"></script>
-</body>
-</html>
+</div>
+</div>
