@@ -121,5 +121,14 @@ namespace HoldYourHorses.Controllers
         {
             return Content(dataService.AddFavourite(artikelnr).ToString());
         }
+
+        [HttpGet("getFavourites")]
+        public IActionResult getFavourites()
+        {
+            var model = dataService.GetFavourites();
+            return Content(model);
+        }
+
+
     }
 }
