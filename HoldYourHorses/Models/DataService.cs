@@ -464,7 +464,7 @@ namespace HoldYourHorses.Models
             }
 
             var p = array.Select(o => o.OrderId).DistinctBy(o => o).ToArray();
-
+            var t = new OrderhistoryVM { Historik = array.ToArray(), OrderHej = p };
             return new OrderhistoryVM { Historik = array.ToArray(), OrderHej = p };
         }
 
