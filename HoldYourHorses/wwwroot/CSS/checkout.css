@@ -388,6 +388,60 @@ label {
         transform: rotateY(180deg);
     }
 
-.confirm-btn{
-    margin-left:20px;
+
+
+
+
+
+
+
+
+.super-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 390px;
 }
+
+.confirm-btn {
+    width: 240px;
+    margin-top: 30px;
+    padding: 10px 20px;
+}
+
+.confirm-btn {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /*margin: 1rem;*/
+}
+
+.confirm-btn {
+    background: var(--navbar-logos);
+    color: white;
+    outline: 3px solid var(--light-purple);
+    outline-offset: -8px;
+    border: none;
+    padding: 20px;
+    transition: outline 150ms ease-in;
+    border-radius: 5px;
+    font-size: 15px;
+}
+
+    .confirm-btn:hover {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .confirm-btn:focus {
+        outline: 3px solid var(--navbar-logos);
+        outline-offset: 4px;
+    }
+
+    .confirm-btn:active {
+        box-shadow: 0 2px rgba(20, 20, 20, 0.966);
+        transform: translateY(2px);
+        filter: contrast(110%);
+    }
