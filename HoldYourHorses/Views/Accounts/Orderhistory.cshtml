@@ -1,11 +1,10 @@
 ﻿@model OrderhistoryVM
 @section CSS{
-
-    <style>.container{
-    min-height:500px;
-    }
-        </style>
+    <link rel="stylesheet" href="~/CSS/orderhistory.css">
 }
+
+<div class="artikel-container" id="container">
+    <div>
 @foreach (var orderId in Model.OrderHej)
 {
 
@@ -30,6 +29,10 @@
         </ul>
         <div>
             <strong>Totalsumma:  @Model.getPriceFormatted(@Model.Historik.Where(o => o.OrderId == hejhej).Select(o => o.Pris).Sum()) kr</strong>
+            
         </div>
     </div>
 }
+
+</div>
+ </div>	

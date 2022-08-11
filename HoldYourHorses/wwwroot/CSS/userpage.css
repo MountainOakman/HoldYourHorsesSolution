@@ -1,5 +1,6 @@
-﻿.dina-f{
-    margin-top:50px !important;
+﻿.dina-f {
+    margin-top: 50px !important;
+    color: var(--navbar-logos);
 }
 
 .artikel {
@@ -45,6 +46,10 @@
 }
 
 .user-body {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-left: 20px;
     min-height: 500px;
 }

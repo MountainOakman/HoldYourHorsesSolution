@@ -1,6 +1,10 @@
-﻿.login-body{
-    margin-left:20px;
-    min-height:500px;
+﻿.login-body {
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 20px;
+    min-height: 500px;
 }
 .login-body h1{
     margin:10px 0;
