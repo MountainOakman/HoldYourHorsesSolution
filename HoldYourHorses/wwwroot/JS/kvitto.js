@@ -9,7 +9,3 @@
         })
 }
 rensakorg();
-
-function index() {
-    window.location = "/index";
-}
